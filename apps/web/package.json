@@ -1,0 +1,23 @@
+{
+  "name": "@svu-community/web",
+  "version": "2.0.0",
+  "private": true,
+  "description": "SVU Community - التطبيق الرئيسي",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "node build.mjs",
+    "preview": "vite preview",
+    "clean": "rm -rf dist"
+  },
+  "keywords": ["svu", "community", "syrian-virtual-university"],
+  "author": "SVU Community Team",
+  "license": "ISC",
+  "dependencies": {
+    "tailwindcss": "^4.2.2"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.2.2",
+    "vite": "^8.0.1"
+  }
+}

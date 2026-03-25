@@ -1,0 +1,69 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build outputs
+dist/
+build/
+.turbo/
+
+# Environment files — NEVER commit real keys
+.env
+.env.local
+.env.*.local
+**/env.js
+!.env.example
+!apps/**/.env.example
+
+# TypeScript
+*.tsbuildinfo
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*.code-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+npm-debug.log*
+
+# Coverage & Test
+coverage/
+playwright-report/
+test-results/
+
+# Cache
+.cache/
+.parcel-cache/
+.eslintcache
+.vite/
+
+# Temporary
+tmp/
+temp/
+nul
+
+# Cloudflare
+.wrangler/
+
+# Supabase
+supabase/.branches/
+supabase/.temp/
+
+# Old projects (archived)
+_archive_old_projects/
+ite_comunety/
+Course Materials Page Design/
+unisync---university-schedule-matcher/
+
+# Development planning docs
+INCOMPLETE_FILES_PLAN.md
+REPORT.md
+plane.md

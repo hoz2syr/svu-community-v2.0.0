@@ -1,0 +1,33 @@
+{
+  "name": "svu-community",
+  "version": "1.0.0",
+  "private": true,
+  "description": "SVU Community - University Student Platform",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "dev:web": "turbo run dev --filter=web",
+    "dev:courses": "turbo run dev --filter=courses",
+    "dev:schedule": "turbo run dev --filter=schedule",
+    "build": "turbo run build",
+    "build:web": "turbo run build --filter=web",
+    "build:courses": "turbo run build --filter=courses",
+    "build:schedule": "turbo run build --filter=schedule",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "typecheck": "turbo run typecheck",
+    "clean": "turbo run clean"
+  },
+  "devDependencies": {
+    "turbo": "^2.0.0",
+    "typescript": "^5.4.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "packageManager": "npm@9.0.0"
+}

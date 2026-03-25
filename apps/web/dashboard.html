@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="dashboardTitle">لوحة التحكم - SVU Community</title>
+    <meta name="description" content="لوحة التحكم - SVU Community">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#0f172a">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * { font-family: 'Cairo', sans-serif; }
+        body { background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%); min-height: 100vh; }
+        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .gradient-text { background: linear-gradient(135deg, #38bdf8, #818cf8, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+
+    <!-- Language & Theme Toggle -->
+    <div class="fixed top-4 right-4 z-50 toggle-bar" data-tour="lang-theme">
+        <button data-lang-toggle onclick="window.i18n?.toggleLang(); location.reload();"
+            data-tooltip="tipLangToggle"
+            class="lang-toggle-btn" aria-label="Toggle language">
+            <span class="lang-icon">
+                <svg class="lang-globe" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+                </svg>
+                EN
+            </span>
+        </button>
+        <div class="toggle-divider"></div>
+        <button id="themeToggleBtn" onclick="window.toggleTheme?.()"
+            data-tooltip="tipThemeToggle"
+            class="theme-toggle-btn" aria-label="Toggle theme">
+            <span class="icon-wrapper">
+                <svg class="icon-sun hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                </svg>
+                <svg class="icon-moon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                </svg>
+                <svg class="icon-system hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+            </span>
+        </button>
+    </div>
+
+    <!-- Loading State -->
+    <div id="loadingState" class="text-center">
+        <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center shadow-2xl shadow-primary-500/30">
+            <svg class="w-8 h-8 text-white animate-spin" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+        </div>
+        <p class="text-secondary-400" data-i18n="loading">جاري التحقق...</p>
+    </div>
+
+    <!-- Dashboard Content -->
+    <div id="dashboardContent" class="hidden w-full max-w-4xl">
+        <!-- User Card -->
+        <div class="glass rounded-2xl p-6 mb-6" data-tour="user-card">
+            <div class="flex items-center gap-4 flex-wrap">
+                <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center shadow-lg">
+                    <span id="userInitial" class="text-2xl font-bold text-white">م</span>
+                </div>
+                <div class="flex-1 min-w-0">
+                    <h1 class="text-2xl font-bold text-white">
+                        <span data-i18n="dashboardWelcome">مرحباً</span>، <span id="userFirstName" class="gradient-text">مستخدم</span>
+                    </h1>
+                    <p id="userEmail" class="text-secondary-400 text-sm mt-1 truncate">user@example.com</p>
+                    <div class="flex items-center gap-3 mt-2 flex-wrap">
+                        <span id="userMajor" class="px-3 py-1 bg-primary-500/20 text-primary-400 rounded-full text-sm">ITE</span>
+                        <span id="userUsername" class="text-secondary-500 text-sm">@username</span>
+                    </div>
+                </div>
+                <button onclick="handleLogout(event)" data-tooltip="tipLogout" class="p-3 text-secondary-400 hover:text-red-400 hover:bg-red-500/10 rounded-xl transition-all" aria-label="Logout">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+                    </svg>
+                </button>
+                <button onclick="window.onboardingTour?.restart()" data-tooltip="tipRestartTour" data-tour="restart-btn" class="tour-restart-btn" data-i18n="tourRestart" title="إعادة الجولة التعريفية">إعادة الجولة</button>
+            </div>
+        </div>
+
+        <!-- Feature Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+            <a href="groups.html" data-tour="groups-card" data-tooltip="tipGroups" class="glass rounded-2xl p-6 hover:bg-white/5 transition-all group">
+                <div class="w-12 h-12 rounded-xl bg-primary-500/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <svg class="w-6 h-6 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                    </svg>
+                </div>
+                <h3 class="text-lg font-semibold text-white mb-1" data-i18n="dashboardGroups">المجموعات</h3>
+                <p class="text-secondary-400 text-sm" data-i18n="dashboardGroupsDesc">انضم لمجموعاتك الدراسية</p>
+            </a>
+            <a href="materials.html" data-tour="materials-card" data-tooltip="tipMaterials" class="glass rounded-2xl p-6 hover:bg-white/5 transition-all group">
+                <div class="w-12 h-12 rounded-xl bg-amber-500/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <svg class="w-6 h-6 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                    </svg>
+                </div>
+                <h3 class="text-lg font-semibold text-white mb-1" data-i18n="dashboardMaterials">المواد الدراسية</h3>
+                <p class="text-secondary-400 text-sm" data-i18n="dashboardMaterialsDesc">تصفح مقرراتك الدراسية</p>
+            </a>
+            <a href="schedule.html" data-tour="schedule-card" data-tooltip="tipSchedule" class="glass rounded-2xl p-6 hover:bg-white/5 transition-all group">
+                <div class="w-12 h-12 rounded-xl bg-cyan-500/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                </div>
+                <h3 class="text-lg font-semibold text-white mb-1" data-i18n="scheduleNavTitle">استخراج الجدول</h3>
+                <p class="text-secondary-400 text-sm" data-i18n="scheduleUploadDesc">ارفع جدولك واعثر على مجموعاتك</p>
+            </a>
+            <div class="glass rounded-2xl p-6 opacity-60 cursor-not-allowed" data-tour="forum-card">
+                <div class="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                    </svg>
+                </div>
+                <h3 class="text-lg font-semibold text-white mb-1" data-i18n="dashboardForum">المنتدى</h3>
+                <p class="text-secondary-400 text-sm"><span data-i18n="comingSoon">قريباً</span></p>
+            </div>
+            <a href="profile.html" data-tour="profile-card" data-tooltip="tipProfile" class="glass rounded-2xl p-6 hover:bg-white/5 transition-all group">
+                <div class="w-12 h-12 rounded-xl bg-green-500/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                    </svg>
+                </div>
+                <h3 class="text-lg font-semibold text-white mb-1" data-i18n="dashboardProfile">الملف الشخصي</h3>
+                <p class="text-secondary-400 text-sm" data-i18n="dashboardProfileDesc">إدارة ملفك ومجموعاتك</p>
+            </a>
+
+            <!-- Admin Panel Link (hidden by default) -->
+            <a id="adminLink" href="admin.html" class="hidden glass rounded-2xl p-6 hover:bg-white/5 transition-all group">
+                <div class="w-12 h-12 rounded-xl bg-amber-500/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <svg class="w-6 h-6 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                    </svg>
+                </div>
+                <h3 class="text-lg font-semibold text-white mb-1">لوحة الإدارة</h3>
+                <p class="text-secondary-400 text-sm">إدارة المستخدمين والمجموعات</p>
+            </a>
+        </div>
+    </div>
+
+    <!-- Made Possible By Badge -->
+    <div class="mpb-wrap fixed bottom-8 left-1/2 -translate-x-1/2 z-40">
+        <div class="mpb-badge" id="mpbBadge">
+            <div class="mpb-particles" id="mpbParticles"></div>
+            <div class="mpb-glow"></div>
+            <span class="mpb-dot"></span>
+            <span class="mpb-label">made possible by</span>
+            <span class="mpb-word" id="mpbWord">...</span>
+        </div>
+    </div>
+
+    <style>
+        .mpb-badge{display:inline-flex;align-items:center;gap:10px;padding:10px 22px;border-radius:999px;background:rgba(129,140,248,0.12);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);position:relative;overflow:hidden;cursor:pointer;transition:all 0.3s ease;animation:mpb-float 3s ease-in-out infinite}
+        .mpb-badge::before{content:'';position:absolute;inset:0;border-radius:999px;padding:1.5px;background:linear-gradient(135deg,#38bdf8,#818cf8,#c084fc,#38bdf8);background-size:300% 300%;animation:mpb-gradient-shift 4s ease infinite;-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+        .mpb-badge::after{content:'';position:absolute;inset:-2px;border-radius:999px;background:linear-gradient(135deg,#38bdf8,#818cf8,#c084fc,#38bdf8);background-size:300% 300%;animation:mpb-gradient-shift 4s ease infinite;opacity:0.25;filter:blur(12px);z-index:-1;pointer-events:none}
+        .mpb-badge:hover{background:rgba(129,140,248,0.2);transform:translateY(-2px)}
+        .mpb-glow{position:absolute;inset:0;border-radius:999px;background:radial-gradient(ellipse at center,rgba(129,140,248,0.15) 0%,transparent 70%);animation:mpb-pulse-glow 2s ease-in-out infinite;pointer-events:none}
+        .mpb-label{font-size:13px;color:rgba(255,255,255,0.55);letter-spacing:0.04em;white-space:nowrap;position:relative;z-index:1}
+        .mpb-word{font-size:13px;font-weight:600;color:#818cf8;white-space:nowrap;min-width:60px;transition:opacity 0.15s ease,transform 0.15s ease;position:relative;z-index:1}
+        .mpb-dot{width:7px;height:7px;border-radius:50%;background:linear-gradient(135deg,#818cf8,#c084fc);flex-shrink:0;position:relative;z-index:1;box-shadow:0 0 8px rgba(129,140,248,0.6);animation:mpb-dot-pulse 2s ease-in-out infinite}
+        .mpb-particles{position:absolute;inset:0;pointer-events:none;overflow:hidden;border-radius:inherit;z-index:2}
+        .mpb-p{position:absolute;width:3px;height:3px;border-radius:50%;background:#818cf8;opacity:0}
+        @keyframes mpb-gradient-shift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+        @keyframes mpb-pulse-glow{0%,100%{opacity:0.3}50%{opacity:0.8}}
+        @keyframes mpb-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+        @keyframes mpb-dot-pulse{0%,100%{box-shadow:0 0 6px rgba(129,140,248,0.4)}50%{box-shadow:0 0 14px rgba(129,140,248,0.9)}}
+    </style>
+
+    <script>
+    (function(){
+        var words = ['you','الطلاب','المجتمع','us','SVU','الجميع','love','you'];
+        var idx = 0;
+        var wordEl = document.getElementById('mpbWord');
+        var badge = document.getElementById('mpbBadge');
+        var particles = document.getElementById('mpbParticles');
+        var typed = '';
+        var typingTimer = null;
+        var autoTimer = null;
+        var isTyping = false;
+
+        function spawnParticles(){
+            for(var i=0;i<8;i++){
+                (function(i){
+                    var p=document.createElement('div');
+                    p.className='mpb-p';
+                    var angle=Math.random()*Math.PI*2;
+                    var dist=30+Math.random()*20;
+                    p.style.left=(40+Math.random()*20)+'%';
+                    p.style.top=(30+Math.random()*40)+'%';
+                    p.style.width=(2+Math.random()*3)+'px';
+                    p.style.height=p.style.width;
+                    p.style.background=['#818cf8','#38bdf8','#c084fc','#34d399'][Math.floor(Math.random()*4)];
+                    particles.appendChild(p);
+                    var tx=Math.cos(angle)*dist;
+                    var ty=Math.sin(angle)*dist;
+                    setTimeout(function(){
+                        p.style.transition='all 0.7s cubic-bezier(0.25,0.46,0.45,0.94)';
+                        p.style.opacity='0.8';
+                        p.style.transform='translate('+tx+'px,'+ty+'px) scale(0)';
+                        setTimeout(function(){
+                            p.style.opacity='0';
+                            setTimeout(function(){ p.remove(); },300);
+                        },500);
+                    },i*40);
+                })(i);
+            }
+        }
+
+        function setWord(w, animate){
+            if(animate){
+                wordEl.style.opacity='0';
+                wordEl.style.transform='translateY(8px) scale(0.9)';
+                setTimeout(function(){
+                    wordEl.textContent=w;
+                    wordEl.style.transform='translateY(-6px) scale(1.05)';
+                    setTimeout(function(){
+                        wordEl.style.opacity='1';
+                        wordEl.style.transform='translateY(0) scale(1)';
+                        spawnParticles();
+                    },50);
+                },150);
+            } else {
+                wordEl.textContent=w;
+            }
+        }
+
+        // Wait for user name to be populated by page-dashboard.js
+        function initBadge(){
+            var nameEl = document.getElementById('userFirstName');
+            var name = (nameEl && nameEl.textContent.trim()) || '';
+            if(name && name !== 'مستخدم' && name !== '...' && name.length > 0){
+                // Insert user's name at the start of the cycle
+                words.unshift(name);
+                idx = 0;
+                setWord(name, false);
+            }
+            startAuto();
+        }
+
+        // Start auto after dashboard has time to populate the name
+        setTimeout(initBadge, 1500);
+
+        function startAuto(){
+            clearInterval(autoTimer);
+            autoTimer=setInterval(function(){
+                if(isTyping) return;
+                idx=(idx+1)%words.length;
+                setWord(words[idx],true);
+            },2000);
+        }
+
+        document.addEventListener('keydown',function(e){
+            if(document.activeElement.tagName==='INPUT'||document.activeElement.tagName==='TEXTAREA') return;
+            if(e.key==='Backspace'){ typed=typed.slice(0,-1); }
+            else if(e.key.length===1){ typed+=e.key; }
+            else { return; }
+            isTyping=true;
+            clearTimeout(typingTimer);
+            if(typed){
+                setWord(typed,false);
+                wordEl.style.color='#34d399';
+            } else {
+                wordEl.style.color='#818cf8';
+                if(words.length > 0) setWord(words[0],true);
+            }
+            typingTimer=setTimeout(function(){
+                if(!typed){ isTyping=false; }
+            },3000);
+        });
+
+        badge.addEventListener('click',function(){
+            if(!isTyping){
+                idx=(idx+1)%words.length;
+                setWord(words[idx],true);
+            }
+        });
+    })();
+    </script>
+
+    <!-- Toast -->
+    <div id="toast" class="fixed bottom-4 left-1/2 -translate-x-1/2 transform transition-all duration-300 z-[9999] opacity-0 translate-y-4" style="min-width: 250px;">
+        <div id="toastContent" class="text-white px-6 py-3 rounded-xl shadow-2xl border text-center font-medium"></div>
+    </div>
+
+    <script src="env.js"></script>
+<script src="js/config.js"></script>
+    <script src="js/core.js"></script>
+    <script src="js/shared.js"></script>
+    <script src="js/auth-guard.js"></script>
+    <script src="js/i18n.js"></script>
+    <script src="js/page-dashboard.js"></script>
+    <script src="js/onboarding-tour.js"></script>
+    <script src="js/feedback.js"></script>
+    <script src="js/tooltip.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                window.onboardingTour?.init();
+            }, 1200);
+        });
+    </script>
+</body>
+</html>

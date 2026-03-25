@@ -1,0 +1,38 @@
+# SVU Community - Git Ignore
+
+# Environment & secrets
+.env
+.env.local
+.env.*.local
+env.js
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Dependencies
+node_modules/
+.turbo/
+
+# Build output (Cloudflare builds on deploy)
+dist/
+
+# Build artifacts
+public/
+build/
+.vite/
+
+# Documentation (not for production)
+PLAN-STEP1.md
+LAUNCH_PLAN.md
+reportfrometheuser.md
+
+# Old config files
+tailwind.config.js
+postcss.config.js

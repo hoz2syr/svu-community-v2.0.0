@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="groupsTitle">مجموعات الدراسة - SVU Community</title>
+    <meta name="description" content="مجموعات الدراسة - SVU Community">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#0f172a">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        * { font-family: 'Cairo', sans-serif; }
+        body { background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%); min-height: 100vh; }
+        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .input-field { background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(148, 163, 184, 0.2); transition: all 0.3s ease; }
+        .input-field:focus { border-color: #0ea5e9; box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.2); }
+        .input-field.valid { border-color: rgba(34, 197, 94, 0.5); }
+        .input-field.invalid { border-color: rgba(239, 68, 68, 0.4); }
+        .input-field.invalid:focus { box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2); }
+        .gradient-text { background: linear-gradient(135deg, #38bdf8, #818cf8, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .modal { background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px); }
+        .modal-content {
+            padding-left: max(env(safe-area-inset-left), 1rem);
+            padding-right: max(env(safe-area-inset-right), 1rem);
+        }
+        @media (max-width: 640px) {
+            .modal { align-items: flex-start !important; padding-top: 2rem; padding-bottom: 2rem; }
+            .modal .glass { border-radius: 1rem; }
+            .modal form { gap: 0.875rem !important; }
+            #majorMenuGroup .rounded-xl,
+            #courseNameMenu .rounded-xl,
+            #classMenu .rounded-xl { max-height: 10rem !important; }
+        }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3); }
+        .progress-bar { transition: width 0.5s ease; }
+        .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.5); }
+        ::-webkit-scrollbar-thumb { background: #475569; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #64748b; }
+
+        /* ── Major dropdown ────────────────────────── */
+        /* Filter dropdowns */
+        #filterMajorMenu,
+        #filterCourseMenu,
+        #filterClassMenu,
+        #filterStatusMenu{
+            display:none;
+            animation:dropIn .18s ease;
+        }
+        #filterMajorMenu.open,
+        #filterCourseMenu.open,
+        #filterClassMenu.open,
+        #filterStatusMenu.open{
+            display:block;
+        }
+        #filterMajorMenu > div,
+        #filterCourseMenu > div,
+        #filterClassMenu > div,
+        #filterStatusMenu > div{
+            background:#1e293b;
+            border:1px solid #334155;
+            border-radius:12px;
+            overflow:hidden;
+            box-shadow:0 10px 25px rgba(0,0,0,.4);
+        }
+        #filterMajorList::-webkit-scrollbar,
+        #filterCourseList::-webkit-scrollbar,
+        #filterClassList::-webkit-scrollbar,
+        #filterStatusList::-webkit-scrollbar{ width:6px; }
+        #filterMajorList::-webkit-scrollbar-track,
+        #filterCourseList::-webkit-scrollbar-track,
+        #filterClassList::-webkit-scrollbar-track,
+        #filterStatusList::-webkit-scrollbar-track{ background:#1e293b; }
+        #filterMajorList::-webkit-scrollbar-thumb,
+        #filterCourseList::-webkit-scrollbar-thumb,
+        #filterClassList::-webkit-scrollbar-thumb,
+        #filterStatusList::-webkit-scrollbar-thumb{ background:#475569; border-radius:3px; }
+        #filterMajorList::-webkit-scrollbar-thumb:hover,
+        #filterCourseList::-webkit-scrollbar-thumb:hover,
+        #filterClassList::-webkit-scrollbar-thumb:hover,
+        #filterStatusList::-webkit-scrollbar-thumb:hover{ background:#64748b; }
+        @media (max-width: 640px) {
+            #filterMajorMenu .rounded-xl,
+            #filterCourseMenu .rounded-xl,
+            #filterClassMenu .rounded-xl,
+            #filterStatusMenu .rounded-xl { max-height: 10rem !important; }
+        }
+
+        /* Create modal dropdowns */
+        #majorMenuGroup,
+        #courseNameMenu,
+        #classMenu{
+            display:none;
+            animation:dropIn .18s ease;
+        }
+        #majorMenuGroup.open,
+        #courseNameMenu.open,
+        #classMenu.open{
+            display:block;
+        }
+        #majorMenuGroup > div,
+        #courseNameMenu > div,
+        #classMenu > div{
+            background:#1e293b;
+            border:1px solid #334155;
+            border-radius:12px;
+            overflow:hidden;
+            box-shadow:0 10px 25px rgba(0,0,0,.4);
+        }
+        .m-row{
+            display:flex; align-items:center;
+            padding:12px 16px; color:#e2e8f0;
+            cursor:pointer; font-size:14px;
+            transition:background .15s,border-right .15s;
+            border-right:3px solid transparent;
+        }
+        .m-row:hover            { background:rgba(14,165,233,.12); border-right-color:#0ea5e9; }
+        .m-row.active           { background:rgba(14,165,233,.2); border-right-color:#38bdf8; color:#fff; }
+        .m-row .mi             { flex:1; font-weight:500; font-family:monospace; }
+        .m-row .mi-course      { flex:1; font-weight:500; }
+        .m-row .mi-code        { font-size:11px; color:#94a3b8; margin-inline-start:8px; font-family:monospace; }
+        .m-row .check          { color:#38bdf8; font-size:12px; margin-inline-start:8px; opacity:0; transition:opacity .15s; }
+        .m-row.active .check   { opacity:1; }
+        #majorListGroup::-webkit-scrollbar,
+        #courseNameList::-webkit-scrollbar,
+        #classList::-webkit-scrollbar{ width:6px; }
+        #majorListGroup::-webkit-scrollbar-track,
+        #courseNameList::-webkit-scrollbar-track,
+        #classList::-webkit-scrollbar-track{ background:#1e293b; }
+        #majorListGroup::-webkit-scrollbar-thumb,
+        #courseNameList::-webkit-scrollbar-thumb,
+        #classList::-webkit-scrollbar-thumb{ background:#475569; border-radius:3px; }
+        #majorListGroup::-webkit-scrollbar-thumb:hover,
+        #courseNameList::-webkit-scrollbar-thumb:hover,
+        #classList::-webkit-scrollbar-thumb:hover{ background:#64748b; }
+        @keyframes dropIn{ from{opacity:0;transform:translateY(-6px)} to{opacity:1;transform:translateY(0)} }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Navbar -->
+    <nav class="glass sticky top-0 z-40 border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <a href="dashboard.html" class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                        </svg>
+                    </div>
+                    <span class="gradient-text font-bold text-lg hidden sm:block">SVU Community</span>
+                </a>
+
+                <!-- Search Bar -->
+                <div class="flex-1 max-w-lg mx-4">
+                    <div class="relative">
+                        <input type="text" id="searchInput" 
+                            data-tour="search"
+                            data-tooltip="tipSearch"
+                            class="input-field w-full px-4 py-2 pl-10 rounded-xl text-white placeholder-secondary-500 text-sm"
+                            placeholder="🔍 ابحث عن مجموعة... (مادة، دكتور، تخصص)">
+                        <svg class="w-5 h-5 absolute left-3 top-1/2 -translate-y-1/2 text-secondary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="flex items-center gap-3">
+                    <!-- Theme & Language Toggle -->
+                    <div class="toggle-bar hidden sm:inline-flex">
+                        <button data-lang-toggle onclick="window.i18n?.toggleLang(); location.reload();"
+                            data-tooltip="tipLangToggle"
+                            class="lang-toggle-btn" aria-label="Toggle language">
+                            <span class="lang-icon">
+                                <svg class="lang-globe" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+                                </svg>
+                                EN
+                            </span>
+                        </button>
+                        <div class="toggle-divider"></div>
+                        <button id="themeToggleBtn" onclick="window.toggleTheme?.()"
+                            data-tooltip="tipThemeToggle"
+                            class="theme-toggle-btn" aria-label="Toggle theme">
+                            <span class="icon-wrapper">
+                                <svg class="icon-sun hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                                </svg>
+                                <svg class="icon-moon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                                </svg>
+                                <svg class="icon-system hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                </svg>
+                            </span>
+                        </button>
+                    </div>
+                    <button onclick="openCreateModal()" data-tour="create-btn" data-tooltip="tipCreateGroup" class="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-500 hover:to-primary-400 text-white rounded-xl font-semibold text-sm transition-all duration-300 shadow-lg shadow-primary-500/30">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                        </svg>
+                        <span class="hidden sm:inline">إنشاء مجموعة</span>
+                    </button>
+                    <button onclick="logout()" data-tooltip="tipLogout" class="p-2 text-secondary-400 hover:text-white transition">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Filters -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4" data-tour="filters">
+        <div class="flex flex-wrap gap-3">
+            <!-- Major Filter -->
+            <div class="relative" id="filterMajorWrapper">
+                <input type="text" id="filterMajorInput" autocomplete="off" data-tooltip="tipFilter"
+                    class="input-field px-4 py-2 pr-4 pl-8 rounded-xl text-white text-sm cursor-pointer min-w-[160px]"
+                    placeholder="كل التخصصات">
+                <svg class="absolute left-2 top-1/2 -translate-y-1/2 w-4 h-4 text-secondary-400 transition-transform duration-200"
+                     id="filterMajorArrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                </svg>
+                <div id="filterMajorMenu" class="absolute top-full mt-2 left-0 right-0 z-40 hidden" style="min-width:200px">
+                    <div class="rounded-xl overflow-hidden border border-secondary-600 max-h-60 overflow-y-auto">
+                        <ul id="filterMajorList" class="py-1" role="listbox"></ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course Filter -->
+            <div class="relative" id="filterCourseWrapper">
+                <input type="text" id="filterCourseInput" autocomplete="off"
+                    class="input-field px-4 py-2 pr-4 pl-8 rounded-xl text-white text-sm cursor-pointer min-w-[160px]"
+                    placeholder="كل المواد">
+                <svg class="absolute left-2 top-1/2 -translate-y-1/2 w-4 h-4 text-secondary-400 transition-transform duration-200"
+                     id="filterCourseArrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                </svg>
+                <div id="filterCourseMenu" class="absolute top-full mt-2 left-0 right-0 z-40 hidden" style="min-width:220px">
+                    <div class="rounded-xl overflow-hidden border border-secondary-600 max-h-60 overflow-y-auto">
+                        <ul id="filterCourseList" class="py-1" role="listbox"></ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Class Filter -->
+            <div class="relative" id="filterClassWrapper">
+                <input type="text" id="filterClassInput" autocomplete="off"
+                    class="input-field px-4 py-2 pr-4 pl-8 rounded-xl text-white text-sm cursor-pointer min-w-[120px]"
+                    placeholder="كل الصفوف">
+                <svg class="absolute left-2 top-1/2 -translate-y-1/2 w-4 h-4 text-secondary-400 transition-transform duration-200"
+                     id="filterClassArrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                </svg>
+                <div id="filterClassMenu" class="absolute top-full mt-2 left-0 right-0 z-40 hidden" style="min-width:120px">
+                    <div class="rounded-xl overflow-hidden border border-secondary-600 max-h-60 overflow-y-auto">
+                        <ul id="filterClassList" class="py-1" role="listbox"></ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Status Filter -->
+            <div class="relative" id="filterStatusWrapper">
+                <input type="text" id="filterStatusInput" autocomplete="off"
+                    class="input-field px-4 py-2 pr-4 pl-8 rounded-xl text-white text-sm cursor-pointer min-w-[140px]"
+                    placeholder="كل الحالات">
+                <svg class="absolute left-2 top-1/2 -translate-y-1/2 w-4 h-4 text-secondary-400 transition-transform duration-200"
+                     id="filterStatusArrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                </svg>
+                <div id="filterStatusMenu" class="absolute top-full mt-2 left-0 right-0 z-40 hidden" style="min-width:160px">
+                    <div class="rounded-xl overflow-hidden border border-secondary-600 max-h-60 overflow-y-auto">
+                        <ul id="filterStatusList" class="py-1" role="listbox"></ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Clear Filters -->
+            <button onclick="clearFilters()" class="px-4 py-2 text-secondary-400 hover:text-white text-sm transition">
+                مسح الفلاتر ✕
+            </button>
+        </div>
+    </div>
+
+    <!-- Groups Grid -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
+        <!-- Loading -->
+        <div id="loadingState" class="text-center py-12">
+            <div class="w-12 h-12 mx-auto mb-4 border-4 border-primary-500 border-t-transparent rounded-full animate-spin"></div>
+            <p class="text-secondary-400">جاري تحميل المجموعات...</p>
+        </div>
+
+        <!-- Empty State -->
+        <div id="emptyState" class="hidden text-center py-12">
+            <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-secondary-800 flex items-center justify-center">
+                <svg class="w-10 h-10 text-secondary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-white mb-2">لا توجد مجموعات</h3>
+            <p class="text-secondary-400 mb-4">كن أول من يُنشئ مجموعة!</p>
+            <button onclick="openCreateModal()" class="px-6 py-2 bg-primary-600 hover:bg-primary-500 text-white rounded-xl font-semibold transition">
+                إنشاء مجموعة
+            </button>
+        </div>
+
+        <!-- Groups Container -->
+        <div id="groupsContainer" data-tour="groups-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            <!-- Groups will be rendered here -->
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+         Create Group Modal
+    ═══════════════════════════════════════════ -->
+    <div id="createModal" class="fixed inset-0 modal hidden z-50 overflow-y-auto">
+        <div class="flex min-h-full items-center justify-center p-3 sm:p-4">
+            <div class="glass rounded-2xl p-4 sm:p-6 max-w-lg w-full shadow-2xl" onclick="event.stopPropagation()">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-bold text-white">إنشاء مجموعة جديدة</h3>
+                    <button onclick="closeCreateModal()" class="text-secondary-400 hover:text-white transition">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <form id="createGroupForm" class="space-y-4 sm:space-y-5">
+                    <!-- Group Name -->
+                    <div>
+                        <label class="block text-secondary-300 text-sm mb-2">
+                            <svg class="w-4 h-4 inline-block ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                            </svg>
+                            اسم المجموعة <span class="text-red-400">*</span>
+                        </label>
+                        <input type="text" id="groupName" required
+                            class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-secondary-500"
+                            placeholder="مثال: مجموعة مراجعة C1 - فصل الربيع">
+                        <p id="groupNameError" class="text-red-400 text-xs mt-1 hidden">يرجى إدخال اسم المجموعة</p>
+                    </div>
+
+                    <!-- Course Name & Code -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-secondary-300 text-sm mb-2">
+                                <svg class="w-4 h-4 inline-block ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                                </svg>
+                                اسم المادة <span class="text-red-400">*</span>
+                            </label>
+                            <div class="relative" id="courseNameWrapper">
+                                <div class="relative">
+                                    <input type="text" id="courseNameInput" autocomplete="off"
+                                           class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-secondary-500 cursor-pointer"
+                                           placeholder="ابحث عن المادة...">
+                                    <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-secondary-400 transition-transform duration-200"
+                                         id="courseNameArrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                    </svg>
+                                </div>
+                                <div id="courseNameMenu" class="absolute top-full mt-2 left-0 right-0 z-40 hidden">
+                                    <div class="rounded-xl overflow-hidden border border-secondary-600 max-h-72 overflow-y-auto">
+                                        <ul id="courseNameList" class="py-1" role="listbox"></ul>
+                                    </div>
+                                </div>
+                                <p id="courseNameError" class="text-red-400 text-xs mt-1 hidden">يرجى اختيار المادة</p>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-secondary-300 text-sm mb-2">
+                                <svg class="w-4 h-4 inline-block ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
+                                </svg>
+                                رقم المادة / الصف <span class="text-red-400">*</span>
+                            </label>
+                            <div class="relative" id="classWrapper">
+                                <div class="relative">
+                                    <input type="text" id="classInput" autocomplete="off"
+                                           class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-secondary-500 cursor-pointer"
+                                           placeholder="ابحث عن الصف...">
+                                    <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-secondary-400 transition-transform duration-200"
+                                         id="classArrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                    </svg>
+                                </div>
+                                <div id="classMenu" class="absolute top-full mt-2 left-0 right-0 z-40 hidden">
+                                    <div class="rounded-xl overflow-hidden border border-secondary-600 max-h-72 overflow-y-auto">
+                                        <ul id="classList" class="py-1" role="listbox"></ul>
+                                    </div>
+                                </div>
+                                <p id="classError" class="text-red-400 text-xs mt-1 hidden">يرجى اختيار الصف</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Major & Max Members -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-secondary-300 text-sm mb-2">
+                                <svg class="w-4 h-4 inline-block ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                                </svg>
+                                التخصص <span class="text-red-400">*</span>
+                            </label>
+                            <div class="relative" id="majorWrapperGroup">
+                                <div class="relative">
+                                    <input type="text" id="majorInputGroup" autocomplete="off"
+                                           class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-secondary-500 cursor-pointer"
+                                           placeholder="ابحث عن التخصص...">
+                                    <div class="absolute left-3 top-1/2 -translate-y-1/2 text-secondary-500 pointer-events-none">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                                        </svg>
+                                    </div>
+                                    <svg class="absolute left-12 top-1/2 -translate-y-1/2 w-4 h-4 text-secondary-400 transition-transform duration-200"
+                                         id="majorArrowGroup" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                    </svg>
+                                </div>
+                                <div id="majorMenuGroup" class="absolute top-full mt-2 left-0 right-0 z-40 hidden">
+                                    <div class="rounded-xl overflow-hidden border border-secondary-600 max-h-72 overflow-y-auto">
+                                        <ul id="majorListGroup" class="py-1" role="listbox"></ul>
+                                    </div>
+                                </div>
+                                <p id="majorErrorGroup" class="text-red-400 text-xs mt-1 hidden">الرجاء اختيار التخصص</p>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-secondary-300 text-sm mb-2">
+                                <svg class="w-4 h-4 inline-block ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                </svg>
+                                عدد الأعضاء المطلوبين <span class="text-red-400">*</span>
+                            </label>
+                            <input type="number" id="maxMembers" required min="2" max="20" value="5"
+                                class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-secondary-500">
+                            <p id="maxMembersError" class="text-red-400 text-xs mt-1 hidden">العدد يجب أن يكون بين 2 و 20</p>
+                        </div>
+                    </div>
+
+                    <!-- WhatsApp Link -->
+                    <div>
+                        <label class="block text-secondary-300 text-sm mb-2">
+                            <svg class="w-4 h-4 inline-block ml-1 text-green-400" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                            </svg>
+                            رابط مجموعة الواتساب <span class="text-red-400">*</span>
+                        </label>
+                        <input type="url" id="whatsappLink" required
+                            class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-secondary-500"
+                            placeholder="https://chat.whatsapp.com/...">
+                        <p id="whatsappError" class="text-red-400 text-xs mt-1 hidden">يرجى إدخال رابط مجموعة الواتساب</p>
+                    </div>
+
+                    <!-- Group Link (Optional) -->
+                    <div>
+                        <label class="block text-secondary-300 text-sm mb-2">
+                            <svg class="w-4 h-4 inline-block ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
+                            </svg>
+                            رابط المجموعة <span class="text-secondary-500 text-xs">(اختياري)</span>
+                        </label>
+                        <input type="url" id="groupLink"
+                            class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-secondary-500"
+                            placeholder="https://teams.microsoft.com/...">
+                    </div>
+
+                    <!-- Info Note -->
+                    <div class="bg-primary-500/10 border border-primary-500/30 rounded-xl p-3 text-sm text-primary-300">
+                        <svg class="w-4 h-4 inline-block ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        سيتم إضافتك كأول عضو في المجموعة تلقائياً
+                    </div>
+
+                    <!-- Submit -->
+                    <button type="submit" id="createBtn"
+                        class="w-full py-3 bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-500 hover:to-primary-400 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-primary-500/30">
+                        إنشاء المجموعة
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+         Group Details Modal
+    ═══════════════════════════════════════════ -->
+    <div id="detailsModal" class="fixed inset-0 modal hidden z-50 overflow-y-auto">
+        <div class="flex min-h-full items-center justify-center p-3 sm:p-4">
+            <div class="glass rounded-2xl p-4 sm:p-6 max-w-md w-full shadow-2xl" onclick="event.stopPropagation()">
+                <!-- Header -->
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h3 id="detailName" class="text-xl font-bold text-white">اسم المجموعة</h3>
+                        <span id="detailCode" class="inline-block mt-1 px-2 py-1 bg-primary-600/30 text-primary-400 rounded-lg text-sm">C1</span>
+                    </div>
+                    <button onclick="closeDetailsModal()" class="text-secondary-400 hover:text-white transition">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Info -->
+                <div class="space-y-3 mb-6">
+                    <div class="flex items-center gap-3 text-secondary-300">
+                        <svg class="w-5 h-5 text-secondary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                        </svg>
+                        <span id="detailCourse">اسم المادة</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-secondary-300">
+                        <svg class="w-5 h-5 text-secondary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                        </svg>
+                        <span>السنة <span id="detailClass">1</span></span>
+                    </div>
+                    <div class="flex items-center gap-3 text-secondary-300">
+                        <svg class="w-5 h-5 text-secondary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                        </svg>
+                        <span>د. <span id="detailDoctor">أحمد</span></span>
+                    </div>
+                    <div class="flex items-center gap-3 text-secondary-300">
+                        <svg class="w-5 h-5 text-secondary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                        </svg>
+                        <span id="detailMajor">ITE</span>
+                    </div>
+                </div>
+
+                <!-- Progress -->
+                <div class="mb-6">
+                    <div class="flex justify-between text-sm mb-2">
+                        <span class="text-secondary-400">عدد الأعضاء</span>
+                        <span class="text-white font-semibold"><span id="detailCurrent">3</span> / <span id="detailMax">5</span></span>
+                    </div>
+                    <div class="h-3 bg-secondary-800 rounded-full overflow-hidden">
+                        <div id="detailProgress" class="h-full bg-gradient-to-r from-primary-500 to-accent-500 progress-bar rounded-full" style="width: 60%"></div>
+                    </div>
+                    <p id="detailStatus" class="text-xs text-center mt-2 text-green-400">● متاحة</p>
+                </div>
+
+                <!-- Creator -->
+                <div class="flex items-center gap-3 p-3 bg-secondary-800/50 rounded-xl mb-6">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center text-white font-bold">
+                        <span id="detailCreatorInitial">A</span>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <p class="text-white text-sm font-semibold truncate">
+                            <span id="detailCreator">Ahmed</span>
+                        </p>
+                        <p class="text-secondary-500 text-xs truncate">
+                            @<span id="detailCreatorUsername">ahmed_123456</span>
+                        </p>
+                    </div>
+                    <span class="text-secondary-600 text-xs shrink-0" id="detailDate">منذ 2 ساعة</span>
+                </div>
+
+                <!-- Actions -->
+                <div class="space-y-3" id="detailActions">
+                    <!-- WhatsApp Link - Only visible after joining -->
+                    <a id="detailWhatsapp" href="#" target="_blank"
+                        class="hidden flex items-center justify-center gap-2 w-full py-3 bg-green-600 hover:bg-green-500 text-white rounded-xl font-semibold transition">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                        </svg>
+                        <span>انضم عبر الواتساب</span>
+                    </a>
+
+                    <!-- Group Link (Optional) -->
+                    <a id="detailGroupLink" href="#" target="_blank"
+                        class="hidden flex items-center justify-center gap-2 w-full py-3 bg-secondary-600 hover:bg-secondary-500 text-white rounded-xl font-semibold transition">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
+                        </svg>
+                        <span>رابط المجموعة</span>
+                    </a>
+
+                    <!-- Major Mismatch Warning -->
+                    <div id="majorMismatchWarning" class="hidden w-full p-4 bg-yellow-600/20 border border-yellow-500/30 rounded-xl mb-3">
+                        <p class="text-yellow-400 text-sm font-semibold text-center mb-3">
+                            <svg class="w-5 h-5 inline-block ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                            </svg>
+                            هذه المجموعة لتخصص <span id="groupMajorLabel" class="font-bold"></span>
+                        </p>
+                        <p class="text-yellow-300/80 text-xs text-center mb-3">تخصصك: <span id="userMajorLabel" class="font-bold"></span> - هل تريد المتابعة؟</p>
+                        <div class="flex gap-2">
+                            <button onclick="confirmJoinDifferentMajor()" class="flex-1 py-2 bg-yellow-600 hover:bg-yellow-500 text-white rounded-lg text-sm font-semibold transition">متابعة</button>
+                            <button onclick="cancelJoinDifferentMajor()" class="flex-1 py-2 bg-secondary-700 hover:bg-secondary-600 text-white rounded-lg text-sm font-semibold transition">إلغاء</button>
+                        </div>
+                    </div>
+
+                    <!-- Join / Confirm Section -->
+                    <div id="joinSection">
+                        <!-- Step 1: Join button -->
+                        <button id="joinBtn" onclick="showJoinConfirm()"
+                            class="w-full py-3 bg-gradient-to-r from-accent-600 to-accent-500 hover:from-accent-500 hover:to-accent-400 text-white font-semibold rounded-xl transition-all duration-300">
+                            انضم للمجموعة
+                        </button>
+                        <!-- Step 2: Confirm button (hidden by default) -->
+                        <button id="confirmJoinBtn" onclick="joinGroup()" 
+                            class="hidden w-full py-3 bg-gradient-to-r from-green-600 to-green-500 hover:from-green-500 hover:to-green-400 text-white font-semibold rounded-xl transition-all duration-300">
+                            <svg class="w-5 h-5 inline-block ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            تأكيد الانضمام
+                        </button>
+                        <!-- Already member message -->
+                        <div id="alreadyMemberMsg" class="hidden w-full py-3 bg-green-600/20 border border-green-500/30 text-green-400 text-center rounded-xl font-semibold">
+                            <svg class="w-5 h-5 inline-block ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            أنت عضو في هذه المجموعة
+                        </div>
+                    </div>
+
+                    <!-- Delete Group Button (Admin/Creator only) -->
+                    <button id="deleteGroupBtn" data-group-id=""
+                        class="hidden w-full py-3 bg-red-600/20 border border-red-500/30 hover:bg-red-600/40 text-red-400 hover:text-red-300 rounded-xl font-semibold transition-all duration-300 mt-2">
+                        <svg class="w-5 h-5 inline-block ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                        </svg>
+                        حذف المجموعة
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="fixed bottom-4 left-1/2 -translate-x-1/2 transform transition-all duration-300 z-[9999] opacity-0 translate-y-4" style="min-width: 250px;">
+        <div id="toastContent" class="text-white px-6 py-3 rounded-xl shadow-2xl border text-center font-medium"></div>
+    </div>
+
+    <script src="env.js"></script>
+<script src="js/config.js"></script>
+    <script src="js/core.js"></script>
+    <script src="js/shared.js"></script>
+    <script src="js/auth-guard.js"></script>
+    <script src="js/i18n.js"></script>
+    <script src="js/tooltip.js"></script>
+    <script src="js/feedback.js"></script>
+    <script src="js/page-groups.js"></script>
+</body>
+</html>

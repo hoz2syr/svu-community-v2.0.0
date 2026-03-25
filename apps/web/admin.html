@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة الإدارة - SVU Community</title>
+    <meta name="description" content="لوحة الإدارة - SVU Community">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#0f172a">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * { font-family: 'Cairo', sans-serif; }
+        body { background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%); min-height: 100vh; }
+        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .gradient-text { background: linear-gradient(135deg, #38bdf8, #818cf8, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .tab-btn.active { background: rgba(59, 130, 246, 0.2); color: #60a5fa; border-color: #3b82f6; }
+        .stat-card { transition: all 0.3s ease; }
+        .stat-card:hover { transform: translateY(-2px); }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { text-align: right; padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        th { color: #94a3b8; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        tr:hover { background: rgba(255,255,255,0.03); }
+        .badge { display: inline-block; padding: 2px 8px; border-radius: 6px; font-size: 0.75rem; font-weight: 500; }
+        .badge-admin { background: rgba(234, 179, 8, 0.2); color: #facc15; }
+        .badge-active { background: rgba(34, 197, 94, 0.2); color: #4ade80; }
+        .badge-inactive { background: rgba(239, 68, 68, 0.2); color: #f87171; }
+        .badge-full { background: rgba(239, 68, 68, 0.2); color: #f87171; }
+        .badge-available { background: rgba(34, 197, 94, 0.2); color: #4ade80; }
+        .action-btn { padding: 6px 10px; border-radius: 8px; font-size: 0.8rem; transition: all 0.2s; cursor: pointer; border: none; }
+        .action-btn:hover { transform: scale(1.05); }
+        .btn-danger { background: rgba(239, 68, 68, 0.15); color: #f87171; }
+        .btn-danger:hover { background: rgba(239, 68, 68, 0.3); }
+        .btn-warning { background: rgba(234, 179, 8, 0.15); color: #facc15; }
+        .btn-warning:hover { background: rgba(234, 179, 8, 0.3); }
+        .btn-success { background: rgba(34, 197, 94, 0.15); color: #4ade80; }
+        .btn-success:hover { background: rgba(34, 197, 94, 0.3); }
+        .search-input { background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(148, 163, 184, 0.2); transition: all 0.3s ease; }
+        .search-input:focus { border-color: #0ea5e9; box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.2); outline: none; }
+        .modal { background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px); }
+    </style>
+</head>
+<body class="min-h-screen p-4 md:p-6">
+
+    <!-- Header -->
+    <div class="max-w-7xl mx-auto mb-6">
+        <div class="flex items-center justify-between flex-wrap gap-4">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center shadow-lg">
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold text-white">لوحة الإدارة</h1>
+                    <p class="text-secondary-400 text-sm">SVU Community Admin</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-2">
+                <a href="dashboard.html" class="px-4 py-2 glass rounded-xl text-sm text-white hover:bg-white/10 transition">الرئيسية</a>
+                <button id="themeToggleBtn" onclick="window.toggleTheme?.()" class="theme-toggle-btn" aria-label="Toggle theme">
+                    <span class="icon-wrapper">
+                        <svg class="icon-sun hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                        </svg>
+                        <svg class="icon-moon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                        </svg>
+                        <svg class="icon-system hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                    </span>
+                </button>
+                <button onclick="handleLogout(event)" class="p-2 glass rounded-xl text-secondary-400 hover:text-red-400 hover:bg-red-500/10 transition" aria-label="Logout">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading State -->
+    <div id="loadingState" class="text-center py-20">
+        <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center shadow-2xl shadow-amber-500/30">
+            <svg class="w-8 h-8 text-white animate-spin" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+        </div>
+        <p class="text-secondary-400">جاري التحميل...</p>
+    </div>
+
+    <!-- Access Denied -->
+    <div id="accessDenied" class="hidden text-center py-20">
+        <div class="text-6xl mb-4">🚫</div>
+        <h2 class="text-2xl font-bold text-white mb-2">ممنوع الوصول</h2>
+        <p class="text-secondary-400 mb-6">هذه الصفحة مخصصة للمشرفين فقط</p>
+        <a href="dashboard.html" class="px-6 py-3 bg-primary-500 hover:bg-primary-600 text-white rounded-xl transition">العودة للرئيسية</a>
+    </div>
+
+    <!-- Admin Content -->
+    <div id="adminContent" class="hidden max-w-7xl mx-auto">
+
+        <!-- Stats Cards -->
+        <div id="statsGrid" class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+            <div class="stat-card glass rounded-xl p-4">
+                <div class="text-2xl font-bold text-white" id="statUsers">-</div>
+                <div class="text-secondary-400 text-sm">إجمالي المستخدمين</div>
+            </div>
+            <div class="stat-card glass rounded-xl p-4">
+                <div class="text-2xl font-bold text-green-400" id="statActive">-</div>
+                <div class="text-secondary-400 text-sm">مستخدمون نشطون</div>
+            </div>
+            <div class="stat-card glass rounded-xl p-4">
+                <div class="text-2xl font-bold text-primary-400" id="statGroups">-</div>
+                <div class="text-secondary-400 text-sm">إجمالي المجموعات</div>
+            </div>
+            <div class="stat-card glass rounded-xl p-4">
+                <div class="text-2xl font-bold text-purple-400" id="statMembers">-</div>
+                <div class="text-secondary-400 text-sm">إجمالي العضويات</div>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="flex gap-2 mb-4 flex-wrap">
+            <button class="tab-btn active px-4 py-2 glass rounded-xl text-sm font-medium border border-transparent transition" data-tab="users">المستخدمون</button>
+            <button class="tab-btn px-4 py-2 glass rounded-xl text-sm font-medium text-secondary-400 border border-transparent transition" data-tab="groups">المجموعات</button>
+        </div>
+
+        <!-- Users Tab -->
+        <div id="tab-users" class="glass rounded-xl overflow-hidden">
+            <div class="p-4 border-b border-white/5 flex items-center gap-3 flex-wrap">
+                <input type="text" id="searchUsers" placeholder="بحث بالاسم أو الإيميل..." class="search-input flex-1 min-w-[200px] px-4 py-2 rounded-xl text-white text-sm">
+                <select id="filterAdmin" class="search-input px-4 py-2 rounded-xl text-white text-sm">
+                    <option value="">الكل</option>
+                    <option value="admin">المشرفون فقط</option>
+                    <option value="user">المستخدمون فقط</option>
+                </select>
+                <select id="filterActive" class="search-input px-4 py-2 rounded-xl text-white text-sm">
+                    <option value="">الكل</option>
+                    <option value="active">نشط</option>
+                    <option value="inactive">معطل</option>
+                </select>
+            </div>
+            <div class="overflow-x-auto">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>الاسم</th>
+                            <th>الإيميل</th>
+                            <th>اسم المستخدم</th>
+                            <th>التخصص</th>
+                            <th>الحالة</th>
+                            <th>الصلاحيات</th>
+                            <th>تاريخ التسجيل</th>
+                            <th>إجراءات</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersTableBody"></tbody>
+                </table>
+            </div>
+            <div id="usersEmpty" class="hidden text-center py-12 text-secondary-400">لا توجد نتائج</div>
+        </div>
+
+        <!-- Groups Tab -->
+        <div id="tab-groups" class="hidden glass rounded-xl overflow-hidden">
+            <div class="p-4 border-b border-white/5 flex items-center gap-3 flex-wrap">
+                <input type="text" id="searchGroups" placeholder="بحث باسم المجموعة أو المادة..." class="search-input flex-1 min-w-[200px] px-4 py-2 rounded-xl text-white text-sm">
+                <select id="filterFull" class="search-input px-4 py-2 rounded-xl text-white text-sm">
+                    <option value="">الكل</option>
+                    <option value="available">متاحة</option>
+                    <option value="full">ممتلئة</option>
+                </select>
+            </div>
+            <div class="overflow-x-auto">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>اسم المجموعة</th>
+                            <th>المادة</th>
+                            <th>الرمز</th>
+                            <th>التخصص</th>
+                            <th>الأعضاء</th>
+                            <th>الحالة</th>
+                            <th>المنشئ</th>
+                            <th>تاريخ الإنشاء</th>
+                            <th>إجراءات</th>
+                        </tr>
+                    </thead>
+                    <tbody id="groupsTableBody"></tbody>
+                </table>
+            </div>
+            <div id="groupsEmpty" class="hidden text-center py-12 text-secondary-400">لا توجد نتائج</div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="fixed bottom-4 left-1/2 -translate-x-1/2 transform transition-all duration-300 z-[9999] opacity-0 translate-y-4" style="min-width: 250px;">
+        <div id="toastContent" class="text-white px-6 py-3 rounded-xl shadow-2xl border text-center font-medium"></div>
+    </div>
+
+    <script src="env.js"></script>
+<script src="js/config.js"></script>
+    <script src="js/core.js"></script>
+    <script src="js/shared.js"></script>
+    <script src="js/auth-guard.js"></script>
+    <script src="js/i18n.js"></script>
+    <script src="js/page-admin.js"></script>
+</body>
+</html>

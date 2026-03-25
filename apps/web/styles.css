@@ -1,0 +1,465 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary-400: #38bdf8;
+  --color-primary-500: #0ea5e9;
+  --color-primary-600: #0284c7;
+  --color-primary-700: #0369a1;
+  
+  --color-secondary-300: #cbd5e1;
+  --color-secondary-400: #94a3b8;
+  --color-secondary-500: #64748b;
+  --color-secondary-600: #475569;
+  --color-secondary-700: #334155;
+  --color-secondary-800: #1e293b;
+  --color-secondary-900: #0f172a;
+  
+  --color-accent-400: #a78bfa;
+  --color-accent-500: #8b5cf6;
+  --color-accent-600: #7c3aed;
+  
+  --font-cairo: 'Cairo', sans-serif;
+  
+  --shadow-primary-500-30: 0 0 30px rgba(14, 165, 233, 0.3);
+  --shadow-primary-500-50: 0 0 50px rgba(14, 165, 233, 0.5);
+}
+
+/* ════════════════════════════════════════════════════════════════
+   Base Styles (Shared across all pages)
+   ════════════════════════════════════════════════════════════════ */
+
+* { font-family: 'Cairo', sans-serif; }
+
+body { 
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%); 
+  min-height: 100vh; 
+}
+
+/* ════════════════════════════════════════════════════════════════
+   Reusable Components (Shared across all pages)
+   ════════════════════════════════════════════════════════════════ */
+
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #38bdf8, #818cf8, #c084fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.input-field { 
+  background: rgba(15, 23, 42, 0.6); 
+  border: 1px solid rgba(148, 163, 184, 0.2); 
+  transition: all 0.3s ease; 
+}
+
+.input-field:focus {
+  border-color: #0ea5e9;
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.2);
+  outline: none;
+}
+
+.modal { 
+  background: rgba(0, 0, 0, 0.8); 
+  backdrop-filter: blur(10px); 
+  -webkit-backdrop-filter: blur(10px); 
+}
+
+.floating { animation: floating 3s ease-in-out infinite; }
+
+@keyframes floating {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.glow { box-shadow: 0 0 30px rgba(14, 165, 233, 0.3); }
+
+/* ════════════════════════════════════════════════════════════════
+   Register Page Specific Styles
+   ════════════════════════════════════════════════════════════════ */
+
+.input-field.valid  { border-color:rgba(34,197,94,.5); }
+.input-field.invalid{ border-color:rgba(239,68,68,.4); }
+
+/* ── Dropdown shared patterns ──────────── */
+/* NOTE: #countryMenu, #majorMenu, #majorMenuGroup, #courseNameMenu, #classMenu
+   all share identical > div container styles (background, border, shadow).
+   TODO: Consolidate into .dropdown-panel class when updating HTML templates. */
+@keyframes dropIn{
+    from{ opacity:0; transform:translateY(-6px); }
+    to  { opacity:1; transform:translateY(0); }
+}
+
+/* ── Country dropdown ─────────────────────── */
+#countryMenu{ display:none; }
+#countryMenu.open{
+    display:block;
+    animation:dropIn .18s ease;
+}
+
+#countryMenu > div{
+    background:#1e293b;
+    border:1px solid #334155;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 10px 25px rgba(0,0,0,.4);
+}
+
+.c-list{
+    max-height:220px;
+    overflow-y:auto;
+    scrollbar-width:thin;
+    scrollbar-color:#475569 transparent;
+}
+.c-list::-webkit-scrollbar{ width:5px; }
+.c-list::-webkit-scrollbar-thumb{ background:#475569; border-radius:3px; }
+
+.c-row{
+    display:flex; align-items:center; gap:8px;
+    padding:9px 12px; color:#e2e8f0;
+    cursor:pointer; font-size:13px;
+    transition:background .15s; user-select:none;
+}
+.c-row:hover            { background:rgba(14,165,233,.15); }
+.c-row.active           { background:rgba(14,165,233,.22); color:#fff; }
+.c-row .ck              { margin-inline-start:auto; color:#38bdf8; font-size:11px; opacity:0; }
+.c-row.active .ck       { opacity:1; }
+.c-row .cf              { font-size:18px; flex-shrink:0; }
+.c-row .cn              { flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.c-row .cd              { color:#64748b; flex-shrink:0; font-size:12px; }
+
+/* Country dropdown container uses .dropdown-panel */
+
+#dropArrow{ transition:transform .2s; }
+
+/* ── Strength bars ────────────────────────── */
+.s-bar { height:3px; border-radius:2px; background:#334155; overflow:hidden; flex:1; }
+.s-fill{ height:100%; width:0; border-radius:2px; transition:width .3s, background .3s; }
+
+/* ── Phone status icon ───────────────────── */
+#phoneStatus{
+    position:absolute; left:12px; top:50%;
+    transform:translateY(-50%);
+    font-size:16px; pointer-events:none;
+}
+#phone{ padding-left:44px !important; direction:ltr; text-align:left; }
+
+/* ── Major dropdown ────────────────────────── */
+#majorMenu{
+    display:none;
+    animation:dropIn .18s ease;
+}
+#majorMenu.open{
+    display:block;
+}
+
+/* Major dropdown container - solid background */
+#majorMenu > div{
+    background:#1e293b;
+    border:1px solid #334155;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 10px 25px rgba(0,0,0,.4);
+}
+
+#majorArrow{ transition:transform .2s; }
+
+.m-row{
+    display:flex; align-items:center;
+    padding:12px 16px; color:#e2e8f0;
+    cursor:pointer; font-size:14px;
+    transition:background .15s,border-right .15s;
+    border-right:3px solid transparent;
+}
+.m-row:hover            { background:rgba(14,165,233,.12); border-right-color:#0ea5e9; }
+.m-row.active           { background:rgba(14,165,233,.2); border-right-color:#38bdf8; color:#fff; }
+.m-row .mi             { flex:1; font-weight:500; font-family:monospace; }
+.m-row .check          { color:#38bdf8; font-size:12px; margin-inline-start:8px; opacity:0; transition:opacity .15s; }
+.m-row.active .check   { opacity:1; }
+
+#majorList::-webkit-scrollbar{ width:6px; }
+#majorList::-webkit-scrollbar-track{ background:#1e293b; }
+#majorList::-webkit-scrollbar-thumb{ background:#475569; border-radius:3px; }
+#majorList::-webkit-scrollbar-thumb:hover{ background:#64748b; }
+
+#majorInput.valid  { border-color:rgba(34,197,94,.5); }
+#majorInput.invalid{ border-color:rgba(239,68,68,.4); }
+
+/* ── Password visibility toggle ────────────── */
+.eye-toggle{
+    position:absolute;
+    left:12px; top:50%;
+    transform:translateY(-50%);
+    background:none; border:none;
+    cursor:pointer; padding:4px;
+    color:#64748b; font-size:18px;
+}
+.eye-toggle:hover{ color:#94a3b8; }
+
+/* ════════════════════════════════════════════════════════════════
+   Theme & Language Toggle Bar
+   ════════════════════════════════════════════════════════════════ */
+
+.toggle-bar {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px;
+  border-radius: 16px;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.toggle-bar:hover {
+  border-color: rgba(148, 163, 184, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* ── Language Toggle Button ── */
+.lang-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 42px;
+  height: 36px;
+  padding: 0 12px;
+  border-radius: 12px;
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.7);
+  font-family: 'Cairo', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.lang-toggle-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(129, 140, 248, 0.15));
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.lang-toggle-btn:hover {
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.lang-toggle-btn:hover::before {
+  opacity: 1;
+}
+
+.lang-toggle-btn:active {
+  transform: translateY(0) scale(0.97);
+}
+
+.lang-toggle-btn .lang-icon {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.lang-toggle-btn .lang-globe {
+  width: 14px;
+  height: 14px;
+  opacity: 0.8;
+}
+
+/* ── Theme Toggle Button ── */
+.theme-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.theme-toggle-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(250, 204, 21, 0.15), rgba(251, 146, 60, 0.15));
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.theme-toggle-btn:hover {
+  color: #fff;
+  transform: translateY(-1px) rotate(15deg);
+}
+
+.theme-toggle-btn:hover::before {
+  opacity: 1;
+}
+
+.theme-toggle-btn:active {
+  transform: translateY(0) scale(0.97) rotate(0deg);
+}
+
+.theme-toggle-btn svg {
+  position: relative;
+  z-index: 1;
+  width: 18px;
+  height: 18px;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.theme-toggle-btn .icon-wrapper {
+  position: relative;
+  width: 18px;
+  height: 18px;
+}
+
+.theme-toggle-btn .icon-wrapper svg {
+  position: absolute;
+  inset: 0;
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.theme-toggle-btn .icon-wrapper svg.hidden {
+  opacity: 0;
+  transform: scale(0.5) rotate(-90deg);
+  pointer-events: none;
+}
+
+.theme-toggle-btn .icon-wrapper svg:not(.hidden) {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+/* Active theme indicator glow */
+.theme-toggle-btn[data-theme-active="light"]::before {
+  background: linear-gradient(135deg, rgba(250, 204, 21, 0.2), rgba(251, 191, 36, 0.2));
+  opacity: 1;
+}
+.theme-toggle-btn[data-theme-active="light"] {
+  color: #fbbf24;
+}
+
+.theme-toggle-btn[data-theme-active="dark"]::before {
+  background: linear-gradient(135deg, rgba(129, 140, 248, 0.2), rgba(167, 139, 250, 0.2));
+  opacity: 1;
+}
+.theme-toggle-btn[data-theme-active="dark"] {
+  color: #a78bfa;
+}
+
+.theme-toggle-btn[data-theme-active="system"]::before {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(14, 165, 233, 0.2));
+  opacity: 1;
+}
+.theme-toggle-btn[data-theme-active="system"] {
+  color: #38bdf8;
+}
+
+/* ── Divider ── */
+.toggle-divider {
+  width: 1px;
+  height: 20px;
+  background: rgba(148, 163, 184, 0.15);
+  flex-shrink: 0;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   Extended Base Styles
+   ════════════════════════════════════════════════════════════════ */
+
+.input-field.invalid:focus {
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+}
+
+.modal-content {
+  padding-left: max(env(safe-area-inset-left), 1rem);
+  padding-right: max(env(safe-area-inset-right), 1rem);
+}
+
+@media (max-width: 640px) {
+  .modal {
+    align-items: flex-end;
+  }
+}
+
+/* ── Card Hover ── */
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* ── Line Clamp ── */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ── Progress Bar ── */
+.progress-bar {
+  transition: width 0.5s ease;
+}
+
+/* ── Stat Card ── */
+.stat-card {
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+}
+
+/* ── Tab Button ── */
+.tab-btn.active {
+  color: #38bdf8;
+  border-bottom-color: #38bdf8;
+}
+
+/* ── Custom Scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}

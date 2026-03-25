@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="materialsTitle">المواد الدراسية - SVU Community</title>
+    <meta name="description" content="المواد الدراسية - SVU Community">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#0f172a">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        * { font-family: 'Cairo', sans-serif; }
+        body { background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%); min-height: 100vh; }
+        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .input-field { background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(148, 163, 184, 0.2); transition: all 0.3s ease; }
+        .input-field:focus { border-color: #0ea5e9; box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.2); }
+        .gradient-text { background: linear-gradient(135deg, #38bdf8, #818cf8, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3); }
+        .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.5); }
+        ::-webkit-scrollbar-thumb { background: #475569; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #64748b; }
+
+        /* Year Tab */
+        .year-tab { transition: all 0.2s ease; border-bottom: 2px solid transparent; }
+        .year-tab:hover { color: #38bdf8; }
+        .year-tab.active { color: #38bdf8; border-bottom-color: #38bdf8; }
+
+        /* Category Badge */
+        .cat-badge { font-size: 11px; padding: 2px 8px; border-radius: 6px; font-weight: 600; }
+
+        /* Course Card */
+        .course-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .course-card:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,0.3); border-color: rgba(14, 165, 233, 0.3); }
+        .course-card .code-tag { font-family: monospace; font-size: 12px; }
+
+        /* Stats */
+        .stat-card { transition: all 0.3s ease; }
+        .stat-card:hover { transform: scale(1.03); }
+
+        /* Animations */
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-in { animation: fadeInUp 0.4s ease forwards; }
+
+        /* Modal */
+        .modal { background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px); }
+
+        /* Resource Items */
+        .resource-item { animation: fadeInUp 0.3s ease forwards; }
+        .vote-btn:active { transform: scale(0.9); }
+
+        /* Resource type selector */
+        .resource-type-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2394a3b8' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: left 0.75rem center; padding-left: 2rem; }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Navbar -->
+    <nav class="glass sticky top-0 z-40 border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="dashboard.html" class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                        </svg>
+                    </div>
+                    <span class="gradient-text font-bold text-lg hidden sm:block">SVU Community</span>
+                </a>
+
+                <div class="flex-1 max-w-lg mx-4">
+                    <div class="relative">
+                        <input type="text" id="searchInput" 
+                            data-tour="mat-search"
+                            data-tooltip="tipSearch"
+                            class="input-field w-full px-4 py-2 pl-10 rounded-xl text-white placeholder-secondary-500 text-sm"
+                            placeholder="🔍 ابحث عن مادة...">
+                        <svg class="w-5 h-5 absolute left-3 top-1/2 -translate-y-1/2 text-secondary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <!-- Theme & Language Toggle -->
+                    <div class="toggle-bar hidden sm:inline-flex">
+                        <button data-lang-toggle onclick="window.i18n?.toggleLang(); location.reload();"
+                            data-tooltip="tipLangToggle"
+                            class="lang-toggle-btn" aria-label="Toggle language">
+                            <span class="lang-icon">
+                                <svg class="lang-globe" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+                                </svg>
+                                EN
+                            </span>
+                        </button>
+                        <div class="toggle-divider"></div>
+                        <button id="themeToggleBtn" onclick="window.toggleTheme?.()"
+                            data-tooltip="tipThemeToggle"
+                            class="theme-toggle-btn" aria-label="Toggle theme">
+                            <span class="icon-wrapper">
+                                <svg class="icon-sun hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                                </svg>
+                                <svg class="icon-moon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                                </svg>
+                                <svg class="icon-system hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                </svg>
+                            </span>
+                        </button>
+                    </div>
+                    <a href="groups.html" data-tooltip="tipGroups" class="p-2 text-secondary-400 hover:text-white transition" title="المجموعات">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                        </svg>
+                    </a>
+                    <a href="dashboard.html" data-tooltip="tipDashboard" class="p-2 text-secondary-400 hover:text-white transition" title="لوحة التحكم">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-2">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div>
+                <h1 class="text-2xl sm:text-3xl font-bold text-white flex items-center gap-3">
+                    <span class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                        </svg>
+                    </span>
+                    المواد الدراسية
+                </h1>
+                <p id="majorTitle" class="text-secondary-400 mt-1">تخصص هندسة تقانة المعلومات - <span class="gradient-text font-semibold">ITE</span></p>
+            </div>
+            <div class="flex items-center gap-2">
+                <span id="courseCount" class="px-4 py-2 bg-primary-500/20 text-primary-400 rounded-xl text-sm font-semibold">0 مادة</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Row -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3" data-tour="mat-stats">
+            <div class="stat-card glass rounded-xl p-4 text-center">
+                <div class="text-2xl font-bold gradient-text" id="statTotal">0</div>
+                <div class="text-secondary-400 text-xs mt-1">إجمالي المواد</div>
+            </div>
+            <div class="stat-card glass rounded-xl p-4 text-center">
+                <div class="text-2xl font-bold text-green-400" id="statYear2">0</div>
+                <div class="text-secondary-400 text-xs mt-1">السنة الثانية</div>
+            </div>
+            <div class="stat-card glass rounded-xl p-4 text-center">
+                <div class="text-2xl font-bold text-yellow-400" id="statYear3">0</div>
+                <div class="text-secondary-400 text-xs mt-1">السنة الثالثة</div>
+            </div>
+            <div class="stat-card glass rounded-xl p-4 text-center">
+                <div class="text-2xl font-bold text-purple-400" id="statYear4">0</div>
+                <div class="text-secondary-400 text-xs mt-1">السنة الرابعة</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Year Tabs -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
+        <div class="flex gap-1 overflow-x-auto pb-2" data-tour="year-tabs" id="yearTabs">
+            <button class="year-tab active px-4 py-2 text-white text-sm font-semibold whitespace-nowrap" data-year="all">الكل</button>
+            <button class="year-tab px-4 py-2 text-secondary-400 text-sm font-semibold whitespace-nowrap" data-year="1">السنة الأولى</button>
+            <button class="year-tab px-4 py-2 text-secondary-400 text-sm font-semibold whitespace-nowrap" data-year="2">السنة الثانية</button>
+            <button class="year-tab px-4 py-2 text-secondary-400 text-sm font-semibold whitespace-nowrap" data-year="3">السنة الثالثة</button>
+            <button class="year-tab px-4 py-2 text-secondary-400 text-sm font-semibold whitespace-nowrap" data-year="4">السنة الرابعة</button>
+        </div>
+    </div>
+
+    <!-- Category Filter -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-2">
+        <div class="flex flex-wrap gap-2" data-tour="cat-filters" id="categoryFilters">
+            <button class="cat-filter active px-3 py-1.5 bg-primary-500/20 text-primary-400 rounded-lg text-xs font-semibold transition hover:bg-primary-500/30" data-cat="all">الكل</button>
+            <button class="cat-filter px-3 py-1.5 bg-secondary-800 text-secondary-400 rounded-lg text-xs font-semibold transition hover:bg-secondary-700" data-cat="programming">برمجة</button>
+            <button class="cat-filter px-3 py-1.5 bg-secondary-800 text-secondary-400 rounded-lg text-xs font-semibold transition hover:bg-secondary-700" data-cat="database">قواعد بيانات</button>
+            <button class="cat-filter px-3 py-1.5 bg-secondary-800 text-secondary-400 rounded-lg text-xs font-semibold transition hover:bg-secondary-700" data-cat="networks">شبكات</button>
+            <button class="cat-filter px-3 py-1.5 bg-secondary-800 text-secondary-400 rounded-lg text-xs font-semibold transition hover:bg-secondary-700" data-cat="ai">ذكاء اصطناعي</button>
+            <button class="cat-filter px-3 py-1.5 bg-secondary-800 text-secondary-400 rounded-lg text-xs font-semibold transition hover:bg-secondary-700" data-cat="security">أمن سيبراني</button>
+            <button class="cat-filter px-3 py-1.5 bg-secondary-800 text-secondary-400 rounded-lg text-xs font-semibold transition hover:bg-secondary-700" data-cat="systems">نظم وعمارة</button>
+            <button class="cat-filter px-3 py-1.5 bg-secondary-800 text-secondary-400 rounded-lg text-xs font-semibold transition hover:bg-secondary-700" data-cat="math">رياضيات</button>
+            <button class="cat-filter px-3 py-1.5 bg-secondary-800 text-secondary-400 rounded-lg text-xs font-semibold transition hover:bg-secondary-700" data-cat="software">هندسة برمجيات</button>
+            <button class="cat-filter px-3 py-1.5 bg-secondary-800 text-secondary-400 rounded-lg text-xs font-semibold transition hover:bg-secondary-700" data-cat="general">مواد عامة</button>
+        </div>
+    </div>
+
+    <!-- Courses Grid -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
+        <!-- Empty State -->
+        <div id="emptyState" class="hidden text-center py-12">
+            <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-secondary-800 flex items-center justify-center">
+                <svg class="w-10 h-10 text-secondary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-white mb-2">لا توجد مواد مطابقة</h3>
+            <p class="text-secondary-400">جرّب تغيير كلمات البحث أو الفلاتر</p>
+        </div>
+
+        <!-- Courses Container -->
+        <div id="coursesContainer" data-tour="course-card-first" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            <!-- Courses rendered here -->
+        </div>
+    </div>
+
+    <!-- Course Details Modal -->
+    <div id="courseModal" class="fixed inset-0 modal hidden z-50 overflow-y-auto">
+        <div class="flex min-h-full items-center justify-center p-3 sm:p-4">
+            <div class="glass rounded-2xl p-4 sm:p-6 max-w-2xl w-full shadow-2xl max-h-[90vh] overflow-y-auto" onclick="event.stopPropagation()">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="flex-1">
+                        <h3 id="modalName" class="text-xl font-bold text-white">اسم المادة</h3>
+                        <div class="flex items-center gap-2 mt-2">
+                            <span id="modalCode" class="code-tag px-3 py-1 bg-primary-600/30 text-primary-400 rounded-lg font-semibold">CODE000</span>
+                            <span id="modalId" class="text-secondary-500 text-xs">#000</span>
+                        </div>
+                    </div>
+                    <button onclick="closeCourseModal()" class="text-secondary-400 hover:text-white transition">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Tab Buttons -->
+                <div class="flex gap-2 mb-4" id="modalTabButtons">
+                    <button id="modalTabInfo" data-tab="info"
+                        class="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl font-semibold text-sm transition-all duration-300 bg-primary-600 text-white">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        معلومات
+                    </button>
+                    <button id="modalTabResources" data-tab="resources"
+                        class="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl font-semibold text-sm transition-all duration-300 bg-secondary-800 text-secondary-400 hover:bg-secondary-700">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
+                        </svg>
+                        روابط مشاركة <span id="resourcesCount" class="bg-primary-500/30 text-primary-300 px-1.5 py-0.5 rounded-md text-xs">0</span>
+                    </button>
+                    <a id="modalGroupsLink" href="groups.html"
+                        class="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl font-semibold text-sm transition-all duration-300 bg-secondary-800 text-secondary-400 hover:bg-secondary-700">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                        </svg>
+                        المجموعات
+                    </a>
+                </div>
+
+                <!-- Tab: Info (default visible) -->
+                <div id="modalTabInfoContent" class="space-y-3">
+                    <div class="flex items-center gap-3 text-secondary-300">
+                        <svg class="w-5 h-5 text-secondary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                        </svg>
+                        <span id="modalYear">السنة</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-secondary-300">
+                        <svg class="w-5 h-5 text-secondary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
+                        </svg>
+                        <span id="modalCategory">التصنيف</span>
+                    </div>
+
+                    <!-- Prerequisites -->
+                    <div id="prereqSection" class="space-y-2">
+                        <div class="flex items-center gap-3 text-secondary-300 pt-2 border-t border-white/5">
+                            <svg class="w-5 h-5 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                            </svg>
+                            <span class="text-sm font-semibold">المتطلبات السابقة</span>
+                        </div>
+                        <div id="prereqList" class="pr-8 space-y-1.5"></div>
+                    </div>
+
+                    <!-- Dependent Courses -->
+                    <div id="dependentsSection" class="space-y-2">
+                        <div class="flex items-center gap-3 text-secondary-300 pt-2 border-t border-white/5">
+                            <svg class="w-5 h-5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                            </svg>
+                            <span class="text-sm font-semibold">يفتح هذه المواد</span>
+                        </div>
+                        <div id="dependentsList" class="pr-8 space-y-1.5"></div>
+                    </div>
+                </div>
+
+                <!-- Tab: Resources (hidden by default) -->
+                <div id="modalTabResourcesContent" class="hidden">
+                    <!-- Add Resource Form -->
+                    <div id="addResourceForm" class="mb-4"></div>
+                    <!-- Resources List -->
+                    <div id="resourcesList"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="fixed bottom-4 left-1/2 -translate-x-1/2 transform transition-all duration-300 z-[9999] opacity-0 translate-y-4" style="min-width: 250px;">
+        <div id="toastContent" class="text-white px-6 py-3 rounded-xl shadow-2xl border text-center font-medium"></div>
+    </div>
+
+    <script src="env.js"></script>
+<script src="js/config.js"></script>
+    <script src="js/core.js"></script>
+    <script src="js/shared.js"></script>
+    <script src="js/auth-guard.js"></script>
+    <script src="js/i18n.js"></script>
+    <script src="js/tooltip.js"></script>
+    <script src="js/feedback.js"></script>
+    <script src="js/page-course-resources.js"></script>
+    <script src="js/page-materials.js"></script>
+</body>
+</html>

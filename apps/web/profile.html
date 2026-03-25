@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="profileTitle">الملف الشخصي - SVU Community</title>
+    <meta name="description" content="الملف الشخصي - SVU Community">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#0f172a">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * { font-family: 'Cairo', sans-serif; }
+        body { background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%); min-height: 100vh; }
+        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .gradient-text { background: linear-gradient(135deg, #38bdf8, #818cf8, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .input-field { background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(148, 163, 184, 0.2); transition: all 0.3s ease; }
+        .input-field:focus { border-color: #0ea5e9; box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.2); }
+        .input-field.valid { border-color: rgba(34, 197, 94, 0.5); }
+        .input-field.invalid { border-color: rgba(239, 68, 68, 0.4); }
+        .input-field.invalid:focus { box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2); }
+        .modal { background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px); }
+        .modal-content {
+            padding-left: max(env(safe-area-inset-left), 1rem);
+            padding-right: max(env(safe-area-inset-right), 1rem);
+        }
+        @media (max-width: 640px) {
+            .modal { align-items: flex-start !important; padding-top: 2rem; padding-bottom: 2rem; }
+            .modal .glass { border-radius: 1rem; }
+        }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3); }
+        .progress-bar { transition: width 0.5s ease; }
+        .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.5); }
+        ::-webkit-scrollbar-thumb { background: #475569; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #64748b; }
+
+        /* Tabs */
+        .tab-btn {
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+        .tab-btn.active {
+            color: #38bdf8;
+            border-bottom-color: #38bdf8;
+        }
+        .tab-btn:hover:not(.active) {
+            color: #e2e8f0;
+        }
+
+        /* Member card */
+        .member-card {
+            transition: all 0.2s ease;
+        }
+        .member-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Navbar -->
+    <nav class="glass sticky top-0 z-40 border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <a href="dashboard.html" class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                        </svg>
+                    </div>
+                    <span class="gradient-text font-bold text-lg hidden sm:block">SVU Community</span>
+                </a>
+
+                <!-- Actions -->
+                <div class="flex items-center gap-3">
+                    <!-- Theme & Language Toggle -->
+                    <div class="toggle-bar hidden sm:inline-flex">
+                        <button data-lang-toggle onclick="window.i18n?.toggleLang(); location.reload();"
+                            data-tooltip="tipLangToggle"
+                            class="lang-toggle-btn" aria-label="Toggle language">
+                            <span class="lang-icon">
+                                <svg class="lang-globe" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+                                </svg>
+                                EN
+                            </span>
+                        </button>
+                        <div class="toggle-divider"></div>
+                        <button id="themeToggleBtn" onclick="window.toggleTheme?.()"
+                            data-tooltip="tipThemeToggle"
+                            class="theme-toggle-btn" aria-label="Toggle theme">
+                            <span class="icon-wrapper">
+                                <svg class="icon-sun hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                                </svg>
+                                <svg class="icon-moon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                                </svg>
+                                <svg class="icon-system hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                </svg>
+                            </span>
+                        </button>
+                    </div>
+                    <a href="groups.html" data-tooltip="tipGroups" class="flex items-center gap-2 px-4 py-2 text-secondary-400 hover:text-white transition text-sm">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                        </svg>
+                        <span class="hidden sm:inline">المجموعات</span>
+                    </a>
+                    <button onclick="logout()" data-tooltip="tipLogout" class="p-2 text-secondary-400 hover:text-white transition">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Loading State -->
+    <div id="loadingState" class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="text-center py-12">
+            <div class="w-12 h-12 mx-auto mb-4 border-4 border-primary-500 border-t-transparent rounded-full animate-spin"></div>
+            <p class="text-secondary-400">جاري تحميل الملف الشخصي...</p>
+        </div>
+    </div>
+
+    <!-- Profile Content -->
+    <div id="profileContent" class="hidden max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Profile Header Card -->
+        <div class="glass rounded-2xl p-6 sm:p-8 mb-6" data-tour="prof-header">
+            <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6">
+                <!-- Avatar -->
+                <div class="w-24 h-24 rounded-2xl bg-gradient-to-br from-primary-400 to-accent-500 flex items-center justify-center shadow-2xl shadow-primary-500/30 shrink-0">
+                    <span id="profileInitial" class="text-4xl font-bold text-white">م</span>
+                </div>
+
+                <!-- User Info -->
+                <div class="flex-1 text-center sm:text-right">
+                    <div class="flex flex-col sm:flex-row items-center sm:items-start gap-3 mb-2">
+                        <h1 id="profileName" class="text-2xl sm:text-3xl font-bold text-white">مستخدم</h1>
+                        <button onclick="openEditProfileModal()" data-tour="prof-edit" data-tooltip="tipEditProfile" class="px-4 py-1.5 glass hover:bg-white/10 text-secondary-300 hover:text-white rounded-lg text-sm transition flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                            </svg>
+                            تعديل
+                        </button>
+                    </div>
+                    <p id="profileUsername" class="text-secondary-500 text-sm mb-3">@username</p>
+
+                    <div class="flex flex-wrap justify-center sm:justify-start gap-3 mb-4">
+                        <span id="profileEmail" class="text-secondary-400 text-sm flex items-center gap-1">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                            </svg>
+                            user@example.com
+                        </span>
+                        <span id="profileMajor" class="px-3 py-1 bg-primary-500/20 text-primary-400 rounded-full text-sm">ITE</span>
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="flex justify-center sm:justify-start gap-6" data-tour="prof-stats">
+                        <div class="text-center">
+                            <p id="joinedCount" class="text-2xl font-bold text-white">0</p>
+                            <p class="text-secondary-500 text-xs">مجموعات انضم لها</p>
+                        </div>
+                        <div class="text-center">
+                            <p id="createdCount" class="text-2xl font-bold text-white">0</p>
+                            <p class="text-secondary-500 text-xs">مجموعات أنشأها</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="flex border-b border-white/10 mb-6">
+            <button id="tabJoined" data-tour="tab-joined" onclick="switchTab('joined')" class="tab-btn active flex items-center gap-2 px-6 py-3 text-sm font-medium">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                </svg>
+                مجموعاتي
+            </button>
+            <button id="tabCreated" data-tour="tab-created" onclick="switchTab('created')" class="tab-btn flex items-center gap-2 px-6 py-3 text-sm font-medium text-secondary-400">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                </svg>
+                إنشائي
+            </button>
+        </div>
+
+        <!-- Tab Content: My Groups (Joined) -->
+        <div id="joinedContent">
+            <!-- Loading -->
+            <div id="joinedLoading" class="text-center py-8">
+                <div class="w-10 h-10 mx-auto mb-3 border-4 border-primary-500 border-t-transparent rounded-full animate-spin"></div>
+                <p class="text-secondary-400 text-sm">جاري التحميل...</p>
+            </div>
+
+            <!-- Empty State -->
+            <div id="joinedEmpty" class="hidden text-center py-12">
+                <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-secondary-800 flex items-center justify-center">
+                    <svg class="w-10 h-10 text-secondary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-white mb-2">لم تنضم لأي مجموعة بعد</h3>
+                <p class="text-secondary-400 mb-4">تصفح المجموعات وانضم لمجموعاتك الدراسية</p>
+                <a href="groups.html" class="inline-block px-6 py-2 bg-primary-600 hover:bg-primary-500 text-white rounded-xl font-semibold transition">
+                    تصفح المجموعات
+                </a>
+            </div>
+
+            <!-- Groups Grid -->
+            <div id="joinedGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+        </div>
+
+        <!-- Tab Content: My Created Groups -->
+        <div id="createdContent" class="hidden">
+            <!-- Loading -->
+            <div id="createdLoading" class="text-center py-8">
+                <div class="w-10 h-10 mx-auto mb-3 border-4 border-primary-500 border-t-transparent rounded-full animate-spin"></div>
+                <p class="text-secondary-400 text-sm">جاري التحميل...</p>
+            </div>
+
+            <!-- Empty State -->
+            <div id="createdEmpty" class="hidden text-center py-12">
+                <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-secondary-800 flex items-center justify-center">
+                    <svg class="w-10 h-10 text-secondary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-white mb-2">لم تنشئ أي مجموعة بعد</h3>
+                <p class="text-secondary-400 mb-4">أنشئ مجموعتك الأولى وابدأ بالتعاون مع زملائك</p>
+                <a href="groups.html" class="inline-block px-6 py-2 bg-primary-600 hover:bg-primary-500 text-white rounded-xl font-semibold transition">
+                    إنشاء مجموعة
+                </a>
+            </div>
+
+            <!-- Groups Grid -->
+            <div id="createdGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+         Edit Profile Modal
+    ═══════════════════════════════════════════ -->
+    <div id="editProfileModal" class="fixed inset-0 modal hidden z-50 overflow-y-auto">
+        <div class="flex min-h-full items-center justify-center p-3 sm:p-4">
+            <div class="glass rounded-2xl p-4 sm:p-6 max-w-md w-full shadow-2xl" onclick="event.stopPropagation()">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-bold text-white">تعديل الملف الشخصي</h3>
+                    <button onclick="closeEditProfileModal()" class="text-secondary-400 hover:text-white transition">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <form id="editProfileForm" class="space-y-4">
+                    <div>
+                        <label class="block text-secondary-300 text-sm mb-2">الاسم الأول</label>
+                        <input type="text" id="editFirstName" class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-secondary-500" placeholder="الاسم الأول">
+                    </div>
+                    <div>
+                        <label class="block text-secondary-300 text-sm mb-2">اسم العائلة</label>
+                        <input type="text" id="editLastName" class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-secondary-500" placeholder="اسم العائلة">
+                    </div>
+                    <button type="submit" id="saveProfileBtn"
+                        class="w-full py-3 bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-500 hover:to-primary-400 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-primary-500/30">
+                        حفظ التغييرات
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+         Edit Group Modal
+    ═══════════════════════════════════════════ -->
+    <div id="editGroupModal" class="fixed inset-0 modal hidden z-50 overflow-y-auto">
+        <div class="flex min-h-full items-center justify-center p-3 sm:p-4">
+            <div class="glass rounded-2xl p-4 sm:p-6 max-w-lg w-full shadow-2xl" onclick="event.stopPropagation()">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-bold text-white">تعديل المجموعة</h3>
+                    <button onclick="closeEditGroupModal()" class="text-secondary-400 hover:text-white transition">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <form id="editGroupForm" class="space-y-4">
+                    <input type="hidden" id="editGroupId">
+                    <div>
+                        <label class="block text-secondary-300 text-sm mb-2">اسم المجموعة</label>
+                        <input type="text" id="editGroupName" class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-secondary-500" placeholder="اسم المجموعة">
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-secondary-300 text-sm mb-2">عدد الأعضاء الأقصى</label>
+                            <input type="number" id="editMaxMembers" min="2" max="20" class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-secondary-500">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-secondary-300 text-sm mb-2">رابط مجموعة الواتساب</label>
+                        <input type="url" id="editWhatsappLink" class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-secondary-500" placeholder="https://chat.whatsapp.com/...">
+                    </div>
+                    <div>
+                        <label class="block text-secondary-300 text-sm mb-2">رابط المجموعة <span class="text-secondary-500 text-xs">(اختياري)</span></label>
+                        <input type="url" id="editGroupLink" class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-secondary-500" placeholder="https://teams.microsoft.com/...">
+                    </div>
+                    <button type="submit" id="saveGroupBtn"
+                        class="w-full py-3 bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-500 hover:to-primary-400 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-primary-500/30">
+                        حفظ التغييرات
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+         Group Members Modal
+    ═══════════════════════════════════════════ -->
+    <div id="membersModal" class="fixed inset-0 modal hidden z-50 overflow-y-auto">
+        <div class="flex min-h-full items-center justify-center p-3 sm:p-4">
+            <div class="glass rounded-2xl p-4 sm:p-6 max-w-md w-full shadow-2xl max-h-[80vh] flex flex-col" onclick="event.stopPropagation()">
+                <div class="flex justify-between items-center mb-4 shrink-0">
+                    <div>
+                        <h3 class="text-xl font-bold text-white">أعضاء المجموعة</h3>
+                        <p id="membersGroupName" class="text-secondary-400 text-sm mt-1">اسم المجموعة</p>
+                    </div>
+                    <button onclick="closeMembersModal()" class="text-secondary-400 hover:text-white transition">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Members Count -->
+                <div class="flex items-center gap-2 mb-4 shrink-0">
+                    <span class="text-secondary-400 text-sm">عدد الأعضاء:</span>
+                    <span id="membersCountBadge" class="px-2 py-0.5 bg-primary-500/20 text-primary-400 rounded-lg text-sm font-semibold">0</span>
+                </div>
+
+                <!-- Members List -->
+                <div id="membersList" class="space-y-2 overflow-y-auto flex-1 min-h-0">
+                    <!-- Members will be rendered here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="fixed bottom-4 left-1/2 -translate-x-1/2 transform transition-all duration-300 z-[9999] opacity-0 translate-y-4" style="min-width: 250px;">
+        <div id="toastContent" class="text-white px-6 py-3 rounded-xl shadow-2xl border text-center font-medium"></div>
+    </div>
+
+    <script src="env.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/core.js"></script>
+    <script src="js/shared.js"></script>
+    <script src="js/auth-guard.js"></script>
+    <script src="js/i18n.js"></script>
+    <script src="js/tooltip.js"></script>
+    <script src="js/feedback.js"></script>
+    <script src="js/page-profile.js"></script>
+</body>
+</html>
