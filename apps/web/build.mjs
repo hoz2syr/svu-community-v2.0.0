@@ -3,7 +3,7 @@
  * Per-file copy with retries avoids cpSync recursive crashes on OneDrive / Windows locks.
  */
 import { existsSync } from 'fs';
-import { readdir, mkdir, copyFile } from 'fs/promises';
+import { readdir, mkdir, copyFile, writeFile } from 'fs/promises';
 import { resolve, join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { build } from 'vite';
@@ -49,6 +49,14 @@ async function main() {
 
   if (existsSync(resolve(root, 'env.js'))) {
     await copyFileWithRetry(resolve(root, 'env.js'), resolve(publicDir, 'env.js'));
+  } else {
+    // Generate env.js from VITE_ environment variables (for CI/CD builds)
+    const envContent = `window.SVU_ENV = window.SVU_ENV || {
+  SUPABASE_URL: '${process.env.VITE_SUPABASE_URL || ''}',
+  SUPABASE_ANON_KEY: '${process.env.VITE_SUPABASE_ANON_KEY || ''}',
+};`;
+    await writeFile(resolve(publicDir, 'env.js'), envContent);
+    console.log('[build] Generated env.js from environment variables');
   }
 
   if (existsSync(resolve(root, '_headers'))) {
