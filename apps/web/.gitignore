@@ -23,8 +23,10 @@ node_modules/
 # Build output (Cloudflare builds on deploy)
 dist/
 
-# Build artifacts
-public/
+# Build artifacts (public/ tracked — contains svu_courses.json needed for CI build)
+!public/
+public/env.js
+public/js/
 build/
 .vite/
 

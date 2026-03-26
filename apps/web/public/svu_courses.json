@@ -1,0 +1,6586 @@
+{
+  "ISE (Information Systems Engineering)": [
+    {
+      "name": "Advanced Networking",
+      "code": "AN"
+    },
+    {
+      "name": "Algebraic Structures",
+      "code": "AS"
+    },
+    {
+      "name": "Artificial Intelligence",
+      "code": "AE"
+    },
+    {
+      "name": "Basics of Economics and Accounting",
+      "code": "EA"
+    },
+    {
+      "name": "Communication Skills & Technical Writing",
+      "code": "CSTW"
+    },
+    {
+      "name": "Compiler Project",
+      "code": "CMPP"
+    },
+    {
+      "name": "Compilers",
+      "code": "CMP"
+    },
+    {
+      "name": "Computer Graphics",
+      "code": "CG"
+    },
+    {
+      "name": "Computer Networks",
+      "code": "CN"
+    },
+    {
+      "name": "Computer Programming 1",
+      "code": "CP1"
+    },
+    {
+      "name": "Computer Programming 2",
+      "code": "CP2"
+    },
+    {
+      "name": "Computer Security",
+      "code": "CSR"
+    },
+    {
+      "name": "Computer Skills",
+      "code": "CS"
+    },
+    {
+      "name": "Cryptography",
+      "code": "CR"
+    },
+    {
+      "name": "Data Communication",
+      "code": "TS"
+    },
+    {
+      "name": "Data Structures and Algorithms",
+      "code": "DSA"
+    },
+    {
+      "name": "Database Systems",
+      "code": "DB"
+    },
+    {
+      "name": "Decision Support System",
+      "code": "SS"
+    },
+    {
+      "name": "Digital Systems",
+      "code": "DG"
+    },
+    {
+      "name": "Discrete Structures",
+      "code": "DSR"
+    },
+    {
+      "name": "Distributed Systems",
+      "code": "DST"
+    },
+    {
+      "name": "E-commerce Technology",
+      "code": "CM"
+    },
+    {
+      "name": "Electronic Circuits",
+      "code": "EC"
+    },
+    {
+      "name": "Expert Systems",
+      "code": "ES"
+    },
+    {
+      "name": "Image Processing",
+      "code": "IMP"
+    },
+    {
+      "name": "Information Retrieval",
+      "code": "IR"
+    },
+    {
+      "name": "Internet Programming(canceled)",
+      "code": "IP"
+    },
+    {
+      "name": "Introduction to Computer Architecture",
+      "code": "ICA"
+    },
+    {
+      "name": "Introduction to On-Line Education",
+      "code": "GBS103"
+    },
+    {
+      "name": "Linear Algebra",
+      "code": "LA"
+    },
+    {
+      "name": "Logic Programming",
+      "code": "LP"
+    },
+    {
+      "name": "Man-Machine Interface",
+      "code": "MI"
+    },
+    {
+      "name": "Management",
+      "code": "MG"
+    },
+    {
+      "name": "Management Information Systems",
+      "code": "MIS"
+    },
+    {
+      "name": "Mathematical Analysis 1",
+      "code": "MA1"
+    },
+    {
+      "name": "Mathematical Analysis 2",
+      "code": "MA2"
+    },
+    {
+      "name": "Microprocessor",
+      "code": "MP"
+    },
+    {
+      "name": "Multimedia Systems",
+      "code": "MM"
+    },
+    {
+      "name": "National Exam",
+      "code": "NE"
+    },
+    {
+      "name": "Natural Language Processing",
+      "code": "NLP"
+    },
+    {
+      "name": "Network Application Programing",
+      "code": "NAP"
+    },
+    {
+      "name": "Network Management",
+      "code": "NM"
+    },
+    {
+      "name": "Network Services",
+      "code": "NS"
+    },
+    {
+      "name": "Numerical Analysis",
+      "code": "NA"
+    },
+    {
+      "name": "Object Oriented Programming",
+      "code": "OO"
+    },
+    {
+      "name": "Operating Systems 1",
+      "code": "OS1"
+    },
+    {
+      "name": "Operating Systems 2",
+      "code": "OS2"
+    },
+    {
+      "name": "Operational Research",
+      "code": "OR"
+    },
+    {
+      "name": "Parallel Processing",
+      "code": "PPR"
+    },
+    {
+      "name": "Probability",
+      "code": "PRB"
+    },
+    {
+      "name": "Project_I",
+      "code": "PR1"
+    },
+    {
+      "name": "Project_II",
+      "code": "PR2"
+    },
+    {
+      "name": "Project_III(canceled)",
+      "code": "PR3"
+    },
+    {
+      "name": "Real Time Systems",
+      "code": "RT"
+    },
+    {
+      "name": "Requirements Engineering",
+      "code": "RQE"
+    },
+    {
+      "name": "Signal Processing",
+      "code": "SIP"
+    },
+    {
+      "name": "Simulation and Modeling",
+      "code": "SM"
+    },
+    {
+      "name": "Software Engineering",
+      "code": "SE"
+    },
+    {
+      "name": "Software Project Management",
+      "code": "PM"
+    },
+    {
+      "name": "Statistics",
+      "code": "ST"
+    },
+    {
+      "name": "Systems Analysis and Design",
+      "code": "IS"
+    },
+    {
+      "name": "Virtual Reality",
+      "code": "VR"
+    },
+    {
+      "name": "Visual Programming",
+      "code": "VP"
+    },
+    {
+      "name": "Web Applications",
+      "code": "WB"
+    }
+  ],
+  "EDU (Educational Qualification Diploma)": [
+    {
+      "name": "[]",
+      "code": "[]"
+    },
+    {
+      "name": "comparative education",
+      "code": "CE"
+    },
+    {
+      "name": "Computer Skills",
+      "code": "CDL"
+    },
+    {
+      "name": "educational curricula",
+      "code": "AC"
+    },
+    {
+      "name": "educational Psychology",
+      "code": "ED"
+    },
+    {
+      "name": "educational technology",
+      "code": "CS"
+    },
+    {
+      "name": "general education & Philosophy  of education",
+      "code": "GA"
+    },
+    {
+      "name": "Introduction to On-Line Education",
+      "code": "GBS103"
+    },
+    {
+      "name": "Measurement & evaluation",
+      "code": "MES"
+    },
+    {
+      "name": "Mental Health",
+      "code": "MH"
+    },
+    {
+      "name": "Methods of Teaching",
+      "code": "PD"
+    },
+    {
+      "name": "methods of teaching Arabic",
+      "code": "ATM"
+    },
+    {
+      "name": "methods of teaching economics",
+      "code": "ESTM"
+    },
+    {
+      "name": "methods of teaching education & psychology",
+      "code": "TMEP"
+    },
+    {
+      "name": "methods of teaching engineering",
+      "code": "ENGTM"
+    },
+    {
+      "name": "methods of teaching English",
+      "code": "ETM"
+    },
+    {
+      "name": "methods of teaching fine arts",
+      "code": "AMM"
+    },
+    {
+      "name": "methods of teaching French",
+      "code": "FM"
+    },
+    {
+      "name": "methods of teaching geography",
+      "code": "GM"
+    },
+    {
+      "name": "methods of teaching history",
+      "code": "HTM"
+    },
+    {
+      "name": "methods of teaching jurisprudence",
+      "code": "ISM"
+    },
+    {
+      "name": "methods of teaching mathematics",
+      "code": "MM"
+    },
+    {
+      "name": "methods of teaching natural science",
+      "code": "PMB"
+    },
+    {
+      "name": "methods of teaching philosophy & sociology",
+      "code": "PPM"
+    },
+    {
+      "name": "methods of teaching physics & chemistry",
+      "code": "PCTM"
+    },
+    {
+      "name": "methods of teaching political science",
+      "code": "TMPS"
+    },
+    {
+      "name": "Methodsof teaching Media",
+      "code": "MED"
+    },
+    {
+      "name": "Practical Education",
+      "code": "PE"
+    },
+    {
+      "name": "Practical Education For AMM",
+      "code": "PEAMM"
+    },
+    {
+      "name": "Practical Education For ATM",
+      "code": "PEATM"
+    },
+    {
+      "name": "Practical Education For ENGTM",
+      "code": "PEENGTM"
+    },
+    {
+      "name": "Practical Education For ESTM",
+      "code": "PEESTM"
+    },
+    {
+      "name": "Practical Education For ETM",
+      "code": "PEETM"
+    },
+    {
+      "name": "Practical Education For FM",
+      "code": "PEFM"
+    },
+    {
+      "name": "Practical Education For GM",
+      "code": "PEGM"
+    },
+    {
+      "name": "Practical Education For HTM",
+      "code": "PEHTM"
+    },
+    {
+      "name": "Practical Education For ISM",
+      "code": "PEISM"
+    },
+    {
+      "name": "Practical Education For MED",
+      "code": "PEMED"
+    },
+    {
+      "name": "Practical Education For MM",
+      "code": "PEMM"
+    },
+    {
+      "name": "Practical Education For PCTM",
+      "code": "PEPCTM"
+    },
+    {
+      "name": "Practical Education For PMB",
+      "code": "PEPMB"
+    },
+    {
+      "name": "Practical Education For PPM",
+      "code": "PEPPM"
+    },
+    {
+      "name": "Practical Education For TMEP",
+      "code": "PETMEP"
+    },
+    {
+      "name": "Practical Education For TMPS",
+      "code": "PETMPS"
+    },
+    {
+      "name": "psychology of childhood & adolescence",
+      "code": "CA"
+    }
+  ],
+  "AHND (Advanced Higher National Diploma)": [
+    {
+      "name": "Data Analysis & Database Design",
+      "code": "DAD"
+    },
+    {
+      "name": "Data Handling and Analysis",
+      "code": "DHA"
+    },
+    {
+      "name": "e-Business Development",
+      "code": "EBD"
+    },
+    {
+      "name": "e-Commerce Project",
+      "code": "ECP"
+    },
+    {
+      "name": "E-commerce Project (Part One)",
+      "code": "ECP1"
+    },
+    {
+      "name": "e-commerce project (part two)",
+      "code": "ecp2"
+    },
+    {
+      "name": "e-Commerce Project Part 2",
+      "code": "ECP2_canceled"
+    },
+    {
+      "name": "e-Commerce Technology",
+      "code": "ECT"
+    },
+    {
+      "name": "e-Marketing Processes in Practice",
+      "code": "MPP"
+    },
+    {
+      "name": "Global Marketplace",
+      "code": "GMP"
+    },
+    {
+      "name": "Induction",
+      "code": "IND"
+    },
+    {
+      "name": "Integrated Marketing Communications in e-Commerce",
+      "code": "IMC"
+    },
+    {
+      "name": "Internet Studies",
+      "code": "IS"
+    },
+    {
+      "name": "Introduction to Programming",
+      "code": "IP"
+    },
+    {
+      "name": "Market Planning and Intelligence for e-Commerce",
+      "code": "MPI"
+    },
+    {
+      "name": "Marketing for e-Commerce",
+      "code": "MFC"
+    },
+    {
+      "name": "Personal Developing Skills",
+      "code": "PDS"
+    },
+    {
+      "name": "Personal Developing Skills (Part one).",
+      "code": "PDS1"
+    },
+    {
+      "name": "Personal Developing Skills (Part Two)",
+      "code": "PDS2"
+    },
+    {
+      "name": "Programming Principles",
+      "code": "PP"
+    },
+    {
+      "name": "Supply Chain Management",
+      "code": "SCM"
+    },
+    {
+      "name": "Website Design",
+      "code": "WD"
+    }
+  ],
+  "PY (Preparation Year)": [
+    {
+      "name": "Advanced English",
+      "code": "PYV"
+    },
+    {
+      "name": "Communication Skills and Time Management",
+      "code": "CSTM"
+    },
+    {
+      "name": "Elementary English",
+      "code": "PYI"
+    },
+    {
+      "name": "Intermediate English",
+      "code": "PYIII"
+    },
+    {
+      "name": "IT for Prep Year",
+      "code": "PYIT"
+    },
+    {
+      "name": "Pre-Intermediate English",
+      "code": "PYII"
+    },
+    {
+      "name": "Upper-Intermediate English",
+      "code": "PYIV"
+    }
+  ],
+  "EHND (English Higher National Diploma)": [
+    {
+      "name": "Data Analysis & Database Design",
+      "code": "EDAD"
+    },
+    {
+      "name": "Data Handling and Analysis",
+      "code": "EDHA"
+    },
+    {
+      "name": "e-Business Development",
+      "code": "EEBD"
+    },
+    {
+      "name": "E-commerce Project",
+      "code": "EECP"
+    },
+    {
+      "name": "E-commerce project (part one)",
+      "code": "EECP1"
+    },
+    {
+      "name": "E-commerce project (part two)",
+      "code": "EECP2"
+    },
+    {
+      "name": "e-Commerce Technology",
+      "code": "EECT"
+    },
+    {
+      "name": "e-Marketing Processes in Practice",
+      "code": "EMPP"
+    },
+    {
+      "name": "Global Marketplace",
+      "code": "EGMP"
+    },
+    {
+      "name": "Induction",
+      "code": "EIND"
+    },
+    {
+      "name": "Integrated Marketing Communications in e-Commerce",
+      "code": "EIMC"
+    },
+    {
+      "name": "Internet Studies",
+      "code": "EIS"
+    },
+    {
+      "name": "Introduction to Programming",
+      "code": "EIP"
+    },
+    {
+      "name": "Market Planning and Intelligence for e-Commerce",
+      "code": "EMPI"
+    },
+    {
+      "name": "Marketing for e-Commerce",
+      "code": "EMFC"
+    },
+    {
+      "name": "Personal Developing Skills",
+      "code": "EPDS"
+    },
+    {
+      "name": "Personal Developing Skills (Part one)",
+      "code": "EPDS1"
+    },
+    {
+      "name": "Personal Developing Skills (Part two)",
+      "code": "EPDS2"
+    },
+    {
+      "name": "Programming Principles",
+      "code": "EPP"
+    },
+    {
+      "name": "Supply Chain Management",
+      "code": "ESCM"
+    },
+    {
+      "name": "Website Design",
+      "code": "EWD"
+    }
+  ],
+  "ENG (English Program)": [
+    {
+      "name": "[]",
+      "code": "[]"
+    },
+    {
+      "name": "6[]",
+      "code": "6[]"
+    },
+    {
+      "name": "Advanced",
+      "code": "L5"
+    },
+    {
+      "name": "Advanced Intensive",
+      "code": "INTL5"
+    },
+    {
+      "name": "Advanced Intensive phase2",
+      "code": "INTL5P2"
+    },
+    {
+      "name": "Elementary",
+      "code": "L1"
+    },
+    {
+      "name": "Elementary Intensive",
+      "code": "INTL1"
+    },
+    {
+      "name": "Elementary Intensive phase2",
+      "code": "INTL1P2"
+    },
+    {
+      "name": "L2 Intensive",
+      "code": "IL2"
+    },
+    {
+      "name": "Lower Intermediate",
+      "code": "L2"
+    },
+    {
+      "name": "Lower Intermediate Intensive",
+      "code": "INTL2"
+    },
+    {
+      "name": "Lower Intermediate Intensive phase2",
+      "code": "INTL2P2"
+    },
+    {
+      "name": "Mid Intermediate",
+      "code": "L3"
+    },
+    {
+      "name": "Mid Intermediate Intensive",
+      "code": "INTL3"
+    },
+    {
+      "name": "Mid Intermediate Intensive phase2",
+      "code": "INTL3P2"
+    },
+    {
+      "name": "Placement Test",
+      "code": "PT"
+    },
+    {
+      "name": "Upper Intermediate",
+      "code": "L4"
+    },
+    {
+      "name": "Upper Intermediate Intensive",
+      "code": "INTL4"
+    },
+    {
+      "name": "Upper Intermediate Intensive phase2",
+      "code": "INTL4P2"
+    }
+  ],
+  "BIT (Bachelor of Information Technology)": [
+    {
+      "name": "[]",
+      "code": "[]"
+    },
+    {
+      "name": "Advanced Data Base Administration I",
+      "code": "ITD415"
+    },
+    {
+      "name": "Advanced Database Administration II",
+      "code": "ITD420"
+    },
+    {
+      "name": "Advanced SQL Programming",
+      "code": "ITD310"
+    },
+    {
+      "name": "Banking and Finance",
+      "code": "MGT325"
+    },
+    {
+      "name": "BIT Admission Test",
+      "code": "BAT"
+    },
+    {
+      "name": "Business Process Modeling",
+      "code": "ITA330"
+    },
+    {
+      "name": "Career Preparation",
+      "code": "UNV301"
+    },
+    {
+      "name": "Computer Skills",
+      "code": "CIS101"
+    },
+    {
+      "name": "Data Base Architecture and Design",
+      "code": "ITD300"
+    },
+    {
+      "name": "Data Networks",
+      "code": "ITI420"
+    },
+    {
+      "name": "Data Security",
+      "code": "ITI410"
+    },
+    {
+      "name": "Discrete Mathematics",
+      "code": "ITC100"
+    },
+    {
+      "name": "Internship",
+      "code": "ITP390"
+    },
+    {
+      "name": "Introduction to Accounting",
+      "code": "ACG242"
+    },
+    {
+      "name": "Introduction to Business",
+      "code": "BUS242"
+    },
+    {
+      "name": "Introduction to Data Modeling",
+      "code": "ITC210"
+    },
+    {
+      "name": "Introduction to Finance",
+      "code": "MGT246"
+    },
+    {
+      "name": "Introduction to Marketing",
+      "code": "MKT244"
+    },
+    {
+      "name": "Introduction to Networks",
+      "code": "ITC200"
+    },
+    {
+      "name": "Introduction to Online Education",
+      "code": "UNV101"
+    },
+    {
+      "name": "Introduction to Operating Systems",
+      "code": "ITC110"
+    },
+    {
+      "name": "Introduction to Philosophy",
+      "code": "PHL201"
+    },
+    {
+      "name": "Introduction to Programming",
+      "code": "ITC230"
+    },
+    {
+      "name": "Introduction to Sociology",
+      "code": "SOC101"
+    },
+    {
+      "name": "Leadership and Management",
+      "code": "MGT250"
+    },
+    {
+      "name": "LINUX Platform",
+      "code": "ITI320"
+    },
+    {
+      "name": "Math with Business Applications",
+      "code": "MTH160"
+    },
+    {
+      "name": "Mobile Application",
+      "code": "ITAD430"
+    },
+    {
+      "name": "MS-SQL Development and Administration",
+      "code": "ITD410"
+    },
+    {
+      "name": "Network Operating Systems",
+      "code": "ITI300"
+    },
+    {
+      "name": "Object Oriented Programming and Design",
+      "code": "ITA310"
+    },
+    {
+      "name": "Project Management",
+      "code": "MGT345"
+    },
+    {
+      "name": "Statistics",
+      "code": "QMB240"
+    },
+    {
+      "name": "Web Application Design and Development",
+      "code": "ITA320"
+    },
+    {
+      "name": "Web Development & E-Commerce",
+      "code": "ITC220"
+    },
+    {
+      "name": "Windows Platform",
+      "code": "ITI310"
+    }
+  ],
+  "BRIDG (Bridging Program)": [
+    {
+      "name": "Business Environment",
+      "code": "BE"
+    },
+    {
+      "name": "Business Systems Analysis",
+      "code": "BSA"
+    },
+    {
+      "name": "Customising Applicatons Using Visual Basic",
+      "code": "CAUV"
+    },
+    {
+      "name": "Database Development",
+      "code": "DD"
+    },
+    {
+      "name": "Financial Reporting",
+      "code": "FR"
+    },
+    {
+      "name": "management Accounting:Costing & budgeting",
+      "code": "MAC"
+    },
+    {
+      "name": "Managing Human Resources",
+      "code": "MHR"
+    },
+    {
+      "name": "Object Oriented Design Using UML",
+      "code": "OOD"
+    },
+    {
+      "name": "Object Oriented Programming Using Java",
+      "code": "OOP"
+    },
+    {
+      "name": "operating System Processes",
+      "code": "OSP"
+    },
+    {
+      "name": "System Deployment User Support",
+      "code": "SDUS"
+    },
+    {
+      "name": "Working with & Leading People",
+      "code": "WLP"
+    }
+  ],
+  "BSCE (Bachelor of Science in Economics)": [
+    {
+      "name": "1[]",
+      "code": "1[]"
+    },
+    {
+      "name": "Accounting Essentials 1",
+      "code": "AE614"
+    },
+    {
+      "name": "Accounting Essentials 2",
+      "code": "AE622"
+    },
+    {
+      "name": "Administrative accounting",
+      "code": "AA"
+    },
+    {
+      "name": "Administrative Decisions Theory",
+      "code": "ADT"
+    },
+    {
+      "name": "Administrative Economy",
+      "code": "AE"
+    },
+    {
+      "name": "Administrative Organization",
+      "code": "AO"
+    },
+    {
+      "name": "Arabic Islamic Civilization",
+      "code": "AIC613"
+    },
+    {
+      "name": "Banking Administration",
+      "code": "BA742"
+    },
+    {
+      "name": "Banks and Money",
+      "code": "BM743"
+    },
+    {
+      "name": "Basic Management Principles",
+      "code": "BMP612"
+    },
+    {
+      "name": "Business Environment",
+      "code": "BE"
+    },
+    {
+      "name": "Business Finance",
+      "code": "BF783"
+    },
+    {
+      "name": "Commercial Banks",
+      "code": "CB762"
+    },
+    {
+      "name": "Computer Applications Of Management",
+      "code": "CAM"
+    },
+    {
+      "name": "Computer Science Essentials",
+      "code": "CSE611"
+    },
+    {
+      "name": "Computer Skills",
+      "code": "ICDL"
+    },
+    {
+      "name": "Consumer Behaviour",
+      "code": "COB942"
+    },
+    {
+      "name": "Contemporary Financial and Banking Issues",
+      "code": "CFBI781"
+    },
+    {
+      "name": "Contemporary Issues In Management",
+      "code": "CIM862"
+    },
+    {
+      "name": "Contemporary Issues In Marketing",
+      "code": "CIM961"
+    },
+    {
+      "name": "Cost Accounting",
+      "code": "CA"
+    },
+    {
+      "name": "Crisis Management",
+      "code": "CM864"
+    },
+    {
+      "name": "Database management",
+      "code": "DBM"
+    },
+    {
+      "name": "E-Banks",
+      "code": "EB775"
+    },
+    {
+      "name": "Economics & Administrative Mathematics",
+      "code": "EAM"
+    },
+    {
+      "name": "Essential Mathematics 1",
+      "code": "EM610"
+    },
+    {
+      "name": "Essential Mathematics 2",
+      "code": "EM621"
+    },
+    {
+      "name": "Financial Accounting 2",
+      "code": "FA745"
+    },
+    {
+      "name": "Financial Accounting of Companies",
+      "code": "FA"
+    },
+    {
+      "name": "Financial Accounting1",
+      "code": "FA731"
+    },
+    {
+      "name": "Financial administration 2",
+      "code": "FA751"
+    },
+    {
+      "name": "Financial Analysis",
+      "code": "FAN780"
+    },
+    {
+      "name": "Financial Budgeting",
+      "code": "FB774"
+    },
+    {
+      "name": "Financial Management",
+      "code": "FM"
+    },
+    {
+      "name": "Financial Management 1",
+      "code": "FM740"
+    },
+    {
+      "name": "Financial Management 2",
+      "code": "FM751"
+    },
+    {
+      "name": "General Administration",
+      "code": "GA834"
+    },
+    {
+      "name": "General Finance",
+      "code": "GF"
+    },
+    {
+      "name": "General relation Management",
+      "code": "GRM"
+    },
+    {
+      "name": "Human resources Management",
+      "code": "HRM"
+    },
+    {
+      "name": "Individual-Selling Policies",
+      "code": "ISP943"
+    },
+    {
+      "name": "Innovative Marketing",
+      "code": "INNO964"
+    },
+    {
+      "name": "Insurance & Risk Management",
+      "code": "IRM753"
+    },
+    {
+      "name": "Intermediate accounting 2",
+      "code": "IA760"
+    },
+    {
+      "name": "Intermediate Accounting1",
+      "code": "IA750"
+    },
+    {
+      "name": "International banks and finance",
+      "code": "IBF763"
+    },
+    {
+      "name": "International Businesses Management",
+      "code": "IBA853"
+    },
+    {
+      "name": "International Marketing",
+      "code": "IM"
+    },
+    {
+      "name": "Introduction to On-Line Education",
+      "code": "GBS103"
+    },
+    {
+      "name": "Investment Management",
+      "code": "INVM773"
+    },
+    {
+      "name": "Islamic financial organizations",
+      "code": "IFO770"
+    },
+    {
+      "name": "Logistic and supplying administration",
+      "code": "LSA843"
+    },
+    {
+      "name": "macroeconomics Analysis",
+      "code": "MA"
+    },
+    {
+      "name": "Management Information Systems",
+      "code": "MIS"
+    },
+    {
+      "name": "Management Of Change",
+      "code": "MC864"
+    },
+    {
+      "name": "Management of Financial Markets",
+      "code": "MFM"
+    },
+    {
+      "name": "Management Of Promotion",
+      "code": "MP934"
+    },
+    {
+      "name": "Managerial Studies (in English)",
+      "code": "MSE"
+    },
+    {
+      "name": "Marketing and Electronic Commerce",
+      "code": "MEC962"
+    },
+    {
+      "name": "Marketing Research",
+      "code": "MR953"
+    },
+    {
+      "name": "Microeconomic Analysis",
+      "code": "MA624"
+    },
+    {
+      "name": "Operations Management",
+      "code": "OM"
+    },
+    {
+      "name": "Operations researches",
+      "code": "OR"
+    },
+    {
+      "name": "Organization Behaviour",
+      "code": "OB923"
+    },
+    {
+      "name": "Organization Theory",
+      "code": "OT865"
+    },
+    {
+      "name": "Pricing and Distribution Policies",
+      "code": "PDP954"
+    },
+    {
+      "name": "Principals of Marketing",
+      "code": "PM625"
+    },
+    {
+      "name": "Principles of Statistics",
+      "code": "PS623"
+    },
+    {
+      "name": "Projects Administration",
+      "code": "PA842"
+    },
+    {
+      "name": "Quality Management",
+      "code": "TQM855"
+    },
+    {
+      "name": "Sales management",
+      "code": "SM924"
+    },
+    {
+      "name": "Services Marketing",
+      "code": "SM"
+    },
+    {
+      "name": "Small and medium Business Management",
+      "code": "SBM823"
+    },
+    {
+      "name": "Statistical applications for administration",
+      "code": "SAA"
+    },
+    {
+      "name": "Strategic Management",
+      "code": "SA"
+    },
+    {
+      "name": "Strategic Marketing",
+      "code": "SM952"
+    },
+    {
+      "name": "The Management of Marketing",
+      "code": "MM"
+    }
+  ],
+  "MBA (Master of Business Administration)": [
+    {
+      "name": "5[]",
+      "code": "5[]"
+    },
+    {
+      "name": "Accounting for Managers",
+      "code": "ACM.21"
+    },
+    {
+      "name": "Business Law",
+      "code": "BUL.25"
+    },
+    {
+      "name": "Business Research Methods",
+      "code": "BRM.12"
+    },
+    {
+      "name": "Data Analysis by Computer",
+      "code": "DAC.23"
+    },
+    {
+      "name": "Financial Management",
+      "code": "FIN.31"
+    },
+    {
+      "name": "Human Resources Management",
+      "code": "HRM.14"
+    },
+    {
+      "name": "International Marketing and Trading",
+      "code": "IMT.33"
+    },
+    {
+      "name": "Management Information Systems",
+      "code": "MIS.32"
+    },
+    {
+      "name": "Managerial Economics",
+      "code": "MEC.13"
+    },
+    {
+      "name": "Marketing",
+      "code": "MKG.15"
+    },
+    {
+      "name": "MBAP Admission Test",
+      "code": "MAT"
+    },
+    {
+      "name": "Operations Management",
+      "code": "OPM.22"
+    },
+    {
+      "name": "Organizational Behavior",
+      "code": "ORB.24"
+    },
+    {
+      "name": "Principles of Management",
+      "code": "PCM.11"
+    },
+    {
+      "name": "Project",
+      "code": "PRJ.40"
+    },
+    {
+      "name": "Project Management",
+      "code": "PRM.34"
+    },
+    {
+      "name": "Strategy",
+      "code": "STM.35"
+    }
+  ],
+  "UOG (University of Greenwich)": [
+    {
+      "name": "[]",
+      "code": "[]"
+    },
+    {
+      "name": "Business Strategy",
+      "code": "BS"
+    },
+    {
+      "name": "Contemporary Issues in Markeing",
+      "code": "CIM"
+    },
+    {
+      "name": "Datebase Design and Implementation",
+      "code": "DBDI"
+    },
+    {
+      "name": "e-Commerce",
+      "code": "EC"
+    },
+    {
+      "name": "Graduated Prject",
+      "code": "GP"
+    },
+    {
+      "name": "Information System Management",
+      "code": "ISM"
+    },
+    {
+      "name": "International Business",
+      "code": "IB"
+    },
+    {
+      "name": "IT Project and Quality Management",
+      "code": "IPQM"
+    },
+    {
+      "name": "Mobile Computing",
+      "code": "MC"
+    },
+    {
+      "name": "nformation System Engineering",
+      "code": "ISE"
+    },
+    {
+      "name": "Object Oriented Software development",
+      "code": "OOSD"
+    },
+    {
+      "name": "Rapid  Development Method",
+      "code": "RAD"
+    },
+    {
+      "name": "Small Business Development",
+      "code": "SBD"
+    },
+    {
+      "name": "Thematic Independent Study",
+      "code": "TIS"
+    },
+    {
+      "name": "Web Engineering",
+      "code": "WE"
+    }
+  ],
+  "MTM (Master of Technology Management)": [
+    {
+      "name": "2[]",
+      "code": "2[]"
+    },
+    {
+      "name": "3[]",
+      "code": "3[]"
+    },
+    {
+      "name": "High and Emerging Technology Management",
+      "code": "HRTM"
+    },
+    {
+      "name": "Intermediate Institutions and Technological Development Management",
+      "code": "IITDM"
+    },
+    {
+      "name": "International Experiences in Transfer, Management and Implementation of Technology",
+      "code": "ITTTC"
+    },
+    {
+      "name": "MTM Admission Test",
+      "code": "TAT"
+    },
+    {
+      "name": "Technology Culture",
+      "code": "TC"
+    },
+    {
+      "name": "Technology Development and Transfer",
+      "code": "TDT"
+    },
+    {
+      "name": "Technology Management Thesis",
+      "code": "TMTH"
+    },
+    {
+      "name": "Technology Transfer  Models",
+      "code": "TTM"
+    }
+  ],
+  "MQM (Master of Quality Management)": [
+    {
+      "name": "[]",
+      "code": "[]"
+    },
+    {
+      "name": "4[]",
+      "code": "4[]"
+    },
+    {
+      "name": "Basics of Reliability",
+      "code": "RY"
+    },
+    {
+      "name": "Internal Audit of Quality Management Systems",
+      "code": "IAQCS"
+    },
+    {
+      "name": "MQM Admission Test",
+      "code": "QAT"
+    },
+    {
+      "name": "Quality Improvement Tools, and quality Management Supporting Techniques",
+      "code": "STQMS"
+    },
+    {
+      "name": "Quality Management Systems",
+      "code": "QMS"
+    },
+    {
+      "name": "Quality Management Thesis",
+      "code": "QMTH"
+    },
+    {
+      "name": "Special Purpose Management Systems",
+      "code": "QCMS"
+    },
+    {
+      "name": "Statistical Quality Control",
+      "code": "SCO"
+    }
+  ],
+  "MWT (Master of Web Technology)": [
+    {
+      "name": "[]",
+      "code": "[]"
+    },
+    {
+      "name": "Data Exploring",
+      "code": "WDE"
+    },
+    {
+      "name": "Electronic Business",
+      "code": "WEC"
+    },
+    {
+      "name": "Internet & Multimedia",
+      "code": "WIM"
+    },
+    {
+      "name": "Internet Security",
+      "code": "WIS"
+    },
+    {
+      "name": "Java Application Development",
+      "code": "WJD"
+    },
+    {
+      "name": "Mobile Services",
+      "code": "WMS"
+    },
+    {
+      "name": "MWT Project",
+      "code": "WPR"
+    },
+    {
+      "name": "Networks",
+      "code": "WNT"
+    },
+    {
+      "name": "WEB Admission Test",
+      "code": "WAT"
+    },
+    {
+      "name": "Web Design",
+      "code": "WWD"
+    },
+    {
+      "name": "Web Engineering",
+      "code": "WEG"
+    },
+    {
+      "name": "XML Techniques",
+      "code": "WXL"
+    }
+  ],
+  "BL (Bachelor of Law)": [
+    {
+      "name": "[]",
+      "code": "[]"
+    },
+    {
+      "name": "Administrative Contracts",
+      "code": "ACC832"
+    },
+    {
+      "name": "Administrative Law 1",
+      "code": "ADM303"
+    },
+    {
+      "name": "Administrative Law 2",
+      "code": "ADM406"
+    },
+    {
+      "name": "Administrative Law 3",
+      "code": "ADM506"
+    },
+    {
+      "name": "Agricultural Relations Law",
+      "code": "ARLB821"
+    },
+    {
+      "name": "Banking Legislation",
+      "code": "BLA812"
+    },
+    {
+      "name": "Bankruptcy",
+      "code": "BanyA813"
+    },
+    {
+      "name": "Civil Law 1",
+      "code": "CIV206"
+    },
+    {
+      "name": "Civil Law 2",
+      "code": "CIV306"
+    },
+    {
+      "name": "Civil Law 3",
+      "code": "CIV405"
+    },
+    {
+      "name": "Civil Law 4",
+      "code": "Civ504"
+    },
+    {
+      "name": "Civil Law 5",
+      "code": "CIV604"
+    },
+    {
+      "name": "Civil Law 6",
+      "code": "CIV704"
+    },
+    {
+      "name": "Civil Procedure 1",
+      "code": "CIP501"
+    },
+    {
+      "name": "Civil Procedure 2",
+      "code": "CIP601"
+    },
+    {
+      "name": "Commercial Arbitration",
+      "code": "B706"
+    },
+    {
+      "name": "Commercial Law 1",
+      "code": "COM302"
+    },
+    {
+      "name": "Commercial Law 2 (Company Law)",
+      "code": "COM402"
+    },
+    {
+      "name": "Commercial Law 3 (Commercial Papers)",
+      "code": "CL503"
+    },
+    {
+      "name": "Commercial Law 4 (Maritime and Air Law)",
+      "code": "ML606"
+    },
+    {
+      "name": "Computer Skills",
+      "code": "CDL107"
+    },
+    {
+      "name": "Constitutional Law and Political  Systems",
+      "code": "CON104"
+    },
+    {
+      "name": "Consumer Protection Law",
+      "code": "CPLB823"
+    },
+    {
+      "name": "Cooperative Law",
+      "code": "COL403"
+    },
+    {
+      "name": "Criminal Procedure 1",
+      "code": "CRP605"
+    },
+    {
+      "name": "Criminal Procedure 2",
+      "code": "CRP705"
+    },
+    {
+      "name": "Cyber Crime",
+      "code": "CybcE854"
+    },
+    {
+      "name": "Diplomatic law",
+      "code": "DLD841"
+    },
+    {
+      "name": "Drugs law",
+      "code": "DLE851"
+    },
+    {
+      "name": "E-commerce",
+      "code": "ECA814"
+    },
+    {
+      "name": "E-learning",
+      "code": "GBS108"
+    },
+    {
+      "name": "English 1 -Introduction to Law and Legal Systems",
+      "code": "INT205"
+    },
+    {
+      "name": "English 2 -Criminal Law",
+      "code": "CL404"
+    },
+    {
+      "name": "English 4 -International Trade Law",
+      "code": "ICL703"
+    },
+    {
+      "name": "Environmental Law",
+      "code": "ELC831"
+    },
+    {
+      "name": "Execution Procedures",
+      "code": "CIV702"
+    },
+    {
+      "name": "Financial control",
+      "code": "FCC833"
+    },
+    {
+      "name": "Human Rights",
+      "code": "HUM201"
+    },
+    {
+      "name": "Insurance Law",
+      "code": "INLA811"
+    },
+    {
+      "name": "Intellectual Property Rights",
+      "code": "IPB822"
+    },
+    {
+      "name": "International  Humanitarian Law",
+      "code": "IHLD842"
+    },
+    {
+      "name": "International Economic Law",
+      "code": "EIL305"
+    },
+    {
+      "name": "International economic orgaizations",
+      "code": "IEOD843"
+    },
+    {
+      "name": "International Law of the Sea",
+      "code": "ILSD844"
+    },
+    {
+      "name": "Introduction to Law",
+      "code": "IL106"
+    },
+    {
+      "name": "Introduction to Political Science",
+      "code": "POL204"
+    },
+    {
+      "name": "Islamic Doctrine",
+      "code": "ID803"
+    },
+    {
+      "name": "Juvenile Law",
+      "code": "JLE852"
+    },
+    {
+      "name": "Labor Law",
+      "code": "LL802"
+    },
+    {
+      "name": "Legal Methodology",
+      "code": "MET105"
+    },
+    {
+      "name": "Legal Methodology 1",
+      "code": "MET106"
+    },
+    {
+      "name": "Legal Methodology 2",
+      "code": "MET506"
+    },
+    {
+      "name": "Legal Sociology",
+      "code": "LSLB824"
+    },
+    {
+      "name": "Local Administrative Law",
+      "code": "LALC834"
+    },
+    {
+      "name": "Money Laundering Law",
+      "code": "MLE853"
+    },
+    {
+      "name": "Personal Status Law 1",
+      "code": "FAM304"
+    },
+    {
+      "name": "Personal Status Law 2",
+      "code": "FAM505"
+    },
+    {
+      "name": "Principles of Economics",
+      "code": "ECO103"
+    },
+    {
+      "name": "Principles of Islamic Sharia",
+      "code": "IS203"
+    },
+    {
+      "name": "Private Criminal Law 1",
+      "code": "CRI301"
+    },
+    {
+      "name": "Private Criminal Law2",
+      "code": "CRI401"
+    },
+    {
+      "name": "Private International Law 1",
+      "code": "PIL602"
+    },
+    {
+      "name": "Private International Law 2",
+      "code": "PIL701"
+    },
+    {
+      "name": "Public Criminal Law 2",
+      "code": "CRI202"
+    },
+    {
+      "name": "Public Criminal Law1",
+      "code": "CRI101"
+    },
+    {
+      "name": "Public Finance Law",
+      "code": "FL502"
+    },
+    {
+      "name": "Public International Law",
+      "code": "INL102"
+    },
+    {
+      "name": "Public International Law-  English 3",
+      "code": "INT603"
+    },
+    {
+      "name": "takll",
+      "code": "LL805"
+    },
+    {
+      "name": "Tax Law",
+      "code": "TAX801"
+    },
+    {
+      "name": "Trade marks",
+      "code": "OPA810"
+    }
+  ],
+  "FDOCT (Doctorate)": [
+    {
+      "name": "Gestion Bibliographique",
+      "code": "G-Biblio"
+    },
+    {
+      "name": "prendere la parole",
+      "code": "P-Parole"
+    },
+    {
+      "name": "Prendre des Notes",
+      "code": "P-Notes"
+    },
+    {
+      "name": "Realiser un document scientifquoe",
+      "code": "R-Document"
+    }
+  ],
+  "MWS (Master of Web Science)": [
+    {
+      "name": "[]",
+      "code": "[]"
+    },
+    {
+      "name": "Augmented Reality",
+      "code": "WAR"
+    },
+    {
+      "name": "Big Data Analysis",
+      "code": "WDA"
+    },
+    {
+      "name": "Data Mining",
+      "code": "WDM"
+    },
+    {
+      "name": "Deep Learning",
+      "code": "WDL"
+    },
+    {
+      "name": "Distributed Computation",
+      "code": "WDC"
+    },
+    {
+      "name": "Machine Learning",
+      "code": "wml"
+    },
+    {
+      "name": "Mobile Web",
+      "code": "WMB"
+    },
+    {
+      "name": "MWS Admission Test",
+      "code": "SAT"
+    },
+    {
+      "name": "Scientific Research",
+      "code": "WSR"
+    },
+    {
+      "name": "Semantic Web",
+      "code": "WSM"
+    },
+    {
+      "name": "Thesis",
+      "code": "ATH"
+    },
+    {
+      "name": "Web Engineering",
+      "code": "WEG"
+    },
+    {
+      "name": "Web Security",
+      "code": "WSC"
+    }
+  ],
+  "BBA (Bachelor of Business Administration)": [
+    {
+      "name": "International Business Management",
+      "code": "IBM"
+    },
+    {
+      "name": "Managing Strategy",
+      "code": "MS"
+    },
+    {
+      "name": "Small Business Development",
+      "code": "SBD"
+    },
+    {
+      "name": "Thematic Independent Study",
+      "code": "TIS"
+    }
+  ],
+  "BIT_Bridging": [
+    {
+      "name": "Data Base Architecture and Design",
+      "code": "ITD300"
+    },
+    {
+      "name": "Introduction to Data Modeling",
+      "code": "ITC210"
+    },
+    {
+      "name": "Introduction to Programming",
+      "code": "ITC230"
+    },
+    {
+      "name": "Math With Business Applications",
+      "code": "MTH160"
+    }
+  ],
+  "BMC (Bachelor of Media and Communication)": [
+    {
+      "name": "[]",
+      "code": "[]"
+    },
+    {
+      "name": "Administrative Leadership",
+      "code": "AL242"
+    },
+    {
+      "name": "Advanced Level of TV writing",
+      "code": "ATVW787"
+    },
+    {
+      "name": "Advertisement Designing",
+      "code": "AD792"
+    },
+    {
+      "name": "Advertising Psychology",
+      "code": "PA534"
+    },
+    {
+      "name": "Advertizing - Principles and Management",
+      "code": "APM13"
+    },
+    {
+      "name": "Aesthetics",
+      "code": "A794"
+    },
+    {
+      "name": "An Introduction to Image and Cinema",
+      "code": "IIC13"
+    },
+    {
+      "name": "An Introduction to Journalism",
+      "code": "IJ13"
+    },
+    {
+      "name": "An Introduction to Mass Media: Organization Management",
+      "code": "MME13"
+    },
+    {
+      "name": "An Introduction to Media Editing",
+      "code": "IME121"
+    },
+    {
+      "name": "An Introduction to Radio and TV",
+      "code": "IRT122"
+    },
+    {
+      "name": "An introduction to the Media Sociology",
+      "code": "IMS132"
+    },
+    {
+      "name": "Art of Press Photography",
+      "code": "APP531"
+    },
+    {
+      "name": "BMC Admission Test",
+      "code": "CAT"
+    },
+    {
+      "name": "Citizen Journalism",
+      "code": "CJ686"
+    },
+    {
+      "name": "Communication and Society",
+      "code": "CS122"
+    },
+    {
+      "name": "Computer Skills",
+      "code": "CDL11"
+    },
+    {
+      "name": "Consumer Behavior",
+      "code": "CB539"
+    },
+    {
+      "name": "Current Affairs",
+      "code": "CA132"
+    },
+    {
+      "name": "Documentary Films",
+      "code": "DO757"
+    },
+    {
+      "name": "Economic Analysis",
+      "code": "EA763"
+    },
+    {
+      "name": "Economics",
+      "code": "E649"
+    },
+    {
+      "name": "Editing Opinion Articles",
+      "code": "EOM874"
+    },
+    {
+      "name": "Editing Public Relations Materials",
+      "code": "EPRM767"
+    },
+    {
+      "name": "Electronic Marketing",
+      "code": "EM790"
+    },
+    {
+      "name": "Electronic Means of communication",
+      "code": "EMC687"
+    },
+    {
+      "name": "Graduating Project_EM",
+      "code": "G797"
+    },
+    {
+      "name": "Graduating Project_PR",
+      "code": "G798"
+    },
+    {
+      "name": "Graduating Project_RTV",
+      "code": "G796"
+    },
+    {
+      "name": "Graduation Project_AD",
+      "code": "G795"
+    },
+    {
+      "name": "Graduation Project_JO",
+      "code": "G799"
+    },
+    {
+      "name": "Graphic Design",
+      "code": "GD762"
+    },
+    {
+      "name": "Image analysis techniques",
+      "code": "IAT650"
+    },
+    {
+      "name": "Information Society",
+      "code": "IS872"
+    },
+    {
+      "name": "Intellectual Property Rights",
+      "code": "IPR532"
+    },
+    {
+      "name": "International Public Relations",
+      "code": "IPR649"
+    },
+    {
+      "name": "Internet and Society",
+      "code": "IS769"
+    },
+    {
+      "name": "Introduction to On-Line Education",
+      "code": "GBS103"
+    },
+    {
+      "name": "Introduction to Web Page Creation",
+      "code": "IWD753"
+    },
+    {
+      "name": "Legislation and Ethics of Media and Communication",
+      "code": "LEMC131"
+    },
+    {
+      "name": "Liberation Survey",
+      "code": "LS649"
+    },
+    {
+      "name": "Literature, Criticism and Media Language",
+      "code": "LCLM122"
+    },
+    {
+      "name": "Management of creativity and innovation",
+      "code": "MCI537"
+    },
+    {
+      "name": "Marketing Communication",
+      "code": "MC764"
+    },
+    {
+      "name": "Marketing Strategies and Policies",
+      "code": "MSP533"
+    },
+    {
+      "name": "Mass Media Language (1)",
+      "code": "MML13"
+    },
+    {
+      "name": "Mass Media Language (English) III",
+      "code": "MMLIII231"
+    },
+    {
+      "name": "Mass Media LanguageII",
+      "code": "MMLII121"
+    },
+    {
+      "name": "Mass Media Research Methods",
+      "code": "MMRM121"
+    },
+    {
+      "name": "Media and  Communication International",
+      "code": "MCI242"
+    },
+    {
+      "name": "Media and Communication Theory",
+      "code": "MCT131"
+    },
+    {
+      "name": "Media and Psychological Warfare",
+      "code": "MPW873"
+    },
+    {
+      "name": "Media and the knowledge economy",
+      "code": "MKE241"
+    },
+    {
+      "name": "Media institutions management",
+      "code": "MIM645"
+    },
+    {
+      "name": "Media Interview",
+      "code": "MI530"
+    },
+    {
+      "name": "Media legislation",
+      "code": "ML648"
+    },
+    {
+      "name": "Media planning and analysis",
+      "code": "MPA241"
+    },
+    {
+      "name": "Media Technology and Education",
+      "code": "MTE759"
+    },
+    {
+      "name": "Methods, Principles and Techniques of Publication",
+      "code": "PMPT870"
+    },
+    {
+      "name": "Multimedia",
+      "code": "MM647"
+    },
+    {
+      "name": "News Programs in Radio and TV",
+      "code": "NPRT534"
+    },
+    {
+      "name": "News Writing and Editing II",
+      "code": "NWE527-2"
+    },
+    {
+      "name": "News writing and Editing(I)",
+      "code": "NWE527"
+    },
+    {
+      "name": "Newspaper Production and Layout",
+      "code": "NPD755"
+    },
+    {
+      "name": "Online Journalism and Publishing",
+      "code": "OGP528"
+    },
+    {
+      "name": "Online Media and Communication",
+      "code": "OMC242"
+    },
+    {
+      "name": "Online Press Editing",
+      "code": "ETP757"
+    },
+    {
+      "name": "Organizational Behavior",
+      "code": "CB535"
+    },
+    {
+      "name": "Organizational Communication",
+      "code": "OC132"
+    },
+    {
+      "name": "Persuasion Skills by Electronic Means",
+      "code": "PSEM538"
+    },
+    {
+      "name": "Planing and Management of Advertising Content",
+      "code": "PMAC542_Canceled"
+    },
+    {
+      "name": "Planning of Advertisement Content",
+      "code": "PMAC542"
+    },
+    {
+      "name": "Principles of Management",
+      "code": "BP540"
+    },
+    {
+      "name": "Principles Of Marketing",
+      "code": "PM541"
+    },
+    {
+      "name": "Printing Technologies",
+      "code": "PT751"
+    },
+    {
+      "name": "Public Opinion and its Assessment",
+      "code": "OPA131"
+    },
+    {
+      "name": "Public Relation Skills",
+      "code": "PRS650"
+    },
+    {
+      "name": "Public Relations & Crisis",
+      "code": "PRC543"
+    },
+    {
+      "name": "Public Relations - Principles and Management",
+      "code": "PR13"
+    },
+    {
+      "name": "Public Relations and Negotiation",
+      "code": "PRN766"
+    },
+    {
+      "name": "Public Relations Campaigns",
+      "code": "PRC768"
+    },
+    {
+      "name": "Publicity and Media Relations",
+      "code": "MP544"
+    },
+    {
+      "name": "Radio and television advertising",
+      "code": "RTA760"
+    },
+    {
+      "name": "Radio and Television Presentation and Delivery",
+      "code": "RTPD533"
+    },
+    {
+      "name": "Radio and television production",
+      "code": "RTP758"
+    },
+    {
+      "name": "Radio and TV Direction",
+      "code": "RTVD785"
+    },
+    {
+      "name": "Radio Programming",
+      "code": "RP535"
+    },
+    {
+      "name": "Reportage, Interviews and Opinion Articles",
+      "code": "JOA529"
+    },
+    {
+      "name": "Scenario and drama",
+      "code": "SD756"
+    },
+    {
+      "name": "Service Marketing",
+      "code": "SM791"
+    },
+    {
+      "name": "Sources of information and documentation media",
+      "code": "SIDM241"
+    },
+    {
+      "name": "Specialized Media in Radio and Television",
+      "code": "SMRT536"
+    },
+    {
+      "name": "Specialized Press",
+      "code": "SP871"
+    },
+    {
+      "name": "Talk radio and television programs",
+      "code": "TRTP646"
+    },
+    {
+      "name": "Techniques of persuasion and social marketing",
+      "code": "TPSM241"
+    },
+    {
+      "name": "Text Analysis Techniques",
+      "code": "TAT754"
+    },
+    {
+      "name": "Trade Mark Management",
+      "code": "BM764"
+    },
+    {
+      "name": "TV Interview and Reportage",
+      "code": "TVIC786"
+    },
+    {
+      "name": "Writing and preparation of news reports",
+      "code": "WBN752"
+    }
+  ],
+  "DP (Doctorate Program)": [
+    {
+      "name": "[]",
+      "code": "[]"
+    },
+    {
+      "name": "Business Research Methods in Business Administration",
+      "code": "MBARM"
+    },
+    {
+      "name": "Business Research Methods in Quality Management",
+      "code": "MQMRM"
+    },
+    {
+      "name": "Business Research Methods in Technology Management",
+      "code": "MTMRM"
+    },
+    {
+      "name": "Computer Skills",
+      "code": "GBS302"
+    },
+    {
+      "name": "Data Analysis in Business Administration",
+      "code": "MBADA"
+    },
+    {
+      "name": "Data Analysis in Information Technology",
+      "code": "ITDA"
+    },
+    {
+      "name": "Data Analysis in Quality Management",
+      "code": "MQMDA"
+    },
+    {
+      "name": "Data Analysis in Technology Management",
+      "code": "MTMDA"
+    },
+    {
+      "name": "Initial seminar",
+      "code": "PS"
+    },
+    {
+      "name": "Initial seminar IT",
+      "code": "PS-IT"
+    },
+    {
+      "name": "Initial seminar MBA",
+      "code": "PS-MBA"
+    },
+    {
+      "name": "Initial seminar QM",
+      "code": "PS-QM"
+    },
+    {
+      "name": "Initial seminar TM",
+      "code": "PS-TM"
+    },
+    {
+      "name": "PHD IT Thesis",
+      "code": "PHD IT Thesis"
+    },
+    {
+      "name": "PHD MBA Thesis",
+      "code": "PHD MBA Thesis"
+    },
+    {
+      "name": "PHD MQM Thesis",
+      "code": "PHD MQM Thesis"
+    },
+    {
+      "name": "PHD MTM Thesis",
+      "code": "PHD MTM Thesis"
+    },
+    {
+      "name": "PHD Thesis",
+      "code": "PHD"
+    },
+    {
+      "name": "Project  in Technology Management",
+      "code": "MTM-PR"
+    },
+    {
+      "name": "Project in Business Administration",
+      "code": "MBA-PR"
+    },
+    {
+      "name": "Project in Quality Management",
+      "code": "MQM-PR"
+    },
+    {
+      "name": "Research Methodology in information Technology",
+      "code": "ITRM"
+    }
+  ],
+  "Exam": [
+    {
+      "name": "BIT",
+      "code": "BIT"
+    },
+    {
+      "name": "BLS",
+      "code": "BLS"
+    },
+    {
+      "name": "BMC",
+      "code": "BMC"
+    },
+    {
+      "name": "BSCE",
+      "code": "BSCE"
+    },
+    {
+      "name": "EDU",
+      "code": "EDU"
+    },
+    {
+      "name": "ENG",
+      "code": "ENG"
+    },
+    {
+      "name": "HND",
+      "code": "HND"
+    },
+    {
+      "name": "ISE",
+      "code": "ISE"
+    },
+    {
+      "name": "MBA",
+      "code": "MBA"
+    },
+    {
+      "name": "MQM",
+      "code": "MQM"
+    },
+    {
+      "name": "MTM",
+      "code": "MTM"
+    },
+    {
+      "name": "MWS",
+      "code": "MWS"
+    },
+    {
+      "name": "MWT",
+      "code": "MWT"
+    }
+  ],
+  "AFL (Arabic as a Foreign Language)": [
+    {
+      "name": "Advanced High",
+      "code": "AH"
+    },
+    {
+      "name": "Advanced Low",
+      "code": "AL"
+    },
+    {
+      "name": "Advanced Mid",
+      "code": "AM"
+    },
+    {
+      "name": "Intermediate High",
+      "code": "IH"
+    },
+    {
+      "name": "Intermediate Low",
+      "code": "IL"
+    },
+    {
+      "name": "Intermediate Mid",
+      "code": "IM"
+    },
+    {
+      "name": "Novice High",
+      "code": "NH"
+    },
+    {
+      "name": "Novice Low",
+      "code": "NL"
+    },
+    {
+      "name": "Novice Mid",
+      "code": "NM"
+    },
+    {
+      "name": "Optional Onsite Training",
+      "code": "TO"
+    },
+    {
+      "name": "Placement Test",
+      "code": "PT"
+    }
+  ],
+  "ACM (Academic Computer Master)": [
+    {
+      "name": "ACM Admission Test",
+      "code": "ACMAT"
+    },
+    {
+      "name": "ACM TEST",
+      "code": "ACMTest"
+    },
+    {
+      "name": "ACM_Preparation",
+      "code": "Pre1"
+    },
+    {
+      "name": "Algorithms 1",
+      "code": "ALGO1"
+    },
+    {
+      "name": "Algorithms 2",
+      "code": "Algo2"
+    },
+    {
+      "name": "Mathematics 1",
+      "code": "Math1"
+    },
+    {
+      "name": "Mathematics 2",
+      "code": "Math2"
+    },
+    {
+      "name": "Programming 1",
+      "code": "Prog1"
+    },
+    {
+      "name": "Programming 2",
+      "code": "Prog2"
+    }
+  ],
+  "BAIT (Bachelor of Information Technology)": [
+    {
+      "name": "Advanced SQL Programming",
+      "code": "IIS303"
+    },
+    {
+      "name": "BAIT Admission Test",
+      "code": "BAAT"
+    },
+    {
+      "name": "Banking",
+      "code": "BFB305"
+    },
+    {
+      "name": "Career Preparation",
+      "code": "GBS102"
+    },
+    {
+      "name": "Computer Skills",
+      "code": "GBS101"
+    },
+    {
+      "name": "Corporate Social Responsibility and Business Ethics",
+      "code": "BMN309"
+    },
+    {
+      "name": "Cost Analysis",
+      "code": "BAC202"
+    },
+    {
+      "name": "Data & Applications Security",
+      "code": "IWB404"
+    },
+    {
+      "name": "Data Analysis",
+      "code": "BQM305"
+    },
+    {
+      "name": "Database Architecture and Design",
+      "code": "IIS202"
+    },
+    {
+      "name": "Decision Theory",
+      "code": "BQM303"
+    },
+    {
+      "name": "Digital Electronics",
+      "code": "GDE101"
+    },
+    {
+      "name": "Discrete Mathematics",
+      "code": "GMA204"
+    },
+    {
+      "name": "E-Commerce Technologies",
+      "code": "IWB101"
+    },
+    {
+      "name": "Entrepreneurship and SMEs Management",
+      "code": "BMN308"
+    },
+    {
+      "name": "Event Driven Programming",
+      "code": "IPG203"
+    },
+    {
+      "name": "Feasibility Studies",
+      "code": "BAC303"
+    },
+    {
+      "name": "Fundamentals of Financial Management",
+      "code": "BFB201"
+    },
+    {
+      "name": "Fundamentals of Management",
+      "code": "BMN101"
+    },
+    {
+      "name": "Human Resources",
+      "code": "BMN203"
+    },
+    {
+      "name": "Introduction to Data Modeling",
+      "code": "IIS101"
+    },
+    {
+      "name": "Introduction to Economics",
+      "code": "BEC101"
+    },
+    {
+      "name": "Introduction to Marketing",
+      "code": "BMN202"
+    },
+    {
+      "name": "Introduction to Networks",
+      "code": "INT101"
+    },
+    {
+      "name": "Introduction to On-Line Education",
+      "code": "GBS103"
+    },
+    {
+      "name": "Introduction to Operating Systems",
+      "code": "IOS101"
+    },
+    {
+      "name": "Introduction to Philosophy",
+      "code": "GHS101"
+    },
+    {
+      "name": "Introduction to Programming",
+      "code": "IPG101"
+    },
+    {
+      "name": "Introduction to Sociology",
+      "code": "GHS102"
+    },
+    {
+      "name": "IT Final Project (ISDN)",
+      "code": "IPI405"
+    },
+    {
+      "name": "IT Final Project (MIS)",
+      "code": "IPM405"
+    },
+    {
+      "name": "IT Project Management",
+      "code": "ISE302"
+    },
+    {
+      "name": "Linux Platform 1",
+      "code": "IOS203"
+    },
+    {
+      "name": "Linux Platform 2",
+      "code": "IOS305"
+    },
+    {
+      "name": "Mathematical Algebra",
+      "code": "GMA101"
+    },
+    {
+      "name": "Mathematical Analysis",
+      "code": "GMA102"
+    },
+    {
+      "name": "Microeconomics",
+      "code": "BEC202"
+    },
+    {
+      "name": "Mobile Programming",
+      "code": "IWB303"
+    },
+    {
+      "name": "MS-SQL Server Administration",
+      "code": "IIS404"
+    },
+    {
+      "name": "Network & IT Infrastructure Security",
+      "code": "INT305"
+    },
+    {
+      "name": "Network Operating System",
+      "code": "IOS204"
+    },
+    {
+      "name": "Network Services",
+      "code": "INT202"
+    },
+    {
+      "name": "Object Oriented Programming",
+      "code": "IPG204"
+    },
+    {
+      "name": "Operational Researches",
+      "code": "BQM202"
+    },
+    {
+      "name": "Operations Management",
+      "code": "BQM301"
+    },
+    {
+      "name": "Oracle Database Administration I",
+      "code": "IIS405"
+    },
+    {
+      "name": "Oracle Database Administration II",
+      "code": "IIS406"
+    },
+    {
+      "name": "Principles of Accounting",
+      "code": "BAC101"
+    },
+    {
+      "name": "Probability & Statistics",
+      "code": "GMA205"
+    },
+    {
+      "name": "Procedural Programming",
+      "code": "IPG202"
+    },
+    {
+      "name": "Project Management",
+      "code": "BQM304"
+    },
+    {
+      "name": "Routing Principles",
+      "code": "INT204"
+    },
+    {
+      "name": "Software Engineering",
+      "code": "ISE301"
+    },
+    {
+      "name": "Strategic Management",
+      "code": "BMN306"
+    },
+    {
+      "name": "Supply Chain Management",
+      "code": "BMN305"
+    },
+    {
+      "name": "Web Application Development and Design",
+      "code": "IWB202"
+    },
+    {
+      "name": "Windows Platform 1",
+      "code": "IOS202"
+    },
+    {
+      "name": "Windows Platform 2",
+      "code": "IOS304"
+    },
+    {
+      "name": "Wireless Networks",
+      "code": "INT203"
+    }
+  ],
+  "BACT (Bachelor of Communication Technology)": [
+    {
+      "name": "[]",
+      "code": "[]"
+    },
+    {
+      "name": "Analog Communications",
+      "code": "CEE306"
+    },
+    {
+      "name": "Antennas and Wave Propagation",
+      "code": "CRF402"
+    },
+    {
+      "name": "BACT Admission Test",
+      "code": "BCT"
+    },
+    {
+      "name": "BACT Final Project in CSB",
+      "code": "CPS401"
+    },
+    {
+      "name": "BACT Final Project in MCS",
+      "code": "CPM401"
+    },
+    {
+      "name": "BACT Final Project in RMC",
+      "code": "CPR401"
+    },
+    {
+      "name": "Career Preparation",
+      "code": "GBS102"
+    },
+    {
+      "name": "Communications Management",
+      "code": "CEE309"
+    },
+    {
+      "name": "Cost Analysis",
+      "code": "BAC202"
+    },
+    {
+      "name": "Data Analysis",
+      "code": "BQM305"
+    },
+    {
+      "name": "Data Communications",
+      "code": "CEE102"
+    },
+    {
+      "name": "Database Architecture and Design",
+      "code": "IIS202"
+    },
+    {
+      "name": "Decision Theory",
+      "code": "BQM303"
+    },
+    {
+      "name": "Digital Communications",
+      "code": "CEE308"
+    },
+    {
+      "name": "Digital Electronics",
+      "code": "CEE204"
+    },
+    {
+      "name": "Digital Signal Processing",
+      "code": "CEE205"
+    },
+    {
+      "name": "Digital Transmission and Broadband Access Technologies",
+      "code": "CCN402"
+    },
+    {
+      "name": "Discrete Mathematics",
+      "code": "GMA204"
+    },
+    {
+      "name": "Electrical Circuits",
+      "code": "CEE101"
+    },
+    {
+      "name": "Electromagnetic Waves and Transmission Lines",
+      "code": "CRF301"
+    },
+    {
+      "name": "Electronics",
+      "code": "CEE202"
+    },
+    {
+      "name": "Embedded System Fundamentals",
+      "code": "CCS404"
+    },
+    {
+      "name": "Entrepreneurship and SMEs Management",
+      "code": "BMN308"
+    },
+    {
+      "name": "Feasibility Studies",
+      "code": "BAC303"
+    },
+    {
+      "name": "Fundamentals of Financial Management",
+      "code": "BFB201"
+    },
+    {
+      "name": "Fundamentals of Management",
+      "code": "BMN101"
+    },
+    {
+      "name": "Human Resources Management",
+      "code": "BMN203"
+    },
+    {
+      "name": "International Computer Driving License",
+      "code": "GBS101"
+    },
+    {
+      "name": "Introduction to Data Modeling",
+      "code": "IIS101"
+    },
+    {
+      "name": "Introduction to Economics",
+      "code": "BEC101"
+    },
+    {
+      "name": "Introduction to Marketing",
+      "code": "BMN202"
+    },
+    {
+      "name": "Introduction to Networks",
+      "code": "INT101"
+    },
+    {
+      "name": "Introduction to On-Line Education",
+      "code": "GBS103"
+    },
+    {
+      "name": "Introduction to Operating Systems",
+      "code": "IOS101"
+    },
+    {
+      "name": "Introduction to Philosophy",
+      "code": "GHS101"
+    },
+    {
+      "name": "Introduction to Philosphy",
+      "code": "GHS101_canceled"
+    },
+    {
+      "name": "Introduction to Programming",
+      "code": "IPG101"
+    },
+    {
+      "name": "Introduction to Wireless Systems",
+      "code": "CCS401"
+    },
+    {
+      "name": "Mathematical Algebra",
+      "code": "GMA101"
+    },
+    {
+      "name": "Mathematical Analysis",
+      "code": "GMA102"
+    },
+    {
+      "name": "MATLAB for Numerical Computing",
+      "code": "CML201"
+    },
+    {
+      "name": "Microeconomics",
+      "code": "BEC202"
+    },
+    {
+      "name": "Microprocessors and Microcontrollers",
+      "code": "CEE307"
+    },
+    {
+      "name": "Microwave Engineering",
+      "code": "CRF403"
+    },
+    {
+      "name": "Mobile and Wireless communications",
+      "code": "CCS402"
+    },
+    {
+      "name": "Mobile Applications",
+      "code": "CCN403"
+    },
+    {
+      "name": "Mobile communications Systems",
+      "code": "CCS403"
+    },
+    {
+      "name": "Multimedia Networking",
+      "code": "CCN404"
+    },
+    {
+      "name": "Network & IT Infrastructure Security",
+      "code": "INT305"
+    },
+    {
+      "name": "Network Services",
+      "code": "INT202"
+    },
+    {
+      "name": "Object Oriented Programming",
+      "code": "IPG204"
+    },
+    {
+      "name": "Optical Communications",
+      "code": "CRF406"
+    },
+    {
+      "name": "Physics",
+      "code": "GPH101"
+    },
+    {
+      "name": "Principles of Accounting",
+      "code": "BAC101"
+    },
+    {
+      "name": "Probability & Statistics",
+      "code": "GMA205"
+    },
+    {
+      "name": "Project Management",
+      "code": "BQM304"
+    },
+    {
+      "name": "Research in Marketing",
+      "code": "BQM406"
+    },
+    {
+      "name": "RF & Microwave telecommunications systems",
+      "code": "CRF404"
+    },
+    {
+      "name": "Routing Principles",
+      "code": "INT204"
+    },
+    {
+      "name": "Satellite communications",
+      "code": "CRF405"
+    },
+    {
+      "name": "Signals and Systems",
+      "code": "CEE203"
+    },
+    {
+      "name": "Windows Platform 1",
+      "code": "IOS202"
+    },
+    {
+      "name": "Wireless Communications Networks",
+      "code": "CCN401"
+    }
+  ],
+  "ATP (Admission Test Program)": [
+    {
+      "name": "Admission Test Masters",
+      "code": "ATM"
+    }
+  ],
+  "MiQ (Master in Quality)": [
+    {
+      "name": "Applied statistics",
+      "code": "QAS51"
+    },
+    {
+      "name": "Design and Analysis of Experiments",
+      "code": "QDE72"
+    },
+    {
+      "name": "Financial Management and Quality Cost",
+      "code": "QFM62"
+    },
+    {
+      "name": "Internal Quality Audit",
+      "code": "QIA72"
+    },
+    {
+      "name": "Management fundamentals and human resources management",
+      "code": "QMH51"
+    },
+    {
+      "name": "Marketing and customer relationship management",
+      "code": "QMC72"
+    },
+    {
+      "name": "Master Project",
+      "code": "QPR73"
+    },
+    {
+      "name": "Measurement Systems",
+      "code": "QMM72"
+    },
+    {
+      "name": "Planning and Strategic Analysis",
+      "code": "QSP72"
+    },
+    {
+      "name": "Problem solving and decision making",
+      "code": "QDM61"
+    },
+    {
+      "name": "Product and Process Design",
+      "code": "QPD72"
+    },
+    {
+      "name": "Project Quality Management",
+      "code": "QPM72"
+    },
+    {
+      "name": "Quality management systems",
+      "code": "QMS61"
+    },
+    {
+      "name": "Service Quality Management",
+      "code": "QSM72"
+    },
+    {
+      "name": "Statistical Quality Control",
+      "code": "QSC72"
+    },
+    {
+      "name": "Supply Chain Management",
+      "code": "QCM72"
+    },
+    {
+      "name": "Techniques and Tools for Quality Improvement",
+      "code": "QIT62"
+    },
+    {
+      "name": "Total quality management",
+      "code": "QTM62"
+    }
+  ],
+  "PMTM (Professional Master in Technology Management)": [
+    {
+      "name": "Accounting and Financial Management",
+      "code": "AFM"
+    },
+    {
+      "name": "Business and Technology Law",
+      "code": "BTL"
+    },
+    {
+      "name": "Cases in Technology Management",
+      "code": "CTM"
+    },
+    {
+      "name": "Final Project",
+      "code": "FIP"
+    },
+    {
+      "name": "Industrial and Technological Marketing",
+      "code": "ITM"
+    },
+    {
+      "name": "Information   and Communication Technology",
+      "code": "ICT"
+    },
+    {
+      "name": "Management and Economics of Technology",
+      "code": "MET"
+    },
+    {
+      "name": "Management Information Systems",
+      "code": "MIS"
+    },
+    {
+      "name": "New Product Development",
+      "code": "NPD"
+    },
+    {
+      "name": "Quality, Reliability and Maintainability",
+      "code": "QRM"
+    },
+    {
+      "name": "Scientific Methods in Management",
+      "code": "SMM"
+    },
+    {
+      "name": "Supply Chain Management",
+      "code": "SCM"
+    },
+    {
+      "name": "System Engineering",
+      "code": "SE"
+    },
+    {
+      "name": "Technology Change and Innovation",
+      "code": "TCI"
+    },
+    {
+      "name": "Technology Development and Transfer",
+      "code": "TDT"
+    },
+    {
+      "name": "Technology Project Management",
+      "code": "TPM"
+    }
+  ],
+  "TIC (Technical Institute of Computing)": [
+    {
+      "name": "Advanced SQL Programming",
+      "code": "IIS202"
+    },
+    {
+      "name": "Career Preparation",
+      "code": "GBS102"
+    },
+    {
+      "name": "Computer Skills",
+      "code": "GBS101"
+    },
+    {
+      "name": "Database Architecture and Design",
+      "code": "IIS201"
+    },
+    {
+      "name": "Digital Electronics",
+      "code": "GDE101"
+    },
+    {
+      "name": "E-Commerce Technologies",
+      "code": "IWB101"
+    },
+    {
+      "name": "Event Driven Programming",
+      "code": "IPG201"
+    },
+    {
+      "name": "Introduction to Data Modeling",
+      "code": "IIS101"
+    },
+    {
+      "name": "Introduction to Networks",
+      "code": "INT101"
+    },
+    {
+      "name": "Introduction to On-Line Education",
+      "code": "GBS103"
+    },
+    {
+      "name": "Introduction to Operating Systems",
+      "code": "IOS101"
+    },
+    {
+      "name": "Introduction to Programming",
+      "code": "IPG101"
+    },
+    {
+      "name": "Linux Platform 1",
+      "code": "IOS203"
+    },
+    {
+      "name": "Mathematical Analysis",
+      "code": "GMA101"
+    },
+    {
+      "name": "Mobile Programming",
+      "code": "IPG204"
+    },
+    {
+      "name": "MS-SQL Server Administration",
+      "code": "IIS303"
+    },
+    {
+      "name": "Network Operating System",
+      "code": "IOS201"
+    },
+    {
+      "name": "Object Oriented Programming",
+      "code": "IPG203"
+    },
+    {
+      "name": "Oracle Database Administration I",
+      "code": "IIS203"
+    },
+    {
+      "name": "Procedural Programming",
+      "code": "IPG202"
+    },
+    {
+      "name": "TIC-SIS Final Project",
+      "code": "IPI201"
+    },
+    {
+      "name": "Web Application Development and Design",
+      "code": "IWB201"
+    },
+    {
+      "name": "Windows Platform",
+      "code": "IOS202"
+    }
+  ],
+  "TRI (Training)": [
+    {
+      "name": "training course",
+      "code": "tr_course"
+    }
+  ],
+  "ICDLTP (ICDL Training Program)": [
+    {
+      "name": "Advanced Database",
+      "code": "AD"
+    },
+    {
+      "name": "Advanced Presentation",
+      "code": "AP"
+    },
+    {
+      "name": "Advanced Spreadsheets",
+      "code": "AS"
+    },
+    {
+      "name": "Advanced Word",
+      "code": "AW"
+    },
+    {
+      "name": "Image Editing",
+      "code": "IE"
+    },
+    {
+      "name": "Online Collaboration",
+      "code": "OC"
+    },
+    {
+      "name": "Project Planning",
+      "code": "PP"
+    },
+    {
+      "name": "WEB Editing",
+      "code": "WE"
+    }
+  ],
+  "NEP (National Exam Preparation)": [
+    {
+      "name": "artiffecial intelligence",
+      "code": "AI"
+    },
+    {
+      "name": "graduation",
+      "code": "gd"
+    },
+    {
+      "name": "Networking",
+      "code": "NT"
+    },
+    {
+      "name": "Preparation For National Exam",
+      "code": "Prep"
+    },
+    {
+      "name": "software",
+      "code": "SW"
+    }
+  ],
+  "MITE (Master in Information Technology in Education)": [
+    {
+      "name": "Blended Learning",
+      "code": "BLL"
+    },
+    {
+      "name": "Computer Learning Programs Design, Production and Evaluation",
+      "code": "CPD"
+    },
+    {
+      "name": "Contemporary Issues in Educational Technology",
+      "code": "CIE"
+    },
+    {
+      "name": "Educational communication",
+      "code": "EDC"
+    },
+    {
+      "name": "Educational research methodology",
+      "code": "ERM"
+    },
+    {
+      "name": "Educational Technology for Special Education",
+      "code": "ETS"
+    },
+    {
+      "name": "Electronic and Distance Learning",
+      "code": "EDL"
+    },
+    {
+      "name": "Graduation dissertation",
+      "code": "GRD"
+    },
+    {
+      "name": "Individualized instruction and self-learning",
+      "code": "ISL"
+    },
+    {
+      "name": "Instructional design",
+      "code": "IND"
+    },
+    {
+      "name": "Integration of Technology applications in education",
+      "code": "ITA"
+    },
+    {
+      "name": "Internet Applications in Education",
+      "code": "IAE"
+    },
+    {
+      "name": "Introduction to Educational Technology",
+      "code": "IET"
+    },
+    {
+      "name": "Learning resource centers and management",
+      "code": "LRC"
+    },
+    {
+      "name": "MITE Admission Test",
+      "code": "MITE_AT"
+    },
+    {
+      "name": "Strategies of effective teaching and active learning",
+      "code": "SET"
+    },
+    {
+      "name": "Trends in Curricula and Methods of Teaching",
+      "code": "TCM"
+    }
+  ],
+  "EDUC (Education)": [
+    {
+      "name": "Classroom and School Administration",
+      "code": "CSM"
+    },
+    {
+      "name": "Comparative Education",
+      "code": "CCE"
+    },
+    {
+      "name": "Computer and Internet Learning",
+      "code": "CCL"
+    },
+    {
+      "name": "Computer skills",
+      "code": "ICDL"
+    },
+    {
+      "name": "Contemporary Educational Trends",
+      "code": "EME"
+    },
+    {
+      "name": "Disabilities Education",
+      "code": "ESE"
+    },
+    {
+      "name": "Educational Curricula",
+      "code": "CEC"
+    },
+    {
+      "name": "Educational Psychology",
+      "code": "CEP"
+    },
+    {
+      "name": "Educational Technology",
+      "code": "CET"
+    },
+    {
+      "name": "Electronic Learning",
+      "code": "EEL"
+    },
+    {
+      "name": "English Teaching Methodology Course",
+      "code": "MTN"
+    },
+    {
+      "name": "Final Project",
+      "code": "PRO"
+    },
+    {
+      "name": "French Teaching Methodology Course",
+      "code": "MTF"
+    },
+    {
+      "name": "General Education and Philosophy of Education",
+      "code": "CGE"
+    },
+    {
+      "name": "General Teaching Methods",
+      "code": "CMT"
+    },
+    {
+      "name": "Growth Psychology",
+      "code": "CDP"
+    },
+    {
+      "name": "Introduction to e-learning",
+      "code": "GBS103"
+    },
+    {
+      "name": "Measurement and Evaluation in Modern Education",
+      "code": "CME"
+    },
+    {
+      "name": "Mental Health",
+      "code": "CMH"
+    },
+    {
+      "name": "Methods of Teaching Arabic Language",
+      "code": "MTA"
+    },
+    {
+      "name": "Methods of Teaching Art Education",
+      "code": "MTR"
+    },
+    {
+      "name": "Methods of Teaching Christian Religion",
+      "code": "MTS"
+    },
+    {
+      "name": "Methods of Teaching Economics",
+      "code": "MTC"
+    },
+    {
+      "name": "Methods of Teaching Education and Psychology",
+      "code": "MEP"
+    },
+    {
+      "name": "Methods of Teaching Geography",
+      "code": "MTO"
+    },
+    {
+      "name": "Methods of Teaching History",
+      "code": "MTH"
+    },
+    {
+      "name": "Methods of Teaching Islamic Religion",
+      "code": "MTG"
+    },
+    {
+      "name": "Methods of Teaching Law",
+      "code": "MTL"
+    },
+    {
+      "name": "Methods of Teaching Mathematics",
+      "code": "MAT"
+    },
+    {
+      "name": "Methods of Teaching Mechanical and Electrical Engineering and Agricultural Engineering",
+      "code": "MTE"
+    },
+    {
+      "name": "Methods of Teaching Media",
+      "code": "MTD"
+    },
+    {
+      "name": "Methods of Teaching Medical Sciences",
+      "code": "MTM"
+    },
+    {
+      "name": "Methods of Teaching Music Education",
+      "code": "MTU"
+    },
+    {
+      "name": "Methods of Teaching Natural Sciences",
+      "code": "MTB"
+    },
+    {
+      "name": "Methods of Teaching Philosophy and Sociology",
+      "code": "MPS"
+    },
+    {
+      "name": "Methods of Teaching Physical and Chemical Sciences",
+      "code": "MPC"
+    },
+    {
+      "name": "Methods of Teaching Physical Education",
+      "code": "MTY"
+    },
+    {
+      "name": "Methods of Teaching Political Science",
+      "code": "MTP"
+    },
+    {
+      "name": "Methods of Teaching Tourism",
+      "code": "MTT"
+    },
+    {
+      "name": "Practical Education_MAT",
+      "code": "CTPMAT"
+    },
+    {
+      "name": "Practical Education_MEP",
+      "code": "CTPMEP"
+    },
+    {
+      "name": "Practical Education_MPC",
+      "code": "CTPMPC"
+    },
+    {
+      "name": "Practical Education_MPS",
+      "code": "CTPMPS"
+    },
+    {
+      "name": "Practical Education_MTA",
+      "code": "CTPMTA"
+    },
+    {
+      "name": "Practical Education_MTB",
+      "code": "CTPMTB"
+    },
+    {
+      "name": "Practical Education_MTC",
+      "code": "CTPMTC"
+    },
+    {
+      "name": "Practical Education_MTD",
+      "code": "CTPMTD"
+    },
+    {
+      "name": "Practical Education_MTE",
+      "code": "CTPMTE"
+    },
+    {
+      "name": "Practical Education_MTF",
+      "code": "CTPMTF"
+    },
+    {
+      "name": "Practical Education_MTG",
+      "code": "CTPMTG"
+    },
+    {
+      "name": "Practical Education_MTH",
+      "code": "CTPMTH"
+    },
+    {
+      "name": "Practical Education_MTL",
+      "code": "CTPMTL"
+    },
+    {
+      "name": "Practical Education_MTM",
+      "code": "CTPMTM"
+    },
+    {
+      "name": "Practical Education_MTN",
+      "code": "CTPMTN"
+    },
+    {
+      "name": "Practical Education_MTO",
+      "code": "CTPMTO"
+    },
+    {
+      "name": "Practical Education_MTP",
+      "code": "CTPMTP"
+    },
+    {
+      "name": "Practical Education_MTR",
+      "code": "CTPMTR"
+    },
+    {
+      "name": "Practical Education_MTS",
+      "code": "CTPMTS"
+    },
+    {
+      "name": "Practical Education_MTT",
+      "code": "CTPMTT"
+    },
+    {
+      "name": "Practical Education_MTU",
+      "code": "CTPMTU"
+    },
+    {
+      "name": "Practical Education_MTY",
+      "code": "CTPMTY"
+    },
+    {
+      "name": "School Guidance",
+      "code": "ESC"
+    },
+    {
+      "name": "Scientific Education",
+      "code": "ECS"
+    },
+    {
+      "name": "Thinking Skills Teaching",
+      "code": "ETT"
+    }
+  ],
+  "MNE (Medical Education)": [
+    {
+      "name": "Dentist",
+      "code": "DEN"
+    },
+    {
+      "name": "Medicine",
+      "code": "Med"
+    },
+    {
+      "name": "Nursing",
+      "code": "NUR"
+    },
+    {
+      "name": "Pharmacy",
+      "code": "Pha"
+    }
+  ],
+  "ALS (Arabic Language Studies)": [
+    {
+      "name": "Novice High",
+      "code": "NH"
+    },
+    {
+      "name": "Novice Low",
+      "code": "NL"
+    },
+    {
+      "name": "Novice Mid",
+      "code": "NM"
+    },
+    {
+      "name": "Placement Test For Arabic Language",
+      "code": "APT"
+    }
+  ],
+  "LFLDmail": [
+    {
+      "name": "DMAIL",
+      "code": "DMAIL"
+    }
+  ],
+  "LFLEmployees": [
+    {
+      "name": "Advanced",
+      "code": "L5"
+    },
+    {
+      "name": "Computer Skills (1)",
+      "code": "ICDLINT"
+    },
+    {
+      "name": "Computer Skills (2)",
+      "code": "ICDLADV"
+    },
+    {
+      "name": "Elementary",
+      "code": "L1"
+    },
+    {
+      "name": "English Advance",
+      "code": "EngAdv"
+    },
+    {
+      "name": "English Intermediate",
+      "code": "EngInter"
+    },
+    {
+      "name": "Graduate Management Admissions Test",
+      "code": "GMAT"
+    },
+    {
+      "name": "Lower Intermediate",
+      "code": "L2"
+    },
+    {
+      "name": "Mid Intermediate",
+      "code": "L3"
+    },
+    {
+      "name": "Placement Test",
+      "code": "PT"
+    },
+    {
+      "name": "Upper Intermediate",
+      "code": "L4"
+    }
+  ],
+  "IMNR (Integrated Management of Natural Resources)": [
+    {
+      "name": "[]",
+      "code": "[]"
+    },
+    {
+      "name": "Application of Integrated Management of Natural Resources at Local Level",
+      "code": "NRLL"
+    },
+    {
+      "name": "Assessment of the State of Natural Ecosystems",
+      "code": "ASNE"
+    },
+    {
+      "name": "Climate Change and Food Security",
+      "code": "CCFS"
+    },
+    {
+      "name": "Ecosystem Services",
+      "code": "ES"
+    },
+    {
+      "name": "Environment Protection and Pollution Control",
+      "code": "EPPC"
+    },
+    {
+      "name": "Environmental Adaptive Management",
+      "code": "EAM"
+    },
+    {
+      "name": "Environmental Adaptive Strategic Planning Cycle",
+      "code": "EASPC"
+    },
+    {
+      "name": "IMNR Admission Test",
+      "code": "IMNR_AT"
+    },
+    {
+      "name": "Integrated Management of Natural Resources (1)",
+      "code": "IMNR1"
+    },
+    {
+      "name": "Integrated Management of Natural Resources (2)",
+      "code": "IMNR2"
+    },
+    {
+      "name": "Monetary Valuation of Natural Ecosystem",
+      "code": "MVNE"
+    },
+    {
+      "name": "Natural Resources",
+      "code": "NR"
+    },
+    {
+      "name": "Participatory Approach in Environmental Adaptive Management",
+      "code": "PA"
+    },
+    {
+      "name": "Project",
+      "code": "Ma"
+    },
+    {
+      "name": "Resilience of Natural Ecosystems",
+      "code": "RNE"
+    },
+    {
+      "name": "Resilience of Natural systems",
+      "code": "RNS"
+    },
+    {
+      "name": "Support the Strategic Planning Cycle",
+      "code": "SSPC"
+    },
+    {
+      "name": "Sustainable Development & Natural Capital",
+      "code": "SDNC"
+    }
+  ],
+  "NIST (National Institute of Standards and Technology)": [
+    {
+      "name": "CCNA-Routing&Switching",
+      "code": "CCNA"
+    },
+    {
+      "name": "CCNA-Routing&Switching Exam",
+      "code": "CCNAExam"
+    },
+    {
+      "name": "Certified Ethical Hacker",
+      "code": "CEH"
+    },
+    {
+      "name": "Certified Ethical Hacker Exam",
+      "code": "CEHExam"
+    },
+    {
+      "name": "Certified Wireless Network Administrator",
+      "code": "CWNA"
+    },
+    {
+      "name": "Certified Wireless Network Administrator Exam",
+      "code": "CWNAExam"
+    },
+    {
+      "name": "Microsoft Certified Solutions Developer",
+      "code": "MCSD"
+    },
+    {
+      "name": "Microsoft Certified Solutions Developer Exam",
+      "code": "MCSDExam"
+    }
+  ],
+  "MIHL (Master in International Humanitarian Law)": [
+    {
+      "name": "[]",
+      "code": "[]"
+    },
+    {
+      "name": "Check the level setting",
+      "code": "test"
+    },
+    {
+      "name": "Contemporary international issues",
+      "code": "CII"
+    },
+    {
+      "name": "General Theory of International Humanitarian Law",
+      "code": "GTIHL"
+    },
+    {
+      "name": "Graduate Project",
+      "code": "MGP"
+    },
+    {
+      "name": "In-depth studies in international humanitarian law",
+      "code": "ISIHL"
+    },
+    {
+      "name": "International and humanitarian organizations",
+      "code": "IHO"
+    },
+    {
+      "name": "International criminal law",
+      "code": "ICL"
+    },
+    {
+      "name": "International human rights law",
+      "code": "IHRL"
+    },
+    {
+      "name": "International refugee law",
+      "code": "IRL"
+    },
+    {
+      "name": "JUS AD BELLUM",
+      "code": "JAB"
+    },
+    {
+      "name": "Law of Armed Conflict",
+      "code": "LAC"
+    },
+    {
+      "name": "MIHL Admission Test",
+      "code": "MIHL_AT"
+    },
+    {
+      "name": "Public international law",
+      "code": "PIL"
+    },
+    {
+      "name": "Research and legal methodology",
+      "code": "RLM"
+    },
+    {
+      "name": "Terms and studies in foreign language",
+      "code": "TSFL"
+    }
+  ],
+  "MedE (Medical Education)": [
+    {
+      "name": "Continuous Professional Development",
+      "code": "CPD"
+    },
+    {
+      "name": "Curriculum Planning in Medical Education and Current Trends",
+      "code": "CPME"
+    },
+    {
+      "name": "Electronic Medical Education Program",
+      "code": "EMEP"
+    },
+    {
+      "name": "Evaluation of Medical Programs",
+      "code": "EMP"
+    },
+    {
+      "name": "Evidence-based Practice",
+      "code": "EBP"
+    },
+    {
+      "name": "Graduate Project",
+      "code": "MEP"
+    },
+    {
+      "name": "Implementation of Technology in Medical Education",
+      "code": "TME"
+    },
+    {
+      "name": "Leadership and Management in Medical Education",
+      "code": "LME"
+    },
+    {
+      "name": "Measurement of Competencies of Medical Team",
+      "code": "MCMT"
+    },
+    {
+      "name": "Measuring Clinical Competence",
+      "code": "MCC"
+    },
+    {
+      "name": "MedE Admission Test",
+      "code": "MedE_AT"
+    },
+    {
+      "name": "Medical Education for Anesthetists",
+      "code": "MEA"
+    },
+    {
+      "name": "Medical Education for Oncologist",
+      "code": "MEO"
+    },
+    {
+      "name": "Medical Education for Surgeons",
+      "code": "MES"
+    },
+    {
+      "name": "Medical Educational Environment",
+      "code": "MEE"
+    },
+    {
+      "name": "Medical Mentoring",
+      "code": "MM"
+    },
+    {
+      "name": "Portfolio Development for medical Training",
+      "code": "PDMT"
+    },
+    {
+      "name": "Problem-based Learning",
+      "code": "PBL"
+    },
+    {
+      "name": "Quality Assurance and Accreditation of Medical Schools",
+      "code": "QAMS"
+    },
+    {
+      "name": "Quality Assurance in Medical Education",
+      "code": "QAME"
+    },
+    {
+      "name": "Scientific Research in Medical Education",
+      "code": "SRME"
+    },
+    {
+      "name": "Social Responsibility of Medical Schools",
+      "code": "SRMS"
+    },
+    {
+      "name": "Teaching and Learning in Medical Education",
+      "code": "TLME"
+    }
+  ],
+  "LFL_RUSS": [
+    {
+      "name": "russ",
+      "code": "Russ"
+    }
+  ],
+  "ITE (Information Technology Engineering)": [
+    {
+      "name": "Accounting",
+      "code": "GAC501"
+    },
+    {
+      "name": "Advanced Topics in Big Data",
+      "code": "DBD601"
+    },
+    {
+      "name": "Algebraic Structures",
+      "code": "BAS401"
+    },
+    {
+      "name": "Algorithm Analysis & Design",
+      "code": "SAD601"
+    },
+    {
+      "name": "Artificial Intelligence",
+      "code": "BAI501"
+    },
+    {
+      "name": "Automata & Formal Languages",
+      "code": "BAU501"
+    },
+    {
+      "name": "Big Data Analysis",
+      "code": "MDA601"
+    },
+    {
+      "name": "Communications Skills and Technical Writing",
+      "code": "GTW301"
+    },
+    {
+      "name": "Compiler Project",
+      "code": "SCP601"
+    },
+    {
+      "name": "Compilers",
+      "code": "BCM601"
+    },
+    {
+      "name": "Computer Architecture I",
+      "code": "BCA501"
+    },
+    {
+      "name": "Computer Architecture II",
+      "code": "NCA601"
+    },
+    {
+      "name": "Computer Graphics",
+      "code": "BCG601"
+    },
+    {
+      "name": "Computer Networks I",
+      "code": "BNT501"
+    },
+    {
+      "name": "Computer Networks II",
+      "code": "NNT601"
+    },
+    {
+      "name": "Computer Networks Security",
+      "code": "NSS601"
+    },
+    {
+      "name": "Computer Skills-ICDL",
+      "code": "GCS301"
+    },
+    {
+      "name": "Computer Vision (in English)",
+      "code": "ACV601"
+    },
+    {
+      "name": "Cryptosystems",
+      "code": "CCR601"
+    },
+    {
+      "name": "Data Mining",
+      "code": "SDE601"
+    },
+    {
+      "name": "Data Structures & Algorithms II",
+      "code": "SDA601"
+    },
+    {
+      "name": "Data Structures and Algorithms I",
+      "code": "BDA501"
+    },
+    {
+      "name": "Data Visualization",
+      "code": "DDV601"
+    },
+    {
+      "name": "Database Systems I",
+      "code": "BDB501"
+    },
+    {
+      "name": "Database Systems II",
+      "code": "SDB601"
+    },
+    {
+      "name": "Database Systems Lab I",
+      "code": "BDBL501"
+    },
+    {
+      "name": "Database Systems Lab II",
+      "code": "SDBL601"
+    },
+    {
+      "name": "Deep Learning",
+      "code": "MDL601"
+    },
+    {
+      "name": "Digital Image Processing (in English)",
+      "code": "AIP601"
+    },
+    {
+      "name": "Discrete Mathematics",
+      "code": "BDM501"
+    },
+    {
+      "name": "Distributed & Cloud Systems (in English)",
+      "code": "NDS601"
+    },
+    {
+      "name": "Electronic Circuits",
+      "code": "BEC401"
+    },
+    {
+      "name": "English Language I",
+      "code": "GEN301"
+    },
+    {
+      "name": "Epistemology & Computer Science",
+      "code": "GEP601"
+    },
+    {
+      "name": "Ethical Hacking",
+      "code": "CEH601"
+    },
+    {
+      "name": "Ethics of Profession & Society",
+      "code": "GET601"
+    },
+    {
+      "name": "Expert Systems",
+      "code": "AES601"
+    },
+    {
+      "name": "Fundamentals of Management",
+      "code": "GMN401"
+    },
+    {
+      "name": "Information Retrieval",
+      "code": "SIR601"
+    },
+    {
+      "name": "Information System Security",
+      "code": "BIS601"
+    },
+    {
+      "name": "Information Systems Analysis and Design",
+      "code": "BID601"
+    },
+    {
+      "name": "Intelligent  Algorithms",
+      "code": "BIA601"
+    },
+    {
+      "name": "Internet of Things and Block Chaining",
+      "code": "MBC601"
+    },
+    {
+      "name": "Introduction to On-Line Education",
+      "code": "GOE301"
+    },
+    {
+      "name": "IT Project Management",
+      "code": "GPM601"
+    },
+    {
+      "name": "Linear Algebra",
+      "code": "BLA401"
+    },
+    {
+      "name": "Logical Circuits",
+      "code": "BLC401"
+    },
+    {
+      "name": "Machine Learning",
+      "code": "AML601"
+    },
+    {
+      "name": "Mathematical Analysis I",
+      "code": "BMA401"
+    },
+    {
+      "name": "Mathematical Analysis II",
+      "code": "BMA402"
+    },
+    {
+      "name": "Mobile Applications Programming",
+      "code": "BMP601"
+    },
+    {
+      "name": "Multimedia Systems",
+      "code": "BMM601"
+    },
+    {
+      "name": "Natural Language Processing",
+      "code": "ANL601"
+    },
+    {
+      "name": "Network Application Programming",
+      "code": "NNP601"
+    },
+    {
+      "name": "Network Management",
+      "code": "NNM601"
+    },
+    {
+      "name": "Network Services",
+      "code": "NNS601"
+    },
+    {
+      "name": "Neural Networks & Fuzzy Logic",
+      "code": "ANN601"
+    },
+    {
+      "name": "NoSQL Databases",
+      "code": "DNL601"
+    },
+    {
+      "name": "Numerical Analysis",
+      "code": "BNA401"
+    },
+    {
+      "name": "Open Data and Big Data",
+      "code": "DOB601"
+    },
+    {
+      "name": "Operating Systems I",
+      "code": "BOS501"
+    },
+    {
+      "name": "Operating Systems II (in English)",
+      "code": "NOS601"
+    },
+    {
+      "name": "Operating Systems Lab I",
+      "code": "BOSL501"
+    },
+    {
+      "name": "Operating Systems Lab II (in English)",
+      "code": "NOSL601"
+    },
+    {
+      "name": "Physics",
+      "code": "BPH401"
+    },
+    {
+      "name": "Probability & Statistics",
+      "code": "BPS601"
+    },
+    {
+      "name": "Programming for Data Science",
+      "code": "DPD601"
+    },
+    {
+      "name": "Programming I",
+      "code": "BPG401"
+    },
+    {
+      "name": "Programming II",
+      "code": "BPG402"
+    },
+    {
+      "name": "Programming III",
+      "code": "BPG601"
+    },
+    {
+      "name": "Project I",
+      "code": "BPR601"
+    },
+    {
+      "name": "Project II",
+      "code": "BPR602"
+    },
+    {
+      "name": "Real Time Systems",
+      "code": "NRT601"
+    },
+    {
+      "name": "Security in Modern Systems",
+      "code": "CMS601"
+    },
+    {
+      "name": "Security Incident Response",
+      "code": "CIR601"
+    },
+    {
+      "name": "Security Management",
+      "code": "CSM601"
+    },
+    {
+      "name": "Security of Operating Systems",
+      "code": "CSO601"
+    },
+    {
+      "name": "Semantic Web",
+      "code": "SSW601"
+    },
+    {
+      "name": "Signal Processing",
+      "code": "BSP501"
+    },
+    {
+      "name": "Simulation, Modelling and Verification",
+      "code": "BSM601"
+    },
+    {
+      "name": "Software Engineering I",
+      "code": "BSE601"
+    },
+    {
+      "name": "Software Engineering II (in English)",
+      "code": "SSE602"
+    },
+    {
+      "name": "Software Quality (in English)",
+      "code": "SSQ601"
+    },
+    {
+      "name": "Statistics and Data Analysis",
+      "code": "DSA601"
+    },
+    {
+      "name": "Telecommunication Systems",
+      "code": "BTS501"
+    },
+    {
+      "name": "Virtual Reality",
+      "code": "AVR601"
+    },
+    {
+      "name": "Web Programming I",
+      "code": "BWP401"
+    },
+    {
+      "name": "Web Programming II",
+      "code": "BWP501"
+    }
+  ],
+  "LFL_ALS": [
+    {
+      "name": "Advanced High",
+      "code": "AH"
+    },
+    {
+      "name": "Advanced Low",
+      "code": "AL"
+    },
+    {
+      "name": "Advanced Mid",
+      "code": "AM"
+    },
+    {
+      "name": "Intermediate High",
+      "code": "IH"
+    },
+    {
+      "name": "Intermediate Low",
+      "code": "IL"
+    },
+    {
+      "name": "Intermediate Mid",
+      "code": "IM"
+    },
+    {
+      "name": "Novice High",
+      "code": "NH"
+    },
+    {
+      "name": "Novice Low",
+      "code": "NL"
+    },
+    {
+      "name": "Novice Mid",
+      "code": "NM"
+    },
+    {
+      "name": "Placement Test",
+      "code": "ALS_PT"
+    }
+  ],
+  "LFL_ELL": [
+    {
+      "name": "First Level",
+      "code": "Eng_L1"
+    },
+    {
+      "name": "Placement Test",
+      "code": "ENG_PT"
+    },
+    {
+      "name": "Second Level",
+      "code": "Eng_L2"
+    },
+    {
+      "name": "Third Level",
+      "code": "Eng_L3"
+    }
+  ],
+  "KPT (Programming Training)": [
+    {
+      "name": "Junior Programming Marathon (8 - 11)",
+      "code": "JPM"
+    },
+    {
+      "name": "Junior Programming Training (8 - 11)",
+      "code": "JPT"
+    },
+    {
+      "name": "Junior Programming Training � Placement Test (8 - 11)",
+      "code": "JPT_PT"
+    },
+    {
+      "name": "Junior Qualification Test (8 - 11)",
+      "code": "JQT"
+    },
+    {
+      "name": "Nco preparation",
+      "code": "NCOPREP"
+    },
+    {
+      "name": "Senior Programming Marathon (12-15)",
+      "code": "SPM"
+    },
+    {
+      "name": "Senior Programming Training (12-15)",
+      "code": "SPT"
+    },
+    {
+      "name": "Senior Programming Training � Placement Test (12-15)",
+      "code": "SPT_PT"
+    },
+    {
+      "name": "Senior Qualification Test (12-15)",
+      "code": "SQT"
+    }
+  ],
+  "BSCM (Bachelor of Science in Management)": [
+    {
+      "name": "Accounting for Corporations",
+      "code": "BAC605"
+    },
+    {
+      "name": "Accounting for Partnership Companies",
+      "code": "BAC603"
+    },
+    {
+      "name": "Accounting Principles (1)",
+      "code": "BAC401"
+    },
+    {
+      "name": "Accounting Principles (2)",
+      "code": "BAC402"
+    },
+    {
+      "name": "Administrative Accounting",
+      "code": "BAC506"
+    },
+    {
+      "name": "Banking",
+      "code": "BFB607"
+    },
+    {
+      "name": "Business Law",
+      "code": "GBL401"
+    },
+    {
+      "name": "Business to Business Marketing",
+      "code": "BMK611"
+    },
+    {
+      "name": "Career Path Management",
+      "code": "BHR607"
+    },
+    {
+      "name": "Computer Applications in Management",
+      "code": "GBS504"
+    },
+    {
+      "name": "Computer Skills",
+      "code": "GBS302"
+    },
+    {
+      "name": "Consumer Behavior",
+      "code": "BMK502"
+    },
+    {
+      "name": "Corporate Social Responsibility and Business Ethics",
+      "code": "BMN508"
+    },
+    {
+      "name": "Crisis Management",
+      "code": "BMN609"
+    },
+    {
+      "name": "Data Analysis",
+      "code": "BQM604"
+    },
+    {
+      "name": "Decision Theory",
+      "code": "BQM603"
+    },
+    {
+      "name": "Diversity Management",
+      "code": "BHR6011"
+    },
+    {
+      "name": "E-Business Management",
+      "code": "BMN507"
+    },
+    {
+      "name": "E-Marketing",
+      "code": "BMK608"
+    },
+    {
+      "name": "Economic and Administrative Mathematics",
+      "code": "GMA403"
+    },
+    {
+      "name": "Employment management",
+      "code": "BHR605"
+    },
+    {
+      "name": "Enterning Labor Market Skills",
+      "code": "GBS303"
+    },
+    {
+      "name": "Entrepreneurship",
+      "code": "BMN610"
+    },
+    {
+      "name": "Feasibility Studies",
+      "code": "BAC607"
+    },
+    {
+      "name": "Financial Accounting for Companies",
+      "code": "BAC504"
+    },
+    {
+      "name": "Financial Analysis",
+      "code": "BFB605"
+    },
+    {
+      "name": "Financial Management of Enterprises",
+      "code": "BFB503"
+    },
+    {
+      "name": "Fundamentals of Management",
+      "code": "BMN401"
+    },
+    {
+      "name": "Graduation Project",
+      "code": "PMK601"
+    },
+    {
+      "name": "Graduation Project Finance",
+      "code": "PFB601"
+    },
+    {
+      "name": "Graduation Project HR",
+      "code": "PHR601"
+    },
+    {
+      "name": "Human resource training",
+      "code": "BHR604"
+    },
+    {
+      "name": "Human Resources Management",
+      "code": "BHR401"
+    },
+    {
+      "name": "Industrial &managerial psychology",
+      "code": "BHR603"
+    },
+    {
+      "name": "Integrated Marketing Communications",
+      "code": "BMK607"
+    },
+    {
+      "name": "Intermediate Accounting (1)",
+      "code": "BAC608"
+    },
+    {
+      "name": "Intermediate Accounting (2)",
+      "code": "BAC609"
+    },
+    {
+      "name": "International Finance",
+      "code": "BFB606"
+    },
+    {
+      "name": "International Marketing",
+      "code": "BMK612"
+    },
+    {
+      "name": "Introduction to Marketing",
+      "code": "BMK401"
+    },
+    {
+      "name": "Islamic Finance",
+      "code": "BFB608"
+    },
+    {
+      "name": "Knowledge Management & Intellectual Capital",
+      "code": "BHR609"
+    },
+    {
+      "name": "Macroeconomics",
+      "code": "BEC403"
+    },
+    {
+      "name": "Management Information Systems",
+      "code": "BMN504"
+    },
+    {
+      "name": "Management of Credit Risk",
+      "code": "BFB610"
+    },
+    {
+      "name": "Management of Financial Institutions",
+      "code": "BFB604"
+    },
+    {
+      "name": "Management of Financial Markets",
+      "code": "BFB609"
+    },
+    {
+      "name": "Managerial Leadership",
+      "code": "BHR606"
+    },
+    {
+      "name": "Mathematics",
+      "code": "GMA401"
+    },
+    {
+      "name": "Microeconomics",
+      "code": "BEC402"
+    },
+    {
+      "name": "Modern Trends in Human Resource Management",
+      "code": "BHR6012"
+    },
+    {
+      "name": "Negotiation Management",
+      "code": "BMN502"
+    },
+    {
+      "name": "Operations Management",
+      "code": "BQM501"
+    },
+    {
+      "name": "Operations Research",
+      "code": "BQM502"
+    },
+    {
+      "name": "Organization Theory",
+      "code": "BMN503"
+    },
+    {
+      "name": "Organizational Behavior",
+      "code": "BHR502"
+    },
+    {
+      "name": "Pricing and Distribution",
+      "code": "BMK606"
+    },
+    {
+      "name": "Principles of Financial Management",
+      "code": "BFB401"
+    },
+    {
+      "name": "Probability &Statistics",
+      "code": "GMA402"
+    },
+    {
+      "name": "Product and Brand Management",
+      "code": "BMK604"
+    },
+    {
+      "name": "Project Management",
+      "code": "BQM607"
+    },
+    {
+      "name": "Public Finance",
+      "code": "BFB502"
+    },
+    {
+      "name": "Public Relations Management",
+      "code": "BMK609"
+    },
+    {
+      "name": "Quality Management",
+      "code": "BMN505"
+    },
+    {
+      "name": "Research Methodology",
+      "code": "GRM501"
+    },
+    {
+      "name": "Sales Management",
+      "code": "BMK605"
+    },
+    {
+      "name": "Services Marketing",
+      "code": "BMK603"
+    },
+    {
+      "name": "Strategic Human Resource Management",
+      "code": "BHR608"
+    },
+    {
+      "name": "Strategic Management",
+      "code": "BMN606"
+    },
+    {
+      "name": "Strategic Marketing",
+      "code": "BMK610"
+    },
+    {
+      "name": "Teamwork Management",
+      "code": "BHR610"
+    },
+    {
+      "name": "The History of Economic Thought",
+      "code": "BEC401"
+    },
+    {
+      "name": "Virtual Learning Systems",
+      "code": "GBS301"
+    }
+  ],
+  "TIBA (Technical Institute of Business Administration)": [
+    {
+      "name": "Accounting for Corporations",
+      "code": "BAC605"
+    },
+    {
+      "name": "Accounting for Partnership Companies",
+      "code": "BAC603"
+    },
+    {
+      "name": "Accounting Principles (1)",
+      "code": "BAC401"
+    },
+    {
+      "name": "Accounting Principles (2)",
+      "code": "BAC402"
+    },
+    {
+      "name": "Administrative Accounting",
+      "code": "BAC506"
+    },
+    {
+      "name": "Banking",
+      "code": "BFB607"
+    },
+    {
+      "name": "Business Law",
+      "code": "GBL401"
+    },
+    {
+      "name": "Career Path Management",
+      "code": "BHR607"
+    },
+    {
+      "name": "Computer Applications in Management",
+      "code": "GBS504"
+    },
+    {
+      "name": "Computer Skills",
+      "code": "GBS302"
+    },
+    {
+      "name": "Consumer Behavior",
+      "code": "BMK502"
+    },
+    {
+      "name": "Economic and Administrative Mathematics",
+      "code": "GMA403"
+    },
+    {
+      "name": "Employment management",
+      "code": "BHR605"
+    },
+    {
+      "name": "Entering Labor Market Skills",
+      "code": "GBS303"
+    },
+    {
+      "name": "Financial Analysis",
+      "code": "BFB605"
+    },
+    {
+      "name": "Financial Management of Enterprises",
+      "code": "BFB503"
+    },
+    {
+      "name": "Fundamentals of Management",
+      "code": "BMN401"
+    },
+    {
+      "name": "Human resource training",
+      "code": "BHR604"
+    },
+    {
+      "name": "Human Resources Management",
+      "code": "BHR401"
+    },
+    {
+      "name": "Integrated Marketing Communications",
+      "code": "BMK607"
+    },
+    {
+      "name": "Introduction to Marketing",
+      "code": "BMK401"
+    },
+    {
+      "name": "Management of Financial Institutions",
+      "code": "BFB604"
+    },
+    {
+      "name": "Managerial Leadership",
+      "code": "BHR606"
+    },
+    {
+      "name": "Mathematics",
+      "code": "GMA401"
+    },
+    {
+      "name": "Operations Management",
+      "code": "BQM501"
+    },
+    {
+      "name": "Organization Theory",
+      "code": "BMN503"
+    },
+    {
+      "name": "Organizational Behavior",
+      "code": "BHR502"
+    },
+    {
+      "name": "Pricing and Distribution",
+      "code": "BMK606"
+    },
+    {
+      "name": "Principles of Financial Management",
+      "code": "BFB401"
+    },
+    {
+      "name": "Probability &Statistics",
+      "code": "GMA402"
+    },
+    {
+      "name": "Product and Brand Management",
+      "code": "BMK604"
+    },
+    {
+      "name": "Sales Management",
+      "code": "BMK605"
+    },
+    {
+      "name": "Services Marketing",
+      "code": "BMK603"
+    },
+    {
+      "name": "Teamwork Management",
+      "code": "BHR610"
+    },
+    {
+      "name": "The History of Economic Thought",
+      "code": "BEC401"
+    },
+    {
+      "name": "Virtual Learning Systems",
+      "code": "GBS301"
+    }
+  ],
+  "DAC (Diploma in Accounting)": [
+    {
+      "name": "DAC Project",
+      "code": "DACProject"
+    }
+  ],
+  "TRE (Training)": [
+    {
+      "name": "Basic Management Skills Program",
+      "code": "BMS"
+    },
+    {
+      "name": "Leadership Skills Program for Supervisory Administrations",
+      "code": "LSA"
+    },
+    {
+      "name": "Management qualification and self development",
+      "code": "MQSD"
+    },
+    {
+      "name": "Management Skills Program for Central Administrations",
+      "code": "MSCA"
+    },
+    {
+      "name": "Project Management Program",
+      "code": "PMP"
+    },
+    {
+      "name": "Strategic Management Program",
+      "code": "ST"
+    }
+  ],
+  "LFLTOT": [
+    {
+      "name": "Intermediate Level",
+      "code": "TOT_2"
+    },
+    {
+      "name": "online_course",
+      "code": "TOT1"
+    },
+    {
+      "name": "Training of Trainers",
+      "code": "TOT"
+    }
+  ],
+  "MMA (Master of Management Administration)": [
+    {
+      "name": "administrative development exam",
+      "code": "ADExam"
+    },
+    {
+      "name": "Admission test Employee",
+      "code": "ATEmployee"
+    },
+    {
+      "name": "Admission Test Manager",
+      "code": "ATManager"
+    }
+  ],
+  "LFL_PMP": [
+    {
+      "name": "Project Management Professional",
+      "code": "PMP"
+    }
+  ],
+  "MDA (Master of Administrative Development)": [
+    {
+      "name": "Business Research Methods",
+      "code": "BRM"
+    },
+    {
+      "name": "Data analysis by computer",
+      "code": "DAC"
+    },
+    {
+      "name": "Human Resources Development",
+      "code": "HRD"
+    },
+    {
+      "name": "Human Resources Manangemant",
+      "code": "HRM"
+    },
+    {
+      "name": "laws regulating for governmental work",
+      "code": "LRGW"
+    },
+    {
+      "name": "Leadership",
+      "code": "LDS"
+    },
+    {
+      "name": "Management Information Systems",
+      "code": "MIS"
+    },
+    {
+      "name": "Motivation and Compensation Management",
+      "code": "MCM"
+    },
+    {
+      "name": "Organizational  Behavior",
+      "code": "OB"
+    },
+    {
+      "name": "Principle of Management",
+      "code": "PCM"
+    },
+    {
+      "name": "Project",
+      "code": "PRJ"
+    },
+    {
+      "name": "Project Management",
+      "code": "PM"
+    },
+    {
+      "name": "Quality Management",
+      "code": "QM"
+    },
+    {
+      "name": "Strategy",
+      "code": "STM"
+    },
+    {
+      "name": "Working Procedures Reengineering",
+      "code": "WPR"
+    }
+  ],
+  "BIMM (Building Information Modeling Management)": [
+    {
+      "name": "Advanced Cases in BIM (in English",
+      "code": "BIM-A"
+    },
+    {
+      "name": "Basics of Building Information Modeling",
+      "code": "BIM-F"
+    },
+    {
+      "name": "BIM Successful Implementing",
+      "code": "BIM-SI"
+    },
+    {
+      "name": "BIM-based Contracts",
+      "code": "BIM-C"
+    },
+    {
+      "name": "BIMM Admission Test",
+      "code": "BIMM_AT"
+    },
+    {
+      "name": "Contract management",
+      "code": "CM"
+    },
+    {
+      "name": "Engineering economic",
+      "code": "EE"
+    },
+    {
+      "name": "Enterprise Maturity Analysis for BIM",
+      "code": "BIM-MA"
+    },
+    {
+      "name": "Integrated Management in BIM (in English)",
+      "code": "IM-BIM"
+    },
+    {
+      "name": "Managing Risks Using BIM",
+      "code": "RM-BIM"
+    },
+    {
+      "name": "Master project",
+      "code": "PR"
+    },
+    {
+      "name": "Organizational theory and behavior",
+      "code": "OTB"
+    },
+    {
+      "name": "Project Management",
+      "code": "PM"
+    },
+    {
+      "name": "Project Management Professional (in English)",
+      "code": "PMP"
+    },
+    {
+      "name": "Quality Management",
+      "code": "QM"
+    },
+    {
+      "name": "scientific Research Methods and Methodologies",
+      "code": "SRM"
+    },
+    {
+      "name": "strategic Management",
+      "code": "SM"
+    }
+  ],
+  "BIS (Bioinformatics)": [
+    {
+      "name": "Advanced BioInformatics",
+      "code": "ABI"
+    },
+    {
+      "name": "Advanced Molecular and Cellular Biotechnology",
+      "code": "AMCB"
+    },
+    {
+      "name": "Advanced Plant Cell Biotechnology",
+      "code": "APCB"
+    },
+    {
+      "name": "Artificial Intelligence and Machine Learning in bi",
+      "code": "AIML"
+    },
+    {
+      "name": "Bioimaging and Image Processing",
+      "code": "BIMP"
+    },
+    {
+      "name": "BioMolecular Interactions: Theories and Methods",
+      "code": "BITM"
+    },
+    {
+      "name": "Biostatistics",
+      "code": "BSS"
+    },
+    {
+      "name": "BIS Admission Test",
+      "code": "BIS_AT"
+    },
+    {
+      "name": "Fundamentals of Bioinformatics and Data Analysis",
+      "code": "FBDA"
+    },
+    {
+      "name": "Information Resources and Data Mining Techniques",
+      "code": "IRDM"
+    },
+    {
+      "name": "Master Project",
+      "code": "BIP"
+    },
+    {
+      "name": "Methods in Bioinformatics and Algorithms",
+      "code": "MBA"
+    },
+    {
+      "name": "Molecular Cell Biology and Genetics",
+      "code": "MCBG"
+    },
+    {
+      "name": "Molecular Strategies in Control of Parasites and Vector-Borne Diseases",
+      "code": "MSPD"
+    },
+    {
+      "name": "Neural Network and Deep learning",
+      "code": "NNDL"
+    },
+    {
+      "name": "Pharmaco-Genomics",
+      "code": "PHG"
+    },
+    {
+      "name": "Protein and Structural BioInformatics",
+      "code": "PSBI"
+    },
+    {
+      "name": "Rational Design and Structural Characterization of Bioactive Molecules",
+      "code": "RDSC"
+    },
+    {
+      "name": "Scientific Research Methodologies",
+      "code": "SRM"
+    },
+    {
+      "name": "Software Engineering",
+      "code": "SE"
+    }
+  ],
+  "MAL (Master of Arabic Linguistics)": [
+    {
+      "name": "Applied linguistics",
+      "code": "APPLIN"
+    },
+    {
+      "name": "Arabic language and culture",
+      "code": "LANCULT"
+    },
+    {
+      "name": "Basics of scholarly research",
+      "code": "RES"
+    },
+    {
+      "name": "Curriculum design and computerizing content",
+      "code": "CURR"
+    },
+    {
+      "name": "General linguistics and phonology",
+      "code": "GENLIN"
+    },
+    {
+      "name": "Language acquisition and psycholinguistics",
+      "code": "PSYCLIN"
+    },
+    {
+      "name": "MAL Admission Test",
+      "code": "MAL_AT"
+    },
+    {
+      "name": "Measurement, evaluation, educational statistics",
+      "code": "STATS"
+    },
+    {
+      "name": "Semantics and pragmatics",
+      "code": "SMPR"
+    },
+    {
+      "name": "Sociolinguistics and diglossia",
+      "code": "SOCLIN"
+    },
+    {
+      "name": "Syntax and morphology",
+      "code": "SYN"
+    },
+    {
+      "name": "Theories  and  methods of language teaching",
+      "code": "METHODS"
+    },
+    {
+      "name": "Thesis writing",
+      "code": "THES"
+    }
+  ],
+  "BTHM (Bachelor of Tourism and Hotel Management)": [
+    {
+      "name": "Airlines Services Management",
+      "code": "TTM602"
+    },
+    {
+      "name": "Archeological  Sites Management",
+      "code": "TTM503"
+    },
+    {
+      "name": "Banquet Management",
+      "code": "THM608"
+    },
+    {
+      "name": "Bar Services (practical course)",
+      "code": "THM606"
+    },
+    {
+      "name": "Communication Skills",
+      "code": "GBS401"
+    },
+    {
+      "name": "Computer Applications for  Tourism Companies & Travel Agencies (practical course)",
+      "code": "TTM606"
+    },
+    {
+      "name": "Computer Applications in Hotel Establishments (practical course)",
+      "code": "THM604"
+    },
+    {
+      "name": "Computer Skills",
+      "code": "GBS302"
+    },
+    {
+      "name": "Contemporary Issues in Tourism",
+      "code": "TGT602"
+    },
+    {
+      "name": "Corporate Social  Responsibility and Business  Ethics",
+      "code": "BMN503"
+    },
+    {
+      "name": "Cultural Tourism",
+      "code": "TTM501"
+    },
+    {
+      "name": "Customer Behavior",
+      "code": "BMK502"
+    },
+    {
+      "name": "Customer Relations Management",
+      "code": "TMK601"
+    },
+    {
+      "name": "Development Strategies for Tourism Product",
+      "code": "TMK505"
+    },
+    {
+      "name": "Digital Tourism",
+      "code": "TGT504"
+    },
+    {
+      "name": "Distribution in Tourism",
+      "code": "TMK503"
+    },
+    {
+      "name": "E-Marketing In Tourism",
+      "code": "BMK505"
+    },
+    {
+      "name": "Entering Labor Market Skills",
+      "code": "GBS303"
+    },
+    {
+      "name": "Feasibility Study for Tourism and hotels establishments",
+      "code": "BAC601"
+    },
+    {
+      "name": "Financial Management",
+      "code": "BFB501"
+    },
+    {
+      "name": "Food & Beverage Management",
+      "code": "THM605"
+    },
+    {
+      "name": "Front Office Management",
+      "code": "THM607"
+    },
+    {
+      "name": "Front Office Operations",
+      "code": "THM505"
+    },
+    {
+      "name": "Front Office Operations and  Housekeeping Supervision   (practical course)",
+      "code": "THM603"
+    },
+    {
+      "name": "Graduation Project",
+      "code": "PTM607"
+    },
+    {
+      "name": "Graduation Project (PHM609)",
+      "code": "PHM609"
+    },
+    {
+      "name": "Graduation Project(PMK608)",
+      "code": "PMK608"
+    },
+    {
+      "name": "Health and Safety in Work Environment",
+      "code": "BMN502"
+    },
+    {
+      "name": "Housekeeping Supervision",
+      "code": "THM502"
+    },
+    {
+      "name": "Human Resource Management",
+      "code": "BHR401"
+    },
+    {
+      "name": "International Hotel Chains",
+      "code": "TGT503"
+    },
+    {
+      "name": "International Tourism Marketing",
+      "code": "TMK603"
+    },
+    {
+      "name": "Introduction to Accounting",
+      "code": "BAC401"
+    },
+    {
+      "name": "Introduction to Hotel Management",
+      "code": "TGT406"
+    },
+    {
+      "name": "Introduction to Management",
+      "code": "BMN401"
+    },
+    {
+      "name": "Introduction to Marketing",
+      "code": "BMK401"
+    },
+    {
+      "name": "Introduction to Statistics",
+      "code": "GMA401"
+    },
+    {
+      "name": "Introduction to Tourism",
+      "code": "TGT401"
+    },
+    {
+      "name": "Introduction to Tourism Economics",
+      "code": "BEC401"
+    },
+    {
+      "name": "Legislations in Tourism & Hotels",
+      "code": "GLL401"
+    },
+    {
+      "name": "Marketing research in Tourism",
+      "code": "TMK605"
+    },
+    {
+      "name": "Operational Processes in Food Production",
+      "code": "THM501"
+    },
+    {
+      "name": "Operational Processes in Food Production (practical course1)",
+      "code": "THM504"
+    },
+    {
+      "name": "Operational Processes in Food Production (practical course2)",
+      "code": "THM601"
+    },
+    {
+      "name": "Operational Processes in Food Service",
+      "code": "THM503"
+    },
+    {
+      "name": "Operational Processes in Food Service (practical course1)",
+      "code": "THM506"
+    },
+    {
+      "name": "Operational Processes in Food Service (practical course2)",
+      "code": "THM602"
+    },
+    {
+      "name": "Pricing in Tourism",
+      "code": "TMK502"
+    },
+    {
+      "name": "Public Relations Management",
+      "code": "BMK504"
+    },
+    {
+      "name": "Public Sector and Tourism Industry",
+      "code": "TGT603"
+    },
+    {
+      "name": "Purchasing & Store Management",
+      "code": "THM507"
+    },
+    {
+      "name": "Research Methodology and Data Analysis",
+      "code": "GRM601"
+    },
+    {
+      "name": "Sales Management in Tourism Establishments",
+      "code": "BMK503"
+    },
+    {
+      "name": "Services Marketing",
+      "code": "BMK501"
+    },
+    {
+      "name": "Specialized English For Tourism Management",
+      "code": "TTM505"
+    },
+    {
+      "name": "Specialized English in Hotel Management",
+      "code": "THM508"
+    },
+    {
+      "name": "Specialized English In Tourism Marketing",
+      "code": "TMK506"
+    },
+    {
+      "name": "Sustainable  Development of Tourism",
+      "code": "TGT601"
+    },
+    {
+      "name": "Syrian Intangible Heritage",
+      "code": "TGT404"
+    },
+    {
+      "name": "Syrian Tourism Geography",
+      "code": "TTM502"
+    },
+    {
+      "name": "The Art of Etiquette  (Professional Attitude)",
+      "code": "TGT501"
+    },
+    {
+      "name": "The Syrian Culture1",
+      "code": "TGT402"
+    },
+    {
+      "name": "The Syrian Culture2",
+      "code": "TGT403"
+    },
+    {
+      "name": "Tour Guide Techniques",
+      "code": "TTM603"
+    },
+    {
+      "name": "Tourism Archeological Sites",
+      "code": "TGT405"
+    },
+    {
+      "name": "Tourism Companies & Travel Agencies Management",
+      "code": "TTM601"
+    },
+    {
+      "name": "Tourism Establishments  Management",
+      "code": "TTM504"
+    },
+    {
+      "name": "Tourism Establishments Accounting",
+      "code": "BAC501"
+    },
+    {
+      "name": "Tourism Events Management",
+      "code": "TGT502"
+    },
+    {
+      "name": "Tourism Geography",
+      "code": "TTM401"
+    },
+    {
+      "name": "Tourism Guide Tours (practical course)",
+      "code": "TTM605"
+    },
+    {
+      "name": "Tourism Marketing Communications",
+      "code": "TMK504"
+    },
+    {
+      "name": "Tourism Marketing Information Systems",
+      "code": "TMK607"
+    },
+    {
+      "name": "Tourism Planning",
+      "code": "BMN501"
+    },
+    {
+      "name": "Tourism Projects Management",
+      "code": "BQM601"
+    },
+    {
+      "name": "Tourism Services Quality",
+      "code": "BMN601"
+    },
+    {
+      "name": "Tourism Tours (practical course)",
+      "code": "TMK606"
+    },
+    {
+      "name": "Tours in Hotels (practical course)",
+      "code": "TMK602"
+    },
+    {
+      "name": "Tours in Tourism Companies & Travel Agencies (practical course)",
+      "code": "TTM604"
+    },
+    {
+      "name": "Tours in Tourism Companies & Travel Agencies (practical course)( TMK604)",
+      "code": "TMK604"
+    },
+    {
+      "name": "Travel & Companies Tourism Agencies",
+      "code": "TMK501"
+    },
+    {
+      "name": "Virtual Learning Systems",
+      "code": "GBS301"
+    }
+  ],
+  "LFLBIMM": [
+    {
+      "name": "Revit Basics",
+      "code": "BIM"
+    }
+  ],
+  "TPCOFC": [
+    {
+      "name": "Administrative Law",
+      "code": "ADL"
+    },
+    {
+      "name": "Contract system",
+      "code": "COS"
+    },
+    {
+      "name": "Employee Law",
+      "code": "EML"
+    },
+    {
+      "name": "Financial Accounting",
+      "code": "FIA"
+    },
+    {
+      "name": "Financial Law",
+      "code": "FIL"
+    },
+    {
+      "name": "International Accounting Standards",
+      "code": "IAS"
+    },
+    {
+      "name": "Professional ethics and behavior",
+      "code": "PEB"
+    },
+    {
+      "name": "Professional Standards",
+      "code": "PRS"
+    },
+    {
+      "name": "Technology and Informatics",
+      "code": "TAI"
+    },
+    {
+      "name": "Warehouse systems",
+      "code": "WAS"
+    }
+  ],
+  "TITH (Tourism and Hotel Management)": [
+    {
+      "name": "Airlines Services Management",
+      "code": "TTM602"
+    },
+    {
+      "name": "Communication Skills",
+      "code": "GBS401"
+    },
+    {
+      "name": "Computer Applications for  Tourism Companies & Travel Agencies (practical course)",
+      "code": "TTM606"
+    },
+    {
+      "name": "Computer Applications in Hotel Establishments (practical course)",
+      "code": "THM604"
+    },
+    {
+      "name": "Computer Skills",
+      "code": "GBS302"
+    },
+    {
+      "name": "Cultural Tourism",
+      "code": "TTM501"
+    },
+    {
+      "name": "Customer Behavior",
+      "code": "BMK502"
+    },
+    {
+      "name": "Development Strategies for Tourism Product",
+      "code": "TMK505"
+    },
+    {
+      "name": "Distribution in Tourism",
+      "code": "TMK503"
+    },
+    {
+      "name": "Entering Labor Market Skills",
+      "code": "GBS303"
+    },
+    {
+      "name": "Front Office Operations",
+      "code": "THM505"
+    },
+    {
+      "name": "Front Office Operations and  Housekeeping Supervision   (practical course)",
+      "code": "THM603"
+    },
+    {
+      "name": "Health and Safety in Work Environment",
+      "code": "BMN502"
+    },
+    {
+      "name": "Housekeeping Supervision",
+      "code": "THM502"
+    },
+    {
+      "name": "Introduction to Accounting",
+      "code": "BAC401"
+    },
+    {
+      "name": "Introduction to Hotel Management",
+      "code": "TGT406"
+    },
+    {
+      "name": "Introduction to Management",
+      "code": "BMN401"
+    },
+    {
+      "name": "Introduction to Marketing",
+      "code": "BMK401"
+    },
+    {
+      "name": "Introduction to Statistics",
+      "code": "GMA401"
+    },
+    {
+      "name": "Introduction to Tourism",
+      "code": "TGT401"
+    },
+    {
+      "name": "Legislations in Tourism & Hotels",
+      "code": "GLL401"
+    },
+    {
+      "name": "Operational Processes in Food Production",
+      "code": "THM501"
+    },
+    {
+      "name": "Operational Processes in Food Production (practical course1)",
+      "code": "THM504"
+    },
+    {
+      "name": "Operational Processes in Food Service",
+      "code": "THM503"
+    },
+    {
+      "name": "Operational Processes in Food Service (practical course1)",
+      "code": "THM506"
+    },
+    {
+      "name": "Pricing in Tourism",
+      "code": "TMK502"
+    },
+    {
+      "name": "Purchasing & Store Management",
+      "code": "THM507"
+    },
+    {
+      "name": "Sales Management in Tourism Establishments",
+      "code": "BMK503"
+    },
+    {
+      "name": "Syrian Intangible Heritage",
+      "code": "TGT404"
+    },
+    {
+      "name": "Syrian Tourism Geography",
+      "code": "TTM502"
+    },
+    {
+      "name": "The Syrian Culture1",
+      "code": "TGT402"
+    },
+    {
+      "name": "The Syrian Culture2",
+      "code": "TGT403"
+    },
+    {
+      "name": "Tour Guide Techniques",
+      "code": "TTM603"
+    },
+    {
+      "name": "Tourism Archeological Sites",
+      "code": "TGT405"
+    },
+    {
+      "name": "Tourism Companies & Travel Agencies",
+      "code": "TMK501"
+    },
+    {
+      "name": "Tourism Companies & Travel Agencies Management",
+      "code": "TTM601"
+    },
+    {
+      "name": "Tourism Marketing Communications",
+      "code": "TMK504"
+    },
+    {
+      "name": "Tourism Services Quality",
+      "code": "BMN601"
+    },
+    {
+      "name": "Tourism Tours (practical course)",
+      "code": "TMK606"
+    },
+    {
+      "name": "Tours in Hotels (practical course)",
+      "code": "TMK602"
+    },
+    {
+      "name": "Tours in Tourism Companies & Travel Agencies (practical course)",
+      "code": "TTM604"
+    },
+    {
+      "name": "Tours in Tourism Companies & Travel Agencies (practical course) TMK604",
+      "code": "TMK604"
+    },
+    {
+      "name": "Virtual Learning Systems",
+      "code": "GBS301"
+    }
+  ],
+  "Afaq (Islamic Studies)": [
+    {
+      "name": "Adab and Balagha",
+      "code": "AB32"
+    },
+    {
+      "name": "Ahwal Personality 2",
+      "code": "AP32"
+    },
+    {
+      "name": "Alhadieth Atahlele",
+      "code": "HT21"
+    },
+    {
+      "name": "ARABIC LANGUAGE 1",
+      "code": "AR11"
+    },
+    {
+      "name": "ARABIC LANGUAGE 2",
+      "code": "AR22"
+    },
+    {
+      "name": "Arabic4",
+      "code": "AR4"
+    },
+    {
+      "name": "ATAFSEER ALJAMAA",
+      "code": "AA11"
+    },
+    {
+      "name": "Atfseer Aljame2",
+      "code": "AA21"
+    },
+    {
+      "name": "Atfseer Aljame3",
+      "code": "At21"
+    },
+    {
+      "name": "Atfseer Aljame4",
+      "code": "AA22"
+    },
+    {
+      "name": "Attasawof",
+      "code": "At11"
+    },
+    {
+      "name": "Biography of the Prophet",
+      "code": "BP"
+    },
+    {
+      "name": "Comparative Islamic economics",
+      "code": "Ci31"
+    },
+    {
+      "name": "Contemporary financial transactions",
+      "code": "Cf41"
+    },
+    {
+      "name": "Contemporary jurisprudential research",
+      "code": "CR41"
+    },
+    {
+      "name": "Contemporary Studies in Hadith and its Sciences",
+      "code": "Sh41"
+    },
+    {
+      "name": "Doctrinal doctrines",
+      "code": "Dd31"
+    },
+    {
+      "name": "Economy",
+      "code": "Ec11"
+    },
+    {
+      "name": "Educational curriculum",
+      "code": "Ec31"
+    },
+    {
+      "name": "ENGLISH LANGUAGE",
+      "code": "EN"
+    },
+    {
+      "name": "ENGLISH LANGUAGE2",
+      "code": "EN2"
+    },
+    {
+      "name": "Financial institutions",
+      "code": "FI42"
+    },
+    {
+      "name": "FIQH AI-IBADAT 2",
+      "code": "FE21"
+    },
+    {
+      "name": "FIQH Al-IBADAT 1",
+      "code": "FE11"
+    },
+    {
+      "name": "Fiqh Moamalat",
+      "code": "FiM21"
+    },
+    {
+      "name": "Fiqh Moamalat 2",
+      "code": "FiM22"
+    },
+    {
+      "name": "Genayat Fiqh",
+      "code": "GF32"
+    },
+    {
+      "name": "Hadiths of rulings",
+      "code": "Hr31"
+    },
+    {
+      "name": "History and present of Islam",
+      "code": "His21"
+    },
+    {
+      "name": "History of Islamic jurisprudence",
+      "code": "TF11"
+    },
+    {
+      "name": "Interpretation of the Holy Quran  s4",
+      "code": "TQ41"
+    },
+    {
+      "name": "Interpretation of the Holy Quran4",
+      "code": "IQ42"
+    },
+    {
+      "name": "Interpretation of the verses of rulings",
+      "code": "Iv31"
+    },
+    {
+      "name": "Islamic faith",
+      "code": "IF"
+    },
+    {
+      "name": "ISLAMIC SYSTEM",
+      "code": "NE"
+    },
+    {
+      "name": "Jurisprudential theories",
+      "code": "JT42"
+    },
+    {
+      "name": "Logic and philosophy",
+      "code": "LP42"
+    },
+    {
+      "name": "Moasera Taiarat",
+      "code": "MT32"
+    },
+    {
+      "name": "Molkea Feqh",
+      "code": "MF32"
+    },
+    {
+      "name": "Osol Fiqh 4",
+      "code": "OSF42"
+    },
+    {
+      "name": "Osoul Alfeqh",
+      "code": "Os21"
+    },
+    {
+      "name": "Osoul Fiqh41",
+      "code": "Os41"
+    },
+    {
+      "name": "Osowl Fiqh 2",
+      "code": "OF32"
+    },
+    {
+      "name": "Personal Status",
+      "code": "Ps31"
+    },
+    {
+      "name": "Purposes of the law",
+      "code": "Pl31"
+    },
+    {
+      "name": "Quran Sciences",
+      "code": "QS"
+    },
+    {
+      "name": "Research Methods",
+      "code": "RM22"
+    },
+    {
+      "name": "Science of hadith",
+      "code": "SH"
+    },
+    {
+      "name": "Shamael Muhammadiyah",
+      "code": "SHM12"
+    },
+    {
+      "name": "Surah Almaada",
+      "code": "SM32"
+    },
+    {
+      "name": "tafseer &sciences of the Qur�an",
+      "code": "TQ42"
+    },
+    {
+      "name": "Tasawof 4",
+      "code": "TaS42"
+    },
+    {
+      "name": "The Holy Quran 4",
+      "code": "HQ41"
+    },
+    {
+      "name": "The law",
+      "code": "La21"
+    }
+  ],
+  "MNT (Master of Network Technology)": [
+    {
+      "name": "Ad-hoc Networks",
+      "code": "AHN"
+    },
+    {
+      "name": "admission Test",
+      "code": "MNT_AT"
+    },
+    {
+      "name": "Advanced Network Management",
+      "code": "ANA"
+    },
+    {
+      "name": "Cloud Computing Infrastructure",
+      "code": "CID"
+    },
+    {
+      "name": "Cyber Security",
+      "code": "CYS"
+    },
+    {
+      "name": "Data Center Design",
+      "code": "DCD"
+    },
+    {
+      "name": "Internet Protocols",
+      "code": "IPR"
+    },
+    {
+      "name": "Internet Service Providers",
+      "code": "ISP"
+    },
+    {
+      "name": "Master Project",
+      "code": "NPR"
+    },
+    {
+      "name": "Multimedia Systems",
+      "code": "MMS"
+    },
+    {
+      "name": "Network Security",
+      "code": "NSS"
+    },
+    {
+      "name": "Routing & Switching",
+      "code": "RSW"
+    },
+    {
+      "name": "Server Design",
+      "code": "SSD"
+    },
+    {
+      "name": "Software Defined Networks",
+      "code": "SDN"
+    },
+    {
+      "name": "The Internet of things",
+      "code": "IOT"
+    },
+    {
+      "name": "Wireless Network Security",
+      "code": "WNS"
+    },
+    {
+      "name": "Wireless Networks",
+      "code": "WNT"
+    }
+  ],
+  "MCS (Master of Computer Science)": [
+    {
+      "name": "admission Test",
+      "code": "MCS_AT"
+    },
+    {
+      "name": "Advanced Web Development",
+      "code": "AWD"
+    },
+    {
+      "name": "Cloud Computing and Internet of Things",
+      "code": "CIT"
+    },
+    {
+      "name": "Computer Networks and Protocols",
+      "code": "NTP"
+    },
+    {
+      "name": "Cybersecurity",
+      "code": "CYS"
+    },
+    {
+      "name": "Database Systems",
+      "code": "DBS"
+    },
+    {
+      "name": "Distributed Systems and Applications",
+      "code": "DSA"
+    },
+    {
+      "name": "Introduction to Artificial Intelligence",
+      "code": "IAI"
+    },
+    {
+      "name": "Introduction to Data Mining",
+      "code": "IDM"
+    },
+    {
+      "name": "Machine Learning Techniques",
+      "code": "MLT"
+    },
+    {
+      "name": "Master Project",
+      "code": "MPR"
+    },
+    {
+      "name": "Mobile Applications Development",
+      "code": "MAD"
+    },
+    {
+      "name": "Programming Basics",
+      "code": "PRB"
+    },
+    {
+      "name": "Software Engineering Principles",
+      "code": "SWP"
+    },
+    {
+      "name": "Statistics Principles",
+      "code": "STP"
+    },
+    {
+      "name": "Web Programming 1",
+      "code": "WP1"
+    },
+    {
+      "name": "Web Programming 2",
+      "code": "WP2"
+    }
+  ],
+  "DL (Diploma in Law)": [
+    {
+      "name": "International Relations & Diplomacy",
+      "code": "IRD"
+    },
+    {
+      "name": "Law",
+      "code": "Law"
+    },
+    {
+      "name": "Political Analysis in English",
+      "code": "PAE"
+    },
+    {
+      "name": "Politics",
+      "code": "POL"
+    }
+  ],
+  "MHA (Master of Health Administration)": [
+    {
+      "name": "Emerging Issues in Health Systems Management",
+      "code": "EI.HSM"
+    },
+    {
+      "name": "Fundamentals of Public Health & Epidemiologry",
+      "code": "FPH.E"
+    },
+    {
+      "name": "Global Health Systems",
+      "code": "GHS"
+    },
+    {
+      "name": "Health Economics",
+      "code": "HE.HCM"
+    },
+    {
+      "name": "Health Finance",
+      "code": "HCF"
+    },
+    {
+      "name": "Health Information Administration & Technology",
+      "code": "HIM.T"
+    },
+    {
+      "name": "Health Policies 1",
+      "code": "HP1.R"
+    },
+    {
+      "name": "Health Policies 2",
+      "code": "HP2.GE"
+    },
+    {
+      "name": "Health Quality 1",
+      "code": "HQ.EBP"
+    },
+    {
+      "name": "Health Quality 2",
+      "code": "HQ.PS"
+    },
+    {
+      "name": "Health Systems Management 1",
+      "code": "HSM 1"
+    },
+    {
+      "name": "Health Systems Management 2",
+      "code": "HSM2"
+    },
+    {
+      "name": "Health Systems Management 3",
+      "code": "HSM3"
+    },
+    {
+      "name": "Human Resources in Healthcare",
+      "code": "HR.HSM"
+    },
+    {
+      "name": "Master Thesis",
+      "code": "MEP"
+    },
+    {
+      "name": "Research in Healthcare Operations",
+      "code": "R.HOM"
+    },
+    {
+      "name": "Statistics in Healthcare Systems",
+      "code": "BS.HSM"
+    }
+  ],
+  "MNGO (Master of NGO Management)": [
+    {
+      "name": "Accounting for NGOs",
+      "code": "ANGO"
+    },
+    {
+      "name": "Business Ethics and Sustainability in NGOs",
+      "code": "BES"
+    },
+    {
+      "name": "Crisis Management and Emergency Response",
+      "code": "CMER"
+    },
+    {
+      "name": "Financial Management for NGOs",
+      "code": "FMNGO"
+    },
+    {
+      "name": "Governance in NGOs",
+      "code": "GNGO"
+    },
+    {
+      "name": "Human Resources and Volunteering Management in NGOs",
+      "code": "HRVM"
+    },
+    {
+      "name": "Humanitarian and Developmental Project Management",
+      "code": "MHDP"
+    },
+    {
+      "name": "Information Technology and Innovations in NGOs",
+      "code": "ITI"
+    },
+    {
+      "name": "International NGOs and Cooperation",
+      "code": "INGO"
+    },
+    {
+      "name": "Leadership and Teams� Management in NGOs",
+      "code": "LMWT"
+    },
+    {
+      "name": "lntroduction to NGOs",
+      "code": "ITNGO"
+    },
+    {
+      "name": "Practical Class in NGOs",
+      "code": "PCNGO"
+    },
+    {
+      "name": "Project",
+      "code": "MPG"
+    },
+    {
+      "name": "Public Relations and Communication in NGOs",
+      "code": "PRC"
+    },
+    {
+      "name": "Quality Management in NGOs",
+      "code": "QMNGO"
+    },
+    {
+      "name": "Regulations of NGOs",
+      "code": "RNGO"
+    },
+    {
+      "name": "Research Methods in Management",
+      "code": "SRM"
+    },
+    {
+      "name": "Strategic Management in NGOs",
+      "code": "SMNGO"
+    }
+  ],
+  "TIEMD (Technical Institute of Engineering and Management Design)": [
+    {
+      "name": "Assessment and Evaluation of Building Damages",
+      "code": "AED"
+    },
+    {
+      "name": "Basics of  Sustainable Building",
+      "code": "BSB"
+    },
+    {
+      "name": "Basics of Building Information Modelling",
+      "code": "BBM"
+    },
+    {
+      "name": "Basics of Construction Quality",
+      "code": "BCQ"
+    },
+    {
+      "name": "Basics of Construction Technology",
+      "code": "BCT"
+    },
+    {
+      "name": "Basics of Disaster Management",
+      "code": "BDM"
+    },
+    {
+      "name": "Basics of Electrical Modelling (1)",
+      "code": "BEM(1)"
+    },
+    {
+      "name": "Basics of Electrical Modelling (2)",
+      "code": "BEM(2)"
+    },
+    {
+      "name": "Basics of Engineering Design",
+      "code": "BED"
+    },
+    {
+      "name": "Basics of Fire Systems Design",
+      "code": "FSD"
+    },
+    {
+      "name": "Basics of Mechanical Modelling (2)",
+      "code": "BSM(2)"
+    },
+    {
+      "name": "Basics of Mechanical Modelling 1",
+      "code": "BSM(1)"
+    },
+    {
+      "name": "Basics of Plumbing Fire Modelling",
+      "code": "BPFM"
+    },
+    {
+      "name": "Basics of Plumbing Modelling",
+      "code": "BPM"
+    },
+    {
+      "name": "Basics of Project Management",
+      "code": "BMN401"
+    },
+    {
+      "name": "Basics of Project Planning",
+      "code": "BPE"
+    },
+    {
+      "name": "Basics of Project Planning - Scheduling",
+      "code": "BPS"
+    },
+    {
+      "name": "Basics of Smart Cities",
+      "code": "BSC"
+    },
+    {
+      "name": "Basics of Structural Analysis",
+      "code": "BSA"
+    },
+    {
+      "name": "Building Documents",
+      "code": "BDC"
+    },
+    {
+      "name": "Building Materials",
+      "code": "BMS"
+    },
+    {
+      "name": "Computer Aided Design",
+      "code": "CAD"
+    },
+    {
+      "name": "Computer Skills",
+      "code": "GBS302"
+    },
+    {
+      "name": "Disaster Strategic Management",
+      "code": "DSM"
+    },
+    {
+      "name": "Engineering Mechanics",
+      "code": "ENM"
+    },
+    {
+      "name": "Engineering Technical Writing",
+      "code": "ETW"
+    },
+    {
+      "name": "Entering Labour Market Skills",
+      "code": "GBS304"
+    },
+    {
+      "name": "������� ������� Advanced (2)",
+      "code": "ARV"
+    },
+    {
+      "name": "������� ������� Basics",
+      "code": "BRV"
+    },
+    {
+      "name": "Heritage BIM",
+      "code": "HBM"
+    },
+    {
+      "name": "Infrastructure Design",
+      "code": "IND"
+    },
+    {
+      "name": "Mathematics",
+      "code": "Gma101"
+    },
+    {
+      "name": "Methodologies of Collaboration",
+      "code": "MCN"
+    },
+    {
+      "name": "Occupational Safety using Navisworks",
+      "code": "OSN"
+    },
+    {
+      "name": "Physics",
+      "code": "Gph101"
+    },
+    {
+      "name": "PROGRAMMING",
+      "code": "PRG"
+    },
+    {
+      "name": "Project",
+      "code": "PRT"
+    },
+    {
+      "name": "Project Management using ������� �������",
+      "code": "PMR"
+    },
+    {
+      "name": "Risk Management",
+      "code": "RMN"
+    },
+    {
+      "name": "Shop Drawings",
+      "code": "SHD"
+    },
+    {
+      "name": "Virtual Learning Systems",
+      "code": "GBS301"
+    }
+  ],
+  "Afaq_m": [
+    {
+      "name": "Analytical interpretation",
+      "code": "AIm1"
+    },
+    {
+      "name": "ENm1",
+      "code": "ENm1"
+    },
+    {
+      "name": "Methods of interpreters",
+      "code": "MIm1"
+    },
+    {
+      "name": "Principles and rules of interpretation",
+      "code": "PIm1"
+    },
+    {
+      "name": "Research methods and textual verification",
+      "code": "RMm1"
+    },
+    {
+      "name": "Sciences of the Qur�an and its miracles",
+      "code": "SQm1"
+    },
+    {
+      "name": "Studies in Language and Literature",
+      "code": "SLm1"
+    },
+    {
+      "name": "Textual study in interpretation",
+      "code": "TAEm1"
+    }
+  ],
+  "HRM (Human Resource Management)": [
+    {
+      "name": "Business Law",
+      "code": "BLAW101"
+    },
+    {
+      "name": "Computer and Information Technology Skills",
+      "code": "IT101"
+    },
+    {
+      "name": "Introduction to Human Resource Management",
+      "code": "HRM101"
+    },
+    {
+      "name": "Marketing Principles",
+      "code": "MKTG101"
+    },
+    {
+      "name": "Principles of Economics",
+      "code": "ECON101"
+    },
+    {
+      "name": "Principles of Financial Accounting",
+      "code": "ACCT101"
+    },
+    {
+      "name": "Principles of Management and Business",
+      "code": "MGMT101"
+    },
+    {
+      "name": "Principles of Statistics",
+      "code": "STAT101"
+    },
+    {
+      "name": "Specialized English Language 1",
+      "code": "Eng1"
+    },
+    {
+      "name": "Strategic Management",
+      "code": "MGMT301"
+    }
+  ]
+}
