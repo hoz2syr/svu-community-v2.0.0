@@ -22,18 +22,38 @@ window.log = {
 // STATIC JSON COURSES LOADER
 // ════════════════════════════════════════════════════════════════
 window._svuCoursesData = null;
+window._svuCoursesFailed = false; // FIX: منع إعادة المحاولة بعد أول فشل
 
 window.loadSVUCourses = async function() {
   if (window._svuCoursesData) return window._svuCoursesData;
-  try {
-    const res = await fetch('/svu_courses.json');
-    if (!res.ok) throw new Error('Failed to load courses data');
-    window._svuCoursesData = await res.json();
-    return window._svuCoursesData;
-  } catch (err) {
-    window.log.error('[Courses] Failed to load course data:', err);
-    return {};
+  if (window._svuCoursesFailed) return {}; // FIX: لا تعيد المحاولة في نفس الجلسة
+
+  // FIX: مسار نسبي بدل مسار مطلق — يعمل على Cloudflare Pages وكذلك locally
+  const paths = ['./svu_courses.json', 'svu_courses.json'];
+
+  for (const path of paths) {
+    try {
+      const res = await fetch(path);
+      if (!res.ok) continue;
+      const contentType = res.headers.get('content-type') || '';
+      // FIX: تحقق أن الرد JSON فعلاً وليس صفحة HTML
+      if (!contentType.includes('application/json') && !contentType.includes('text/json')) {
+        const text = await res.text();
+        if (text.trimStart().startsWith('<')) continue; // HTML fallback — تجاهل
+        window._svuCoursesData = JSON.parse(text);
+      } else {
+        window._svuCoursesData = await res.json();
+      }
+      return window._svuCoursesData;
+    } catch (err) {
+      // جرب المسار التالي
+    }
   }
+
+  // كل المسارات فشلت
+  window._svuCoursesFailed = true; // FIX: علامة الفشل — توقف المحاولات
+  window.log.error('[Courses] svu_courses.json not found. Check Cloudflare Pages deployment.');
+  return {};
 };
 
 window.getMajorsList = async function() {
