@@ -589,7 +589,6 @@ const TRANSLATIONS = {
 
     dashLangTitle: 'Language & Theme',
     dashLangText: 'Press "EN" to switch to English. The moon/sun icon toggles between light and dark themes.',
-
     dashGroupsTitle: 'Study Groups',
     dashGroupsText: 'Click here to enter the Groups page. You\'ll find study groups for your courses, and can create new groups and join via WhatsApp.',
 

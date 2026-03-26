@@ -27,6 +27,7 @@ export default defineConfig({
         dashboard: './dashboard.html',
         groups: './groups.html',
         materials: './materials.html',
+        courses: './courses.html',
         admin: './admin.html',
         'reset-password': './reset-password.html',
         schedule: './schedule.html',
