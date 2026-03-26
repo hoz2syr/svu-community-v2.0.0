@@ -389,7 +389,7 @@ document.addEventListener('DOMContentLoaded', function() {
         throw new Error(field + (window.i18n?.getLang?.() === 'en' ? ' already registered' : ' مسجّل مسبقاً'));
       }
 
-      // Sign up
+      // Sign up — data goes into raw_user_meta_data for the DB trigger
       const auth = await db.auth.signUp({
         email: payload.email,
         password: pwd,
@@ -400,21 +400,18 @@ document.addEventListener('DOMContentLoaded', function() {
             middle_name: payload.middle_name,
             last_name: payload.last_name,
             major: payload.major,
+            phone: payload.phone,
             country_code: payload.country_code,
             country_name: payload.country_name,
+            country_dial: payload.country_dial,
+            country_flag: payload.country_flag,
           },
         },
       });
       if (auth.error) throw auth.error;
 
-      // Insert into public.users (trigger may also do this — use upsert to avoid conflict)
-      if (auth.data.user) {
-        const ins = await db.from('users').upsert(
-          { id: auth.data.user.id, ...payload },
-          { onConflict: 'id' }
-        );
-        if (ins.error) throw new Error('Profile creation failed: ' + ins.error.message);
-      }
+      // Profile is created automatically by handle_new_user() DB trigger
+      // No manual upsert needed — trigger runs with SECURITY DEFINER
 
       if (auth.data.session) {
         showToast(window.i18n?.t('registerSuccess') || 'Account created!', 'success');
