@@ -26,7 +26,7 @@ const APP_CONFIG = {
 
 // Security settings — sessionTimeout/isLoggedIn + lockout في core.js؛ maxLoginAttempts في page-login.js؛ requireEmailConfirmation إشعار تشغيلي
 const SECURITY_CONFIG = {
-  requireEmailConfirmation: false,
+  requireEmailConfirmation: true,
   sessionTimeout: 30 * 60 * 1000,
   maxLoginAttempts: 5,
   lockoutDuration: 15 * 60 * 1000,

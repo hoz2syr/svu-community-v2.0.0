@@ -30,6 +30,7 @@ export default defineConfig({
         courses: './courses.html',
         admin: './admin.html',
         'reset-password': './reset-password.html',
+        'verify-email': './verify-email.html',
         schedule: './schedule.html',
         profile: './profile.html',
       },

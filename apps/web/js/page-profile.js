@@ -314,6 +314,95 @@
     });
 
     // ═══════════════════════════════════════════
+    // Change Password Modal
+    // ═══════════════════════════════════════════
+    window.openChangePasswordModal = function() {
+        document.getElementById('currentPassword').value = '';
+        document.getElementById('newPwd').value = '';
+        document.getElementById('confirmNewPwd').value = '';
+        document.getElementById('changePasswordModal').classList.remove('hidden');
+        document.getElementById('changePasswordModal').classList.add('flex');
+    };
+
+    window.closeChangePasswordModal = function() {
+        document.getElementById('changePasswordModal').classList.add('hidden');
+        document.getElementById('changePasswordModal').classList.remove('flex');
+    };
+
+    // Password toggle helpers
+    function setupPwdToggle(btnId, inputId) {
+        document.getElementById(btnId)?.addEventListener('click', function() {
+            let inp = document.getElementById(inputId);
+            let svg = this.querySelector('svg');
+            if (inp.type === 'password') {
+                inp.type = 'text';
+                svg.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"/>';
+            } else {
+                inp.type = 'password';
+                svg.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>';
+            }
+        });
+    }
+
+    setupPwdToggle('toggleCurrentPwd', 'currentPassword');
+    setupPwdToggle('toggleNewPwd', 'newPwd');
+    setupPwdToggle('toggleConfirmNewPwd', 'confirmNewPwd');
+
+    document.getElementById('changePasswordForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        let currentPwd = document.getElementById('currentPassword').value;
+        let newPwd = document.getElementById('newPwd').value;
+        let confirmPwd = document.getElementById('confirmNewPwd').value;
+
+        if (newPwd !== confirmPwd) {
+            showToast(window.i18n?.t('changePasswordMismatch') || 'كلمتا المرور غير متطابقتين!', 'error');
+            return;
+        }
+
+        if (newPwd.length < 8) {
+            showToast(window.i18n?.t('changePasswordWeak') || 'كلمة المرور الجديدة ضعيفة جداً', 'error');
+            return;
+        }
+
+        let btn = document.getElementById('changePwdBtn');
+        btn.disabled = true;
+        btn.innerHTML = '<span class="flex items-center justify-center gap-2"><svg class="animate-spin w-5 h-5" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> ' + (window.i18n?.t('loading') || 'Loading...') + '</span>';
+
+        try {
+            let db = getDb();
+            if (!db) {
+                showToast('تعذر الاتصال بالخادم', 'error');
+                return;
+            }
+
+            // Verify current password by re-authenticating
+            let email = currentUser.email;
+            let verifyResult = await db.auth.signInWithPassword({
+                email: email,
+                password: currentPwd,
+            });
+
+            if (verifyResult.error) {
+                showToast(window.i18n?.t('changePasswordWrongCurrent') || 'كلمة المرور الحالية غير صحيحة', 'error');
+                return;
+            }
+
+            // Update password
+            let updateResult = await db.auth.updateUser({ password: newPwd });
+            if (updateResult.error) throw updateResult.error;
+
+            showToast(window.i18n?.t('changePasswordSuccess') || 'تم تغيير كلمة المرور بنجاح!', 'success');
+            closeChangePasswordModal();
+        } catch (error) {
+            showToast(window.i18n?.t('changePasswordError') || 'فشل تغيير كلمة المرور: ' + (error.message || ''), 'error');
+        } finally {
+            btn.disabled = false;
+            btn.innerHTML = '<span data-i18n="changePasswordBtn">' + (window.i18n?.t('changePasswordBtn') || 'تغيير كلمة المرور') + '</span>';
+        }
+    });
+
+    // ═══════════════════════════════════════════
     // Edit Group Modal
     // ═══════════════════════════════════════════
     window.openEditGroupModal = function(groupId) {
@@ -510,6 +599,9 @@
         document.getElementById('editProfileModal').addEventListener('click', function(e) {
             if (e.target.id === 'editProfileModal') closeEditProfileModal();
         });
+        document.getElementById('changePasswordModal').addEventListener('click', function(e) {
+            if (e.target.id === 'changePasswordModal') closeChangePasswordModal();
+        });
         document.getElementById('editGroupModal').addEventListener('click', function(e) {
             if (e.target.id === 'editGroupModal') closeEditGroupModal();
         });
@@ -522,6 +614,8 @@
             if (e.key === 'Escape') {
                 if (!document.getElementById('editProfileModal').classList.contains('hidden')) {
                     closeEditProfileModal();
+                } else if (!document.getElementById('changePasswordModal').classList.contains('hidden')) {
+                    closeChangePasswordModal();
                 } else if (!document.getElementById('editGroupModal').classList.contains('hidden')) {
                     closeEditGroupModal();
                 } else if (!document.getElementById('membersModal').classList.contains('hidden')) {

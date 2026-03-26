@@ -95,6 +95,33 @@ const TRANSLATIONS = {
     resetPasswordError: 'فشل تغيير كلمة المرور',
     resetPasswordInvalidLink: 'رابط غير صالح أو منتهي الصلاحية',
 
+    // Email Verification
+    verifyEmailTitle: 'تفعيل البريد الإلكتروني',
+    verifyEmailLoading: 'جاري تفعيل بريدك الإلكتروني...',
+    verifyEmailSuccess: 'تم تفعيل البريد الإلكتروني بنجاح!',
+    verifyEmailRedirect: 'سيتم توجيهك لتسجيل الدخول...',
+    verifyEmailFailed: 'فشل تفعيل البريد الإلكتروني',
+    verifyEmailError: 'حدث خطأ أثناء التفعيل',
+    verifyEmailResend: 'إعادة إرسال رابط التفعيل',
+    verifyEmailResent: 'تم إرسال رابط التفعيل مرة أخرى!',
+    verifyEmailResendError: 'فشل إرسال رابط التفعيل',
+    verifyEmailNoToken: 'لم يتم العثور على رابط التفعيل',
+    verifyEmailCheckInbox: 'تحقق من بريدك الإلكتروني واضغط على رابط التفعيل.',
+    verifyEmailUnknown: 'نوع الرابط غير معروف',
+    verifyEmailEnterEmail: 'يرجى إدخال البريد الإلكتروني',
+
+    // Change Password
+    changePasswordTitle: 'تغيير كلمة المرور',
+    changePasswordCurrent: 'كلمة المرور الحالية',
+    changePasswordNew: 'كلمة المرور الجديدة',
+    changePasswordConfirm: 'تأكيد كلمة المرور الجديدة',
+    changePasswordBtn: 'تغيير كلمة المرور',
+    changePasswordSuccess: 'تم تغيير كلمة المرور بنجاح!',
+    changePasswordError: 'فشل تغيير كلمة المرور',
+    changePasswordMismatch: 'كلمتا المرور غير متطابقتين!',
+    changePasswordWeak: 'كلمة المرور الجديدة ضعيفة جداً',
+    changePasswordWrongCurrent: 'كلمة المرور الحالية غير صحيحة',
+
     // Dashboard
     dashboardTitle: 'لوحة التحكم',
     dashboardWelcome: 'مرحباً',
@@ -453,6 +480,33 @@ const TRANSLATIONS = {
     resetPasswordSuccess: 'Password changed successfully!',
     resetPasswordError: 'Failed to change password',
     resetPasswordInvalidLink: 'Invalid or expired link',
+
+    // Email Verification
+    verifyEmailTitle: 'Email Verification',
+    verifyEmailLoading: 'Verifying your email...',
+    verifyEmailSuccess: 'Email verified successfully!',
+    verifyEmailRedirect: 'Redirecting to login...',
+    verifyEmailFailed: 'Email verification failed',
+    verifyEmailError: 'An error occurred during verification',
+    verifyEmailResend: 'Resend verification link',
+    verifyEmailResent: 'Verification link sent again!',
+    verifyEmailResendError: 'Failed to send verification link',
+    verifyEmailNoToken: 'Verification link not found',
+    verifyEmailCheckInbox: 'Check your email and click the verification link.',
+    verifyEmailUnknown: 'Unknown link type',
+    verifyEmailEnterEmail: 'Please enter your email',
+
+    // Change Password
+    changePasswordTitle: 'Change Password',
+    changePasswordCurrent: 'Current Password',
+    changePasswordNew: 'New Password',
+    changePasswordConfirm: 'Confirm New Password',
+    changePasswordBtn: 'Change Password',
+    changePasswordSuccess: 'Password changed successfully!',
+    changePasswordError: 'Failed to change password',
+    changePasswordMismatch: 'Passwords do not match!',
+    changePasswordWeak: 'New password is too weak',
+    changePasswordWrongCurrent: 'Current password is incorrect',
 
     // Dashboard
     dashboardTitle: 'Dashboard',

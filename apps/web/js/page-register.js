@@ -420,8 +420,10 @@ document.addEventListener('DOMContentLoaded', function() {
         showToast(window.i18n?.t('registerSuccess') || 'Account created!', 'success');
         setTimeout(() => { window.location.href = 'login.html'; }, 2500);
       } else {
-        showToast((window.i18n?.t('registerSuccess') || 'Account created!') + ' ' + (window.i18n?.t('registerEmailSent') || ''), 'success');
-        setTimeout(() => { window.location.href = 'login.html'; }, 3500);
+        // Email confirmation required — redirect to verify-email page with instructions
+        showToast(window.i18n?.t('registerSuccess') || 'Account created!', 'success');
+        const email = encodeURIComponent(payload.email);
+        setTimeout(() => { window.location.href = 'verify-email.html?email=' + email; }, 3000);
       }
     } catch (err) {
       let errorMsg = err.message || window.i18n?.t('error');

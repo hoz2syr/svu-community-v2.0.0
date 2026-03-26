@@ -149,12 +149,20 @@
                 <div class="flex-1 text-center sm:text-right">
                     <div class="flex flex-col sm:flex-row items-center sm:items-start gap-3 mb-2">
                         <h1 id="profileName" class="text-2xl sm:text-3xl font-bold text-white">مستخدم</h1>
+                    <div class="flex gap-2">
                         <button onclick="openEditProfileModal()" data-tour="prof-edit" data-tooltip="tipEditProfile" class="px-4 py-1.5 glass hover:bg-white/10 text-secondary-300 hover:text-white rounded-lg text-sm transition flex items-center gap-2">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
                             </svg>
                             تعديل
                         </button>
+                        <button onclick="openChangePasswordModal()" class="px-4 py-1.5 glass hover:bg-white/10 text-secondary-300 hover:text-white rounded-lg text-sm transition flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/>
+                            </svg>
+                            <span>كلمة المرور</span>
+                        </button>
+                    </div>
                     </div>
                     <p id="profileUsername" class="text-secondary-500 text-sm mb-3">@username</p>
 
@@ -279,6 +287,76 @@
                     <button type="submit" id="saveProfileBtn"
                         class="w-full py-3 bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-500 hover:to-primary-400 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-primary-500/30">
                         حفظ التغييرات
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+         Change Password Modal
+    ═══════════════════════════════════════════ -->
+    <div id="changePasswordModal" class="fixed inset-0 modal hidden z-50 overflow-y-auto">
+        <div class="flex min-h-full items-center justify-center p-3 sm:p-4">
+            <div class="glass rounded-2xl p-4 sm:p-6 max-w-md w-full shadow-2xl" onclick="event.stopPropagation()">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-bold text-white" data-i18n="changePasswordTitle">تغيير كلمة المرور</h3>
+                    <button onclick="closeChangePasswordModal()" class="text-secondary-400 hover:text-white transition">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <form id="changePasswordForm" class="space-y-4">
+                    <div>
+                        <label class="block text-secondary-300 text-sm mb-2" data-i18n="changePasswordCurrent">كلمة المرور الحالية</label>
+                        <div class="relative">
+                            <input type="password" id="currentPassword" required autocomplete="current-password"
+                                class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-secondary-500 pl-12"
+                                placeholder="••••••••">
+                            <button type="button" id="toggleCurrentPwd"
+                                class="absolute left-3 top-1/2 -translate-y-1/2 text-secondary-400 hover:text-white transition">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-secondary-300 text-sm mb-2" data-i18n="changePasswordNew">كلمة المرور الجديدة</label>
+                        <div class="relative">
+                            <input type="password" id="newPwd" required minlength="8" autocomplete="new-password"
+                                class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-secondary-500 pl-12"
+                                placeholder="8 أحرف على الأقل">
+                            <button type="button" id="toggleNewPwd"
+                                class="absolute left-3 top-1/2 -translate-y-1/2 text-secondary-400 hover:text-white transition">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-secondary-300 text-sm mb-2" data-i18n="changePasswordConfirm">تأكيد كلمة المرور الجديدة</label>
+                        <div class="relative">
+                            <input type="password" id="confirmNewPwd" required autocomplete="new-password"
+                                class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-secondary-500 pl-12"
+                                placeholder="أعد إدخال كلمة المرور">
+                            <button type="button" id="toggleConfirmNewPwd"
+                                class="absolute left-3 top-1/2 -translate-y-1/2 text-secondary-400 hover:text-white transition">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <button type="submit" id="changePwdBtn"
+                        class="w-full py-3 bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-500 hover:to-primary-400 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-primary-500/30">
+                        <span data-i18n="changePasswordBtn">تغيير كلمة المرور</span>
                     </button>
                 </form>
             </div>
