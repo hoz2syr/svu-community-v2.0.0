@@ -130,6 +130,7 @@
         <div class="flex gap-2 mb-4 flex-wrap">
             <button class="tab-btn active px-4 py-2 glass rounded-xl text-sm font-medium border border-transparent transition" data-tab="users">المستخدمون</button>
             <button class="tab-btn px-4 py-2 glass rounded-xl text-sm font-medium text-secondary-400 border border-transparent transition" data-tab="groups">المجموعات</button>
+            <button class="tab-btn px-4 py-2 glass rounded-xl text-sm font-medium text-secondary-400 border border-transparent transition" data-tab="email">إرسال إيميل</button>
         </div>
 
         <!-- Users Tab -->
@@ -197,6 +198,57 @@
             </div>
             <div id="groupsEmpty" class="hidden text-center py-12 text-secondary-400">لا توجد نتائج</div>
         </div>
+
+        <!-- Email Tab -->
+        <div id="tab-email" class="hidden glass rounded-xl p-6">
+            <h2 class="text-lg font-bold text-white mb-4">إرسال إيميل للمستخدمين</h2>
+
+            <div class="space-y-4">
+                <!-- Recipients -->
+                <div>
+                    <label class="block text-secondary-300 text-sm mb-2">المستلمون</label>
+                    <select id="emailRecipients" class="search-input w-full px-4 py-3 rounded-xl text-white text-sm">
+                        <option value="all">جميع المستخدمين النشطين</option>
+                        <option value="custom">عناوين مخصصة (مفصولة بفاصلة)</option>
+                    </select>
+                </div>
+
+                <!-- Custom emails -->
+                <div id="customEmailsWrapper" class="hidden">
+                    <label class="block text-secondary-300 text-sm mb-2">عناوين الإيميل</label>
+                    <input type="text" id="customEmails" placeholder="user1@example.com, user2@example.com" class="search-input w-full px-4 py-3 rounded-xl text-white text-sm">
+                </div>
+
+                <!-- Subject -->
+                <div>
+                    <label class="block text-secondary-300 text-sm mb-2">عنوان الإيميل</label>
+                    <input type="text" id="emailSubject" placeholder="عنوان الرسالة" class="search-input w-full px-4 py-3 rounded-xl text-white text-sm">
+                </div>
+
+                <!-- Body -->
+                <div>
+                    <label class="block text-secondary-300 text-sm mb-2">محتوى الإيميل (HTML)</label>
+                    <textarea id="emailBody" rows="8" placeholder='<div dir="rtl" style="font-family: Cairo, sans-serif;">
+  <h2>مرحباً</h2>
+  <p>محتوى الرسالة هنا...</p>
+</div>' class="search-input w-full px-4 py-3 rounded-xl text-white text-sm resize-y"></textarea>
+                </div>
+
+                <!-- Preview -->
+                <div>
+                    <button type="button" onclick="window.previewEmail()" class="action-btn btn-warning mb-2">معاينة</button>
+                    <div id="emailPreview" class="hidden bg-white rounded-xl p-4 text-gray-900 text-sm max-h-64 overflow-auto"></div>
+                </div>
+
+                <!-- Send -->
+                <div class="flex items-center gap-3">
+                    <button id="sendEmailBtn" onclick="window.sendAdminEmail()" class="px-6 py-3 bg-primary-500 hover:bg-primary-600 text-white rounded-xl font-medium transition">
+                        إرسال الإيميل
+                    </button>
+                    <span id="emailStatus" class="text-sm text-secondary-400"></span>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Toast -->
@@ -210,6 +262,7 @@
     <script src="js/shared.js"></script>
     <script src="js/auth-guard.js"></script>
     <script src="js/i18n.js"></script>
+    <script src="js/email-service.js"></script>
     <script src="js/page-admin.js"></script>
 </body>
 </html>

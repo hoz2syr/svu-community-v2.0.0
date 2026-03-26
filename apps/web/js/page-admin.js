@@ -323,11 +323,93 @@
 
                 document.getElementById('tab-users').classList.toggle('hidden', tab !== 'users');
                 document.getElementById('tab-groups').classList.toggle('hidden', tab !== 'groups');
+                document.getElementById('tab-email').classList.toggle('hidden', tab !== 'email');
 
                 if (tab === 'groups' && allGroups.length === 0) loadGroups();
             });
         });
     }
+
+    // ═══════════════════════════════════════════
+    // Email Functions
+    // ═══════════════════════════════════════════
+
+    // Toggle custom emails field
+    let emailRecipientsEl = document.getElementById('emailRecipients');
+    if (emailRecipientsEl) {
+        emailRecipientsEl.addEventListener('change', function() {
+            let wrapper = document.getElementById('customEmailsWrapper');
+            if (wrapper) {
+                wrapper.classList.toggle('hidden', this.value !== 'custom');
+            }
+        });
+    }
+
+    window.previewEmail = function() {
+        let html = document.getElementById('emailBody').value;
+        let preview = document.getElementById('emailPreview');
+        if (!html.trim()) {
+            preview.classList.add('hidden');
+            return;
+        }
+        preview.innerHTML = html;
+        preview.classList.remove('hidden');
+    };
+
+    window.sendAdminEmail = async function() {
+        let subject = document.getElementById('emailSubject').value.trim();
+        let body = document.getElementById('emailBody').value.trim();
+        let recipientsType = document.getElementById('emailRecipients').value;
+        let customEmails = document.getElementById('customEmails').value.trim();
+        let statusEl = document.getElementById('emailStatus');
+        let sendBtn = document.getElementById('sendEmailBtn');
+
+        if (!subject) {
+            showToast('أدخل عنوان الإيميل', 'error');
+            return;
+        }
+        if (!body) {
+            showToast('أدخل محتوى الإيميل', 'error');
+            return;
+        }
+
+        if (recipientsType === 'custom' && !customEmails) {
+            showToast('أدخل عناوين الإيميل المخصصة', 'error');
+            return;
+        }
+
+        if (!confirm('هل أنت متأكد من إرسال هذا الإيميل؟')) return;
+
+        sendBtn.disabled = true;
+        sendBtn.textContent = 'جاري الإرسال...';
+        statusEl.textContent = '';
+
+        try {
+            let result;
+
+            if (recipientsType === 'all') {
+                result = await window.emailService.sendToAll(subject, body);
+            } else {
+                let emails = customEmails.split(',').map(function(e) { return e.trim(); }).filter(function(e) { return e; });
+                result = await window.emailService.sendBulk(emails, subject, body);
+            }
+
+            if (result.sent > 0) {
+                showToast('تم إرسال الإيميل بنجاح', 'success');
+                statusEl.textContent = 'تم الإرسال: ' + result.sent + ' | فشل: ' + result.failed;
+                if (result.total) statusEl.textContent += ' (إجمالي: ' + result.total + ')';
+            } else {
+                showToast('فشل إرسال الإيميل', 'error');
+                statusEl.textContent = 'فشل: ' + (result.errors.join(', ') || 'خطأ غير معروف');
+            }
+        } catch (e) {
+            showToast('خطأ: ' + (e.message || ''), 'error');
+            statusEl.textContent = 'خطأ: ' + (e.message || '');
+        } finally {
+            sendBtn.disabled = false;
+            sendBtn.textContent = 'إرسال الإيميل';
+        }
+    };
 
     // ═══════════════════════════════════════════
     // Init
