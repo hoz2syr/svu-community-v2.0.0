@@ -357,19 +357,59 @@
 
         window.switchModalTab('info');
 
-        // Hide old text sections, show chart container
+        // ── Populate Prerequisites Chips ──
         let prereqSection = document.getElementById('prereqSection');
-        let dependentsSection = document.getElementById('dependentsSection');
+        let prereqList = document.getElementById('prereqList');
         let prereqChart = document.getElementById('prereqChart');
+        let prereqs = course.prerequisites || [];
 
+        if (prereqList) prereqList.innerHTML = '';
+
+        if (prereqs.length > 0) {
+            if (prereqSection) prereqSection.classList.remove('hidden');
+            prereqs.forEach(function(code) {
+                let name = resolvePrereqName(code);
+                let chip = document.createElement('span');
+                chip.className = 'prereq-chip chip-prereq';
+                chip.textContent = code + ' — ' + name;
+                prereqList.appendChild(chip);
+            });
+        } else {
+            if (prereqSection) prereqSection.classList.remove('hidden');
+            let emptyMsg = document.createElement('span');
+            emptyMsg.className = 'text-sm text-green-400 flex items-center gap-2';
+            emptyMsg.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> مادة مفتوحة — لا متطلبات سابقة';
+            prereqList.appendChild(emptyMsg);
+        }
+
+        // ── Populate Dependent Courses Chips ──
+        let dependentsSection = document.getElementById('dependentsSection');
+        let dependentsList = document.getElementById('dependentsList');
+        let dependents = findDependentCourses(course.code);
+
+        if (dependentsList) dependentsList.innerHTML = '';
+
+        if (dependents.length > 0) {
+            if (dependentsSection) dependentsSection.classList.remove('hidden');
+            dependents.forEach(function(dep) {
+                let chip = document.createElement('span');
+                chip.className = 'prereq-chip chip-dependent';
+                chip.textContent = dep.code + ' — ' + dep.name;
+                dependentsList.appendChild(chip);
+            });
+        } else {
+            if (dependentsSection) dependentsSection.classList.remove('hidden');
+            let emptyMsg = document.createElement('span');
+            emptyMsg.className = 'text-sm text-secondary-500';
+            emptyMsg.textContent = 'لا تفتح أي مواد أخرى';
+            dependentsList.appendChild(emptyMsg);
+        }
+
+        // ── SVG Chart (ITE only) ──
         if (_isITE) {
-            if (prereqSection) prereqSection.classList.add('hidden');
-            if (dependentsSection) dependentsSection.classList.add('hidden');
             if (prereqChart) prereqChart.classList.remove('hidden');
             buildPrereqChart(course);
         } else {
-            if (prereqSection) prereqSection.classList.add('hidden');
-            if (dependentsSection) dependentsSection.classList.add('hidden');
             if (prereqChart) prereqChart.classList.add('hidden');
         }
 

@@ -21,7 +21,15 @@
      * @param {string} [options.replyTo] - بريد للرد
      * @returns {Promise<{success: boolean, id?: string, error?: string}>}
      */
-    async function sendEmail(options) {
+    /**
+     * انتظار مع Exponential Backoff
+     */
+    function sleep(ms) {
+        return new Promise(function(resolve) { setTimeout(resolve, ms); });
+    }
+
+    async function sendEmail(options, retries) {
+        retries = retries || 3;
         let db = window.getDb ? window.getDb() : null;
         if (!db) {
             return { success: false, error: 'SUPABASE_NOT_CONFIGURED' };
@@ -35,30 +43,47 @@
             return { success: false, error: 'MISSING_CONTENT' };
         }
 
-        try {
-            let response = await db.functions.invoke('send-email', {
-                body: {
-                    to: options.to,
-                    subject: options.subject,
-                    html: options.html,
-                    text: options.text,
-                    replyTo: options.replyTo,
-                },
-            });
+        for (let attempt = 0; attempt <= retries; attempt++) {
+            try {
+                let response = await db.functions.invoke('send-email', {
+                    body: {
+                        to: options.to,
+                        subject: options.subject,
+                        html: options.html,
+                        text: options.text,
+                        replyTo: options.replyTo,
+                    },
+                });
 
-            if (response.error) {
-                let errMsg = typeof response.error === 'string' ? response.error : response.error.message || '';
-                return { success: false, error: errMsg };
+                if (response.error) {
+                    let errMsg = typeof response.error === 'string' ? response.error : response.error.message || '';
+                    return { success: false, error: errMsg };
+                }
+
+                if (response.data && response.data.error) {
+                    // إعادة المحاولة عند Rate Limit
+                    if (response.data.error === 'RATE_LIMIT_EXCEEDED' && attempt < retries) {
+                        let delay = Math.min(1000 * Math.pow(2, attempt), 30000);
+                        console.warn('[email-service] Rate limited, retrying in ' + delay + 'ms (attempt ' + (attempt + 1) + '/' + retries + ')');
+                        await sleep(delay);
+                        continue;
+                    }
+                    return { success: false, error: response.data.error };
+                }
+
+                return { success: true, id: response.data?.id };
+            } catch (e) {
+                if (attempt < retries) {
+                    let delay = Math.min(1000 * Math.pow(2, attempt), 30000);
+                    console.warn('[email-service] Network error, retrying in ' + delay + 'ms');
+                    await sleep(delay);
+                    continue;
+                }
+                return { success: false, error: 'NETWORK_ERROR: ' + (e.message || '') };
             }
-
-            if (response.data && response.data.error) {
-                return { success: false, error: response.data.error };
-            }
-
-            return { success: true, id: response.data?.id };
-        } catch (e) {
-            return { success: false, error: 'NETWORK_ERROR: ' + (e.message || '') };
         }
+
+        return { success: false, error: 'MAX_RETRIES_EXCEEDED' };
     }
 
     /**
@@ -76,13 +101,33 @@
             return results;
         }
 
-        let result = await sendEmail({ to: emails, subject: subject, html: html });
+        // تقسيم الإيميلات إلى دفعات من 50 (حد Resend الأقصى)
+        var batchSize = 50;
+        var batches = [];
+        for (var i = 0; i < emails.length; i += batchSize) {
+            batches.push(emails.slice(i, i + batchSize));
+        }
 
-        if (result.success) {
-            results.sent = emails.length;
-        } else {
-            results.failed = emails.length;
-            results.errors.push(result.error);
+        for (var j = 0; j < batches.length; j++) {
+            var batch = batches[j];
+            var result = await sendEmail({ to: batch, subject: subject, html: html });
+
+            if (result.success) {
+                results.sent += batch.length;
+            } else {
+                results.failed += batch.length;
+                results.errors.push(result.error);
+                // إذا كان Rate Limit، توقف عن باقي الدفعات
+                if (result.error === 'RATE_LIMIT_EXCEEDED') {
+                    results.errors.push('BATCH_STOPPED_AT_' + (j + 1) + '_OF_' + batches.length);
+                    break;
+                }
+            }
+
+            // تأخير بين الدفعات لتجنب Rate Limit
+            if (j < batches.length - 1) {
+                await sleep(1100);
+            }
         }
 
         return results;
@@ -126,10 +171,33 @@
         }
     }
 
+    /**
+     * ترجمة رموز الأخطاء إلى رسائل مفهومة
+     */
+    function getErrorMessage(errorCode) {
+        var messages = {
+            'RATE_LIMIT_EXCEEDED': 'تم تجاوز حد الإرسال، يرجى الانتظار دقيقة والمحاولة مرة أخرى',
+            'RESEND_API_KEY_NOT_CONFIGURED': 'خدمة الإيميل غير مُعدّة',
+            'UNAUTHORIZED': 'يجب تسجيل الدخول أولاً',
+            'FORBIDDEN': 'صلاحيات المشرف مطلوبة',
+            'MISSING_RECIPIENT': 'لم يتم تحديد المستقبل',
+            'MISSING_SUBJECT': 'لم يتم تحديد عنوان الإيميل',
+            'MISSING_CONTENT': 'لم يتم تحديد محتوى الإيميل',
+            'INVALID_EMAIL': 'عنوان بريد إلكتروني غير صالح',
+            'TOO_MANY_RECIPIENTS': 'عدد المستقبلين يتجاوز الحد الأقصى (50)',
+            'EMAIL_SEND_FAILED': 'فشل إرسال الإيميل',
+            'NETWORK_ERROR': 'خطأ في الاتصال، تحقق من الإنترنت',
+            'MAX_RETRIES_EXCEEDED': 'فشلت جميع المحاولات، حاول لاحقاً',
+            'SUPABASE_NOT_CONFIGURED': 'الخدمة غير متاحة حالياً',
+        };
+        return messages[errorCode] || errorCode;
+    }
+
     // Public API
     window.emailService = {
         send: sendEmail,
         sendBulk: sendBulkEmail,
         sendToAll: sendToAllUsers,
+        getErrorMessage: getErrorMessage,
     };
 })();

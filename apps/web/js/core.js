@@ -101,8 +101,6 @@ window.clearUserSession = function() {
   window.safeStorageRemove(window.AUTH_CONFIG.SESSION_KEY);
   window.safeStorageRemove(window.AUTH_CONFIG.USER_KEY);
   window.safeStorageRemove('session_expires');
-  window.safeStorageRemove('svu_login_attempts');
-  window.safeStorageRemove('svu_login_lockout');
 };
 
 window.updateUserData = function(updates) {
@@ -195,42 +193,7 @@ window.validateUrl = function(url) {
   return null;
 };
 
-// ════════════════════════════════════════════════════════════════
-// 8. Login Protection (Client-side complement)
-// ════════════════════════════════════════════════════════════════
-window.getLoginAttempts = function() {
-  const attempts = window.safeStorageGet('svu_login_attempts');
-  return attempts ? parseInt(attempts) : 0;
-};
 
-window.incrementLoginAttempts = function() {
-  const attempts = window.getLoginAttempts() + 1;
-  window.safeStorageSet('svu_login_attempts', attempts.toString());
-  return attempts;
-};
-
-window.resetLoginAttempts = function() {
-  window.safeStorageRemove('svu_login_attempts');
-  window.safeStorageRemove('svu_login_lockout');
-};
-
-window.isLockedOut = function() {
-  const lockout = window.safeStorageGet('svu_login_lockout');
-  if (!lockout) return false;
-  if (Date.now() > parseInt(lockout, 10)) {
-    window.safeStorageRemove('svu_login_lockout');
-    return false;
-  }
-  return true;
-};
-
-window.lockoutUser = function() {
-  const duration =
-    window.SVU_CONFIG?.SECURITY_CONFIG?.lockoutDuration ?? 15 * 60 * 1000;
-  const lockoutTime = Date.now() + duration;
-  window.safeStorageSet('svu_login_lockout', lockoutTime.toString());
-  showToast(window.i18n?.t('loginTooManyAttempts') || 'Too many attempts. Try again later.', 'error');
-};
 
 // ════════════════════════════════════════════════════════════════
 // 9. Theme Toggle — 3-state: light → dark → system

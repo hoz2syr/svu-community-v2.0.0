@@ -7,11 +7,10 @@
     <meta name="description" content="تسجيل الدخول إلى SVU Community">
     <meta name="robots" content="noindex, nofollow">
     <meta name="theme-color" content="#0f172a">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <script src="vendor/supabase.min.js"></script>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+    <link rel="stylesheet" href="vendor/fonts/cairo.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="min-h-screen flex items-center justify-center p-4">
@@ -161,5 +160,74 @@
     <script src="js/shared.js"></script>
     <script src="js/i18n.js"></script>
     <script src="js/page-login.js"></script>
+    <!-- Fallback: تأكد من عمل أزرار النوافذ المنبثقة حتى لو فشل page-login.js -->
+    <script>
+    (function() {
+        'use strict';
+        if (typeof window.showForgotPassword !== 'function') {
+            window.showForgotPassword = function() {
+                var modal = document.getElementById('forgotPasswordModal');
+                if (modal) {
+                    modal.classList.remove('hidden');
+                    modal.classList.add('flex');
+                }
+            };
+        }
+        if (typeof window.hideForgotPassword !== 'function') {
+            window.hideForgotPassword = function() {
+                var modal = document.getElementById('forgotPasswordModal');
+                if (modal) {
+                    modal.classList.add('hidden');
+                    modal.classList.remove('flex');
+                }
+            };
+        }
+        // Form submit handler
+        var form = document.getElementById('forgotPasswordForm');
+        if (form && !form._hasHandler) {
+            form._hasHandler = true;
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                var email = document.getElementById('resetEmail').value;
+                var btn = document.getElementById('resetBtn');
+
+                if (!email || !email.includes('@')) {
+                    if (window.showToast) window.showToast('أدخل بريداً إلكترونياً صحيحاً', 'error');
+                    else alert('أدخل بريداً إلكترونياً صحيحاً');
+                    return;
+                }
+
+                btn.disabled = true;
+                btn.textContent = 'جاري الإرسال...';
+
+                try {
+                    var db = window.initSupabase ? window.initSupabase() : (window.getDb ? window.getDb() : null);
+                    if (!db) {
+                        throw new Error('تعذر الاتصال بالخادم');
+                    }
+
+                    var result = await db.auth.resetPasswordForEmail(email, {
+                        redirectTo: window.location.origin + '/reset-password.html',
+                    });
+                    if (result.error) throw result.error;
+
+                    if (window.showToast) window.showToast('تم إرسال رابط الاستعادة إلى بريدك الإلكتروني!', 'success');
+                    else alert('تم إرسال رابط الاستعادة إلى بريدك الإلكتروني!');
+                    setTimeout(function() { window.hideForgotPassword(); }, 2000);
+                } catch (error) {
+                    var msg = error.message || 'فشل إرسال رابط الاستعادة';
+                    if (msg.includes('429') || msg.toLowerCase().includes('rate')) {
+                        msg = 'تم تجاوز حد المحاولات، انتظر دقيقة وحاول مرة أخرى';
+                    }
+                    if (window.showToast) window.showToast(msg, 'error');
+                    else alert(msg);
+                } finally {
+                    btn.disabled = false;
+                    btn.textContent = 'إرسال رابط الاستعادة';
+                }
+            });
+        }
+    })();
+    </script>
 </body>
 </html>

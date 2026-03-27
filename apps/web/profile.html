@@ -7,11 +7,10 @@
     <meta name="description" content="الملف الشخصي - SVU Community">
     <meta name="robots" content="noindex, nofollow">
     <meta name="theme-color" content="#0f172a">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <script src="vendor/supabase.min.js"></script>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+    <link rel="stylesheet" href="vendor/fonts/cairo.css">
     <link rel="stylesheet" href="styles.css">
     <style>
         * { font-family: 'Cairo', sans-serif; }
@@ -453,5 +452,91 @@
     <script src="js/tooltip.js"></script>
     <script src="js/feedback.js"></script>
     <script src="js/page-profile.js"></script>
+    <!-- Fallback: تأكد من عمل أزرار النوافذ المنبثقة حتى لو فشل page-profile.js -->
+    <script>
+    (function() {
+        'use strict';
+        if (typeof window.openChangePasswordModal !== 'function') {
+            window.openChangePasswordModal = function() {
+                var modal = document.getElementById('changePasswordModal');
+                if (modal) {
+                    modal.classList.remove('hidden');
+                    modal.classList.add('flex');
+                }
+            };
+        }
+        if (typeof window.closeChangePasswordModal !== 'function') {
+            window.closeChangePasswordModal = function() {
+                var modal = document.getElementById('changePasswordModal');
+                if (modal) {
+                    modal.classList.add('hidden');
+                    modal.classList.remove('flex');
+                }
+            };
+        }
+        // Form submit handler
+        var form = document.getElementById('changePasswordForm');
+        if (form && !form._hasHandler) {
+            form._hasHandler = true;
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                var currentPwd = document.getElementById('currentPassword').value;
+                var newPwd = document.getElementById('newPwd').value;
+                var confirmPwd = document.getElementById('confirmNewPwd').value;
+                var btn = document.getElementById('changePwdBtn');
+
+                if (newPwd !== confirmPwd) {
+                    if (window.showToast) window.showToast('كلمتا المرور غير متطابقتين!', 'error');
+                    else alert('كلمتا المرور غير متطابقتين!');
+                    return;
+                }
+                if (newPwd.length < 8) {
+                    if (window.showToast) window.showToast('كلمة المرور الجديدة يجب أن تكون 8 أحرف على الأقل', 'error');
+                    else alert('كلمة المرور الجديدة يجب أن تكون 8 أحرف على الأقل');
+                    return;
+                }
+
+                btn.disabled = true;
+                btn.textContent = 'جاري التغيير...';
+
+                try {
+                    var db = window.getDb ? window.getDb() : null;
+                    if (!db) {
+                        throw new Error('تعذر الاتصال بالخادم');
+                    }
+
+                    // التحقق من كلمة المرور الحالية
+                    var user = window.getCurrentUser ? window.getCurrentUser() : null;
+                    if (!user || !user.email) {
+                        throw new Error('يجب تسجيل الدخول أولاً');
+                    }
+
+                    var verifyResult = await db.auth.signInWithPassword({
+                        email: user.email,
+                        password: currentPwd,
+                    });
+                    if (verifyResult.error) {
+                        throw new Error('كلمة المرور الحالية غير صحيحة');
+                    }
+
+                    // تحديث كلمة المرور
+                    var updateResult = await db.auth.updateUser({ password: newPwd });
+                    if (updateResult.error) throw updateResult.error;
+
+                    if (window.showToast) window.showToast('تم تغيير كلمة المرور بنجاح!', 'success');
+                    else alert('تم تغيير كلمة المرور بنجاح!');
+                    window.closeChangePasswordModal();
+                } catch (error) {
+                    var msg = error.message || 'فشل تغيير كلمة المرور';
+                    if (window.showToast) window.showToast(msg, 'error');
+                    else alert(msg);
+                } finally {
+                    btn.disabled = false;
+                    btn.textContent = 'تغيير كلمة المرور';
+                }
+            });
+        }
+    })();
+    </script>
 </body>
 </html>

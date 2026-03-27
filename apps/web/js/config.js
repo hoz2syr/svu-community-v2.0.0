@@ -24,12 +24,9 @@ const APP_CONFIG = {
   supportedLangs: ['ar', 'en'],
 };
 
-// Security settings — sessionTimeout/isLoggedIn + lockout في core.js؛ maxLoginAttempts في page-login.js؛ requireEmailConfirmation إشعار تشغيلي
 const SECURITY_CONFIG = {
   requireEmailConfirmation: true,
   sessionTimeout: 30 * 60 * 1000,
-  maxLoginAttempts: 5,
-  lockoutDuration: 15 * 60 * 1000,
 };
 
 // Supabase client singleton

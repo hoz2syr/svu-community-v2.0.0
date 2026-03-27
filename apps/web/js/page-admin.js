@@ -399,8 +399,11 @@
                 statusEl.textContent = 'تم الإرسال: ' + result.sent + ' | فشل: ' + result.failed;
                 if (result.total) statusEl.textContent += ' (إجمالي: ' + result.total + ')';
             } else {
-                showToast('فشل إرسال الإيميل', 'error');
-                statusEl.textContent = 'فشل: ' + (result.errors.join(', ') || 'خطأ غير معروف');
+                var friendlyErrors = result.errors.map(function(err) {
+                    return window.emailService.getErrorMessage ? window.emailService.getErrorMessage(err) : err;
+                });
+                showToast(friendlyErrors[0] || 'فشل إرسال الإيميل', 'error');
+                statusEl.textContent = 'فشل: ' + friendlyErrors.join(', ');
             }
         } catch (e) {
             showToast('خطأ: ' + (e.message || ''), 'error');

@@ -8,11 +8,10 @@
     <meta name="robots" content="noindex, nofollow">
     <meta name="theme-color" content="#0f172a">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+    <link rel="stylesheet" href="vendor/fonts/cairo.css">
     <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <script src="vendor/supabase.min.js"></script>
     <style>
         * { font-family: 'Cairo', sans-serif; }
         body { background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%); min-height: 100vh; }
@@ -52,6 +51,24 @@
 
         /* Modal */
         .modal { background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px); }
+
+        /* Modal Card Animation */
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.92) translateY(10px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .modal-card { animation: scaleIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+        /* Unified Hero Gradient */
+        .modal-hero { background: linear-gradient(135deg, rgba(14,165,233,0.15) 0%, rgba(2,132,199,0.05) 100%); border-bottom: 1px solid rgba(14,165,233,0.2); }
+
+        /* Prereq / Dependent Chips */
+        .prereq-chip { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 8px; font-size: 13px; font-weight: 500; }
+        .chip-prereq { background: rgba(234,179,8,0.12); color: #fbbf24; border: 1px solid rgba(234,179,8,0.25); }
+        .chip-dependent { background: rgba(56,189,248,0.12); color: #38bdf8; border: 1px solid rgba(56,189,248,0.25); }
+
+        /* Info Cards */
+        .info-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 16px; }
 
         /* Resource Items */
         .resource-item { animation: fadeInUp 0.3s ease forwards; }
@@ -229,25 +246,31 @@
 
     <!-- Course Details Modal -->
     <div id="courseModal" class="fixed inset-0 modal hidden z-50 overflow-y-auto">
-        <div class="flex min-h-full items-center justify-center p-3 sm:p-4">
-            <div class="glass rounded-2xl p-4 sm:p-6 max-w-2xl w-full shadow-2xl max-h-[90vh] overflow-y-auto" onclick="event.stopPropagation()">
-                <div class="flex justify-between items-start mb-4">
-                    <div class="flex-1">
-                        <h3 id="modalName" class="text-xl font-bold text-white">اسم المادة</h3>
-                        <div class="flex items-center gap-2 mt-2">
-                            <span id="modalCode" class="code-tag px-3 py-1 bg-primary-600/30 text-primary-400 rounded-lg font-semibold">CODE000</span>
-                            <span id="modalId" class="text-secondary-500 text-xs">#000</span>
+        <div class="flex min-h-full items-center justify-center p-2 sm:p-6">
+            <div class="modal-card glass rounded-2xl max-w-4xl w-full shadow-2xl max-h-[92vh] sm:max-h-[90vh] overflow-y-auto" onclick="event.stopPropagation()">
+
+                <!-- Hero Header -->
+                <div class="modal-hero rounded-t-2xl p-6 sm:p-8">
+                    <div class="flex justify-between items-start">
+                        <div class="flex-1">
+                            <span id="modalCode" class="inline-block px-3 py-1 bg-white/10 rounded-lg font-mono font-bold text-lg sm:text-xl text-white/90 mb-3">CODE000</span>
+                            <h2 id="modalName" class="text-2xl sm:text-3xl font-bold text-white leading-tight mb-3">اسم المادة</h2>
+                            <div class="flex flex-wrap items-center gap-2">
+                                <span id="modalYear" class="px-3 py-1 bg-white/10 rounded-full text-sm text-white/80">السنة</span>
+                                <span id="modalCategory" class="px-3 py-1 bg-white/10 rounded-full text-sm text-white/80">التصنيف</span>
+                                <span id="modalId" class="text-white/40 text-xs">#000</span>
+                            </div>
                         </div>
+                        <button onclick="closeCourseModal()" class="w-10 h-10 flex items-center justify-center rounded-xl bg-white/10 text-white/70 hover:text-white hover:bg-white/20 transition flex-shrink-0">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                            </svg>
+                        </button>
                     </div>
-                    <button onclick="closeCourseModal()" class="text-secondary-400 hover:text-white transition">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                        </svg>
-                    </button>
                 </div>
 
                 <!-- Tab Buttons -->
-                <div class="flex gap-2 mb-4" id="modalTabButtons">
+                <div class="flex gap-2 p-4 sm:p-6 pb-0" id="modalTabButtons">
                     <button id="modalTabInfo" data-tab="info"
                         class="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl font-semibold text-sm transition-all duration-300 bg-primary-600 text-white">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -272,45 +295,35 @@
                 </div>
 
                 <!-- Tab: Info (default visible) -->
-                <div id="modalTabInfoContent" class="space-y-3">
-                    <div class="flex items-center gap-3 text-secondary-300">
-                        <svg class="w-5 h-5 text-secondary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
-                        </svg>
-                        <span id="modalYear">السنة</span>
-                    </div>
-                    <div class="flex items-center gap-3 text-secondary-300">
-                        <svg class="w-5 h-5 text-secondary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
-                        </svg>
-                        <span id="modalCategory">التصنيف</span>
-                    </div>
-
+                <div id="modalTabInfoContent" class="p-4 sm:p-6 space-y-4">
                     <!-- Prerequisites -->
-                    <div id="prereqSection" class="space-y-2">
-                        <div class="flex items-center gap-3 text-secondary-300 pt-2 border-t border-white/5">
-                            <svg class="w-5 h-5 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div id="prereqSection" class="info-card">
+                        <div class="flex items-center gap-2 text-yellow-400 mb-3">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
                             </svg>
                             <span class="text-sm font-semibold">المتطلبات السابقة</span>
                         </div>
-                        <div id="prereqList" class="pr-8 space-y-1.5"></div>
+                        <div id="prereqList" class="flex flex-wrap gap-2"></div>
                     </div>
 
                     <!-- Dependent Courses -->
-                    <div id="dependentsSection" class="space-y-2">
-                        <div class="flex items-center gap-3 text-secondary-300 pt-2 border-t border-white/5">
-                            <svg class="w-5 h-5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div id="dependentsSection" class="info-card">
+                        <div class="flex items-center gap-2 text-primary-400 mb-3">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
                             </svg>
                             <span class="text-sm font-semibold">يفتح هذه المواد</span>
                         </div>
-                        <div id="dependentsList" class="pr-8 space-y-1.5"></div>
+                        <div id="dependentsList" class="flex flex-wrap gap-2"></div>
                     </div>
+
+                    <!-- SVG Prereq Chart -->
+                    <div id="prereqChart" class="hidden info-card overflow-x-auto"></div>
                 </div>
 
                 <!-- Tab: Resources (hidden by default) -->
-                <div id="modalTabResourcesContent" class="hidden">
+                <div id="modalTabResourcesContent" class="hidden p-4 sm:p-6">
                     <!-- Add Resource Form -->
                     <div id="addResourceForm" class="mb-4"></div>
                     <!-- Resources List -->
