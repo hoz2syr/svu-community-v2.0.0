@@ -47,6 +47,11 @@ async function main() {
   console.log('[build] Copying js/ → public/js/ …');
   await copyDirTree(resolve(root, 'js'), resolve(publicDir, 'js'));
 
+  if (existsSync(resolve(root, 'vendor'))) {
+    console.log('[build] Copying vendor/ → public/vendor/ …');
+    await copyDirTree(resolve(root, 'vendor'), resolve(publicDir, 'vendor'));
+  }
+
   if (existsSync(resolve(root, 'env.js'))) {
     await copyFileWithRetry(resolve(root, 'env.js'), resolve(publicDir, 'env.js'));
   } else {
